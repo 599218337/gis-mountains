@@ -1,11 +1,3 @@
-<!--
- * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
- * @Date: 2024-04-10 09:40:35
- * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
- * @LastEditTime: 2024-04-12 10:45:10
- * @FilePath: /gis-test/src/App.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 <script setup lang="ts">
 // import * as gs3d from '@gs3d/sdk'
 import * as gs3d from '@/utils/gs3d/index'
@@ -176,6 +168,8 @@ onMounted(async () => {
     <button id="show-hidden">显/隐</button>
     <button id="fill-show-hidden">填充显/隐</button>
     <button id="border-show-hidden">边框显/隐</button>
+    <input type="file" id="avatar" name="avatar" accept="xlsx" />
+
   </div>
 </template>
 
