@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // import * as gs3d from '@gs3d/sdk'
 import * as gs3d from '@/utils/gs3d/index'
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 // import geoData from '@/static/geo'
 import kuangData from '@/static/kuang'
 let viewer: any;
@@ -39,45 +39,7 @@ const polygon = {
   }
 }
 
-let flag = true
-const changeShow = async () => {
-  if (flag) {
-    viewer.scene.terrainProvider = new Cesium.EllipsoidTerrainProvider({});
-    gs3d.grid.buildGrid.draw(options, viewer)
-  } else {
-    viewer.scene.setTerrain(
-      new Cesium.Terrain(
-        Cesium.CesiumTerrainProvider.fromIonAssetId(1),
-      ),
-    );
-  }
-  flag = !flag
-  // 加载谷歌3DTails没生效
-  // viewer.imageryLayers.remove(viewer.imageryLayers.get(0));
-  // const tileset = await Cesium.Cesium3DTileset.fromIonAssetId(2275207);
-  // viewer.scene.primitives.add(tileset);
-}
-let event = [
-  {
-    id: 'show-hidden',
-    clickEvent: () => {
-      // gs3d.grid.buildGrid.changeShow()
-      changeShow()
-    }
-  },
-  {
-    id: 'fill-show-hidden',
-    clickEvent: () => {
-      gs3d.grid.buildGrid.changeBoxShow()
-    }
-  },
-  {
-    id: 'border-show-hidden',
-    clickEvent: () => {
-      gs3d.grid.buildGrid.changeOutlineShow()
-    }
-  },
-]
+
 
 
 onMounted(async () => {
@@ -88,25 +50,7 @@ onMounted(async () => {
 
   viewer = gs3d.global.initViewer('mapContainer', defopt);
   viewer.scene.globe.depthTestAgainstTerrain = true;
-  // const viewer = new Cesium.Viewer('mapContainer', {
-  //   terrain: Cesium.Terrain.fromWorldTerrain(),
-  // });
-  // viewer.camera.flyTo({
-  //   destination: Cesium.Cartesian3.fromDegrees(111.181279144793564, 31.363959102231885, 400),
-  //   orientation: {
-  //     heading: Cesium.Math.toRadians(0.0),
-  //     pitch: Cesium.Math.toRadians(-15.0),
-  //   }
-  // });
 
-
-  // viewer.imageryLayers.remove(viewer.imageryLayers.get(0));
-  // viewer.terrainProvider = Cesium.createWorldTerrainAsync({
-  //   requestWaterMask: true, // required for water effects
-  //   requestVertexNormals: true // required for terrain lighting
-  // });
-  // viewer.scene.globe.terrainExaggeration = 0;
-  // viewer.scene.globe.terrainExaggerationRelativeHeight = 1;
   let geojsonOptions = {
     clampToGround: true //使数据贴地
   };
@@ -143,19 +87,20 @@ onMounted(async () => {
     console.log('click', pick)
   }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
 
-  handle.setInputAction(async (e: any) => {
-    console.log('wheel', e)
-  }, Cesium.ScreenSpaceEventType.e)
-
-  event.forEach(item => {
-    let dom = document.getElementById(item.id)
-    if (dom) {
-      dom.addEventListener('click', item.clickEvent)
+  handle.setInputAction(async () => {
+    if (false) {//缩放到一定层级 清除背景开始建模
+      viewer.scene.terrainProvider = new Cesium.EllipsoidTerrainProvider({});
+      gs3d.grid.buildGrid.draw(options, viewer)
+      viewer.imageryLayers.remove(viewer.imageryLayers.get(0));
     }
-  })
+
+  }, Cesium.ScreenSpaceEventType.WHEEL)
 })
 
-
+let showBox = ref(false)
+const showInformation = () => {
+  showBox.value = true
+}
 
 
 
@@ -165,15 +110,36 @@ onMounted(async () => {
 
   <div id="mapContainer"></div>
   <div class="active-btn">
-    <button id="show-hidden">显/隐</button>
-    <button id="fill-show-hidden">填充显/隐</button>
-    <button id="border-show-hidden">边框显/隐</button>
-    <input type="file" id="avatar" name="avatar" accept="xlsx" />
+    <el-button id="fill-show-hidden" @click="gs3d.grid.buildGrid.changeBoxShow()">填充显/隐</el-button>
+    <el-button id="border-show-hidden" @click="gs3d.grid.buildGrid.changeOutlineShow()">边框显/隐</el-button>
+    <el-upload class="upload-demo" action="#" :show-file-list="false" style="display: inline-block; margin-left: 10px"
+      @change="showInformation">
+      <el-button>信息导入</el-button>
+    </el-upload>
+  </div>
+  <div id="information-box" v-show="showBox">
+    <span class="title">爆破信息</span>
+    <div class="details">
+      <ul>
+        <li>负责人：王阳</li>
+        <li>爆破长度：100米</li>
+        <li>爆破区域：如图</li>
+        <li>操作流程：
+          <ul class="process">
+            <li>安全阀门已关闭</li>
+            <li>人员疏散完毕</li>
+            <li>感知设备正常</li>
+            <li>炸药投放位置已确认</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="operate"> <el-button type="primary" @click="showBox = false">关闭</el-button></div>
 
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 #mapContainer {
   height: 100vh;
   width: 100vw;
@@ -186,7 +152,54 @@ onMounted(async () => {
   position: fixed;
 }
 
-button {
-  margin-right: 5px;
+#information-box {
+  color: white;
+  width: 350px;
+  height: 500px;
+  background-image: url(assets/border-top-right.webp);
+  background-size: 100% 100%;
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  z-index: 9;
+  font-weight: 500;
+
+  .title {
+    font-size: 20px;
+    position: relative;
+    top: 3px;
+    left: 45px;
+  }
+
+  .details {
+    ul {
+      list-style-type: none;
+
+      li {
+        margin-bottom: 10px;
+      }
+    }
+
+    .process {
+      margin-top: 10px;
+      color: rgb(130 239 151);
+      font-weight: 900;
+      font-size: 18px;
+
+      li:before {
+        content: "✓";
+      }
+
+      li {
+        margin-bottom: 16px;
+      }
+    }
+  }
+
+  .operate {
+    text-align: center;
+    margin-top: 40px;
+  }
+
 }
 </style>
