@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@gs3d/sdk": "^1.0.20",
     "@turf/turf": "^6.5.0",
     "vue": "^3.4.21"
   },
