@@ -234,7 +234,6 @@ const addTerrain = () => {
   // //夸大地形的高度。默认为0.0（相对于椭球表面缩放）。高于此高度的地形将向上缩放，低于此高度的地形将向下缩放。请注意，地形夸大不会修改任何其他图元，因为它们是相对于椭圆体定位的。如果Globe#terrainExaggeration是1.0这个值将没有效果。
   // viewer.scene.globe.terrainExaggerationRelativeHeight = 1.0
 }
-
 const removeTerrain = () => {
   gs3d.manager.layerManager.removeLayer({ id: 'cesium_terrain' })
 
@@ -258,6 +257,32 @@ const addPolygon = () => {
 const removePolygon = () => {
   gs3d.common.draw.clearGraphicByGraphicName(viewer, 'basePolygon')
   gs3d.effect.breath.clear()
+}
+
+const drawGraphic = () => {
+  let graphic = {
+    type: 'Feature',
+    properties: {},
+    geometry: {
+      coordinates: [
+        [111.17764741533298, 31.372454845970655, 1000],
+        [111.17772661356298, 31.371169105077225, 1000.3],
+        [111.17932568034516, 31.370750017208138, 1010]
+      ],
+      type: 'LineString',
+    }
+  }
+  gs3d.common.draw.drawGraphic(viewer, graphic.geometry, {
+    graphicName: "graphic",
+    width: 5,
+    color: "blue",
+    showBillBoard: false,
+    // clampToGround: true
+  })
+
+}
+const clearGraphic=()=>{
+  gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic')
 }
 
 const drawTerrainGrid = () => {
@@ -503,9 +528,10 @@ const changeLayer = () => { }
 <template>
   <div id="mapContainer"></div>
   <div class="active-btn">
+    <el-button @click="addPolygon()">画面</el-button>
+    <el-button @click="drawGraphic()">画线要素</el-button>
     <el-button v-show="show_reset_btn" @click="reset">重置</el-button>
     <el-button @click="activate('line')">画线</el-button>
-    <el-button @click="addPolygon()">画面</el-button>
     <el-button id="fill-show-hidden" @click="gs3d.grid.buildGrid.changeBoxShow()">填充显/隐</el-button>
     <el-button id="border-show-hidden" @click="gs3d.grid.buildGrid.changeOutlineShow()">边框显/隐</el-button>
     <el-upload class="upload-demo" action="#" :show-file-list="false" style="display: inline-block; margin-left: 10px"
