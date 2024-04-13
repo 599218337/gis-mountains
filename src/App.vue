@@ -281,17 +281,97 @@ const drawGraphic = () => {
   })
 
 }
-const clearGraphic=()=>{
+const clearGraphic = () => {
   gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic')
 }
+
+let graphicGrid: any = null
+const drawGraphicGrid = () => {
+  let graphicGridJson = [{
+    "geoNumScope": [
+      31.36277777777778,
+      111.1751388888889,
+      31.362916666666667,
+      111.17527777777778
+    ],
+    "geoNum": 414271356135276544,
+    "geoNum4": "G0011233330212122133301",
+    "bdCode": null,
+    "range": null,
+    "height": 1000,
+    "deviceId": "001"
+  },
+  {
+    "geoNumScope": [
+      31.362916666666667,
+      111.17388888888888,
+      31.363055555555555,
+      111.17402777777778
+    ],
+    "geoNum": 414271356069216256,
+    "geoNum4": "G0011233330212122132302",
+    "bdCode": null,
+    "range": null,
+    height: 2000,
+    deviceId: "002"
+  },
+  {
+    "geoNumScope": [
+      31.362916666666667,
+      111.17402777777778,
+      31.363055555555555,
+      111.17416666666666
+    ],
+    "geoNum": 414271356070264832,
+    "geoNum4": "G0011233330212122132303",
+    "bdCode": null,
+    "range": null,
+    height: 3000,
+    deviceId: "003"
+  }]
+  let gridOptions = {
+    lineColor: "#FFFF00",
+    lineAlpha: 0.75,
+    lineWidth: 1,
+    fillClear: "#FF0000",
+    fillAlpha: 1,
+    clampToGround: false,
+    elevation: 0,
+    features: [],
+    height: 1,
+    name: ''
+  }
+  let features: any = graphicGridJson.map((geo: any) => {
+    const line = turf.lineString([
+      [geo.geoNumScope[1], geo.geoNumScope[0]],
+      [geo.geoNumScope[3], geo.geoNumScope[2]],
+    ])
+    const bbox = turf.bbox(line)
+    const feature = turf.bboxPolygon(bbox, { properties: { id: geo.geoNum4, bbox: bbox } })
+    const centroid = turf.centroid(feature)
+    let center = turf.getCoord(centroid)
+    feature.properties['center'] = center
+    feature.properties['height'] = geo.height
+    feature.properties['extruded'] = 30
+    feature.properties['id'] = geo.deviceId
+    return feature
+  })
+
+  gridOptions.features = features
+  if (!graphicGrid) {
+    graphicGrid = new gs3d.grid.rectangleGrid(viewer)
+  }
+  graphicGrid.draw(gridOptions)
+}
+
 
 const drawTerrainGrid = () => {
   let gridOptions = {
     lineColor: "#FFFF00",
     lineAlpha: 0.75,
     lineWidth: 1,
-    fillClear: "#FF0000",
-    fillAlpha: 0.05,
+    fillClear: "grey",
+    fillAlpha: 0.01,
     clampToGround: false,
     elevation: 0,
     features: [],
@@ -306,6 +386,8 @@ const drawTerrainGrid = () => {
       return
     }
     drawModelGrid(gridOptions)
+    console.log('gridOptions', gridOptions);
+
   })
 }
 let featuresData: Array<any> = []
@@ -358,6 +440,7 @@ const drawModelGrid = (gridOptions: any) => {
 const clearModelGrid = () => {
   rectangleGrid && rectangleGrid.destroy()
 }
+
 const enterUnderGround = () => {
   const { scene } = viewer
   const { globe } = viewer.scene
@@ -529,7 +612,8 @@ const changeLayer = () => { }
   <div id="mapContainer"></div>
   <div class="active-btn">
     <el-button @click="addPolygon()">画面</el-button>
-    <el-button @click="drawGraphic()">画线要素</el-button>
+    <el-button @click="drawGraphic()">画要素</el-button>
+    <el-button @click="drawGraphicGrid()">画要素模型</el-button>
     <el-button v-show="show_reset_btn" @click="reset">重置</el-button>
     <el-button @click="activate('line')">画线</el-button>
     <el-button id="fill-show-hidden" @click="gs3d.grid.buildGrid.changeBoxShow()">填充显/隐</el-button>
