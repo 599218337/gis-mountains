@@ -2,7 +2,6 @@
 import * as gs3d from '@/utils/gs3d/index'
 import { onMounted, ref, watch } from 'vue'
 import kuangData from '@/static/kuang'
-import { destination } from '@turf/turf';
 let viewer: any
 const { Cesium } = window
 const { turf } = gs3d
