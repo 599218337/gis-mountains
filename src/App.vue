@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import * as gs3d from '@/utils/gs3d/index'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import kuangData from '@/static/kuang'
+import { destination } from '@turf/turf';
 let viewer: any
 const { Cesium } = window
 const { turf } = gs3d
@@ -74,24 +75,32 @@ let show_build_btn = ref(false)
 onMounted(async () => {
   const defopt = {
     msaaSamples: 4,
-    terrain: Cesium.Terrain.fromWorldTerrain(),
+    // terrain: Cesium.Terrain.fromWorldTerrain(),
   }
-
   viewer = gs3d.global.initViewer('mapContainer', defopt)
   // viewer.scene.globe.depthTestAgainstTerrain = true
-
+  viewer.camera.setView({
+    destination: Cesium.Cartesian3.fromDegrees(111.1748789388638, 31.154052261877535, 30000),
+    orientation: {
+      heading: Cesium.Math.toRadians(0),
+      pitch: Cesium.Math.toRadians(-45),
+      roll: 0.0
+    }
+  })
+  addTerrain()
   addPolygon()
+  addUnderGroundControler()
+
   // viewer.camera.moveEnd.addEventListener(flyingHandler)
   // gs3d.grid.buildGrid.draw(options, viewer)
   // addModel()
-  // addTerrain()
 
-  let handle = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas)
-  handle.setInputAction(async (e: any) => {
-    let position = e.position
-    let pick = viewer.scene.pick(position)
-    console.log('click', pick)
-  }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
+  // let handle = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas)
+  // handle.setInputAction(async (e: any) => {
+  //   let position = e.position
+  //   let pick = viewer.scene.pick(position)
+  //   console.log('click', pick)
+  // }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
 })
 //缩放到一定层级 清除背景开始建模
 let flyingHandler = function () {
@@ -112,6 +121,22 @@ let flyingHandler = function () {
   })
   viewer.camera.moveEnd.removeEventListener(flyingHandler)
 }
+let isUnderGround = ref(false)
+const addUnderGroundControler = () => {
+  viewer.camera.changed.addEventListener(async function () {
+    // 获取当前相机高度
+    let cameraHeight = viewer.camera.positionCartographic.height
+    console.log('cameraHeight：', cameraHeight)
+    if (cameraHeight < 25000) {
+      isUnderGround.value = true
+    } else {
+      isUnderGround.value = false
+    }
+  })
+}
+watch(isUnderGround, (newVal) => {
+  newVal ? enterUnderGround() : cancelUnderGround()
+})
 const addModel = () => {
   let position = Cesium.Cartesian3.fromDegrees(111.185279144793564, 31.373959102231885)
   const entity = viewer.entities.add({
@@ -137,6 +162,14 @@ const addModel = () => {
 }
 
 const addTerrain = () => {
+  let options = {
+    id: 'cesium_terrain',
+    label: 'Cesium默认地形【cesium】',
+    type: 'cesium_terrain',
+    requestVertexNormals: true, //开启地形光照
+    requestWaterMask: true // 开启水面波纹
+  }
+  gs3d.manager.layerManager.addLayer([options])
   // let options={
   //       id: 'modelLayer',
   //       label: 'TerrainGrid',
@@ -149,12 +182,20 @@ const addTerrain = () => {
   //     }
   // gs3d.manager.layerManager.addLayer([options])
 
-  let terrainProvider = Cesium.CesiumTerrainProvider.fromUrl('/dem')
-  viewer.terrainProvider = terrainProvider
-  //用于夸大地形的标量。默认为1.0（不夸张）。值2.0将地形缩放 2 倍。的值0.0使地形完全平坦。请注意，地形夸大不会修改任何其他图元，因为它们是相对于椭圆体定位的。
-  viewer.scene.globe.terrainExaggeration = 4
-  //夸大地形的高度。默认为0.0（相对于椭球表面缩放）。高于此高度的地形将向上缩放，低于此高度的地形将向下缩放。请注意，地形夸大不会修改任何其他图元，因为它们是相对于椭圆体定位的。如果Globe#terrainExaggeration是1.0这个值将没有效果。
-  viewer.scene.globe.terrainExaggerationRelativeHeight = 1.0
+  // let terrainProvider = Cesium.CesiumTerrainProvider.fromUrl('/dem')
+  // viewer.terrainProvider = terrainProvider
+  // //用于夸大地形的标量。默认为1.0（不夸张）。值2.0将地形缩放 2 倍。的值0.0使地形完全平坦。请注意，地形夸大不会修改任何其他图元，因为它们是相对于椭圆体定位的。
+  // viewer.scene.globe.terrainExaggeration = 4
+  // //夸大地形的高度。默认为0.0（相对于椭球表面缩放）。高于此高度的地形将向上缩放，低于此高度的地形将向下缩放。请注意，地形夸大不会修改任何其他图元，因为它们是相对于椭圆体定位的。如果Globe#terrainExaggeration是1.0这个值将没有效果。
+  // viewer.scene.globe.terrainExaggerationRelativeHeight = 1.0
+
+
+
+}
+
+const removeTerrain = () => {
+  gs3d.manager.layerManager.removeLayer({ id: 'cesium_terrain' })
+
 }
 const addPolygon = () => {
   let optionPolygon = {
@@ -164,7 +205,7 @@ const addPolygon = () => {
     entityProperties: {},
   }
   let entity = gs3d.common.draw.drawGraphic(viewer, polygon.geometry, optionPolygon)
-  gs3d.common.position.locationEntity(viewer, entity)
+  // gs3d.common.position.locationEntity(viewer, entity)
 }
 
 const drawTerrainGrid = () => {
@@ -176,7 +217,6 @@ const drawTerrainGrid = () => {
     fillAlpha: 0.05,
     clampToGround: false,
     elevation: 0,
-    // elevation: 420.0,
     features: [],
     height: 1,
     name: ''
@@ -236,6 +276,70 @@ const drawModelGrid = (gridOptions: any) => {
     rectangleGrid = new gs3d.grid.rectangleGrid(viewer)
   }
   rectangleGrid.draw(gridOptions)
+}
+const clearModelGrid = () => {
+  rectangleGrid && rectangleGrid.destroy()
+}
+const enterUnderGround = () => {
+  const { scene } = viewer
+  const { globe } = viewer.scene
+  const { imageryLayers } = viewer
+  scene.globe.depthTestAgainstTerrain = false
+  scene.screenSpaceCameraController.inertiaZoom = 0.5 //调整相机惯性缩放时长
+  scene.screenSpaceCameraController.enableCollisionDetection = false //禁用相机与地形的碰撞检测
+  // scene.highDynamicRange = false //关闭高动态范围渲染
+  // scene.skyAtmosphere.show = false //关闭大气
+  // scene.skyBox.show = false //关闭天空盒
+  // scene.fog.enabled = false //关闭雾
+  // globe.baseColor = Cesium.Color.BLACK
+  globe.baseColor = Cesium.Color.TRANSPARENT
+  if (imageryLayers && imageryLayers.length > 0) {
+    // 遍历所有的影像，把影像透明度调整为0.7
+    for (let index = 0; index < imageryLayers.length; index++) {
+      const layer = imageryLayers.get(index)
+      layer.alpha = 0.2
+    }
+  }
+  //当相机在地下或地球是半透明时渲染地球背面的颜色，根据相机的距离与地球颜色混合。
+  globe.undergroundColor = Cesium.Color.BLACK
+  // globe.undergroundColor = Cesium.Color.TRANSPARENT
+  //获取或设置 Globe#undergroundColor 与地球颜色混合的近距离和远距离
+  globe.undergroundColorAlphaByDistance.near = 1000
+  globe.undergroundColorAlphaByDistance.far = 1000000
+  globe.undergroundColorAlphaByDistance.nearValue = 0
+  globe.undergroundColorAlphaByDistance.farValue = 1
+  removeTerrain()
+
+}
+const cancelUnderGround = () => {
+  const { scene } = viewer
+  const { globe } = viewer.scene
+  const { imageryLayers } = viewer
+  scene.globe.depthTestAgainstTerrain = true
+
+  // 退出地下模式的参数---------------------------------------------------
+  const originalOpts = {
+    baseColor: globe.baseColor,
+    alpha: 1.0,
+    skyBox: true,
+    skyAtmosphere: true,
+    highDynamicRange: true,
+    fog: true
+  }
+  //启用或禁用相机与地形的碰撞检测
+  scene.screenSpaceCameraController.enableCollisionDetection = true
+  scene.highDynamicRange = originalOpts.highDynamicRange
+  scene.skyAtmosphere.show = originalOpts.skyAtmosphere
+  scene.skyBox.show = originalOpts.skyBox
+  scene.fog.enabled = originalOpts.fog
+  globe.baseColor - originalOpts.baseColor
+  if (imageryLayers && imageryLayers.length > 0) {
+    // 遍历所有的影像，把影像透明度调整回来
+    for (let index = 0; index < imageryLayers.length; index++) {
+      const layer = imageryLayers.get(index)
+      layer.alpha = 1
+    }
+  }
 }
 
 let showBox = ref(false)
