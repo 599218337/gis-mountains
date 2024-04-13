@@ -190,6 +190,8 @@ const drawTerrainGrid = () => {
       return
     }
     drawModelGrid(gridOptions)
+    let baseLayer = viewer.imageryLayers.get(0)
+    baseLayer.alpha = 0
   })
 }
 let featuresData: Array<any> = []
@@ -305,6 +307,42 @@ const activate = (type: string) => {
     }
   })
 }
+
+const catalogueListOption = [{
+  id: 1,
+  label: '管线',
+  children: [{
+    id: 3,
+    label: '隧道',
+  }, {
+    id: 4,
+    label: '风管'
+  }, {
+    id: 5,
+    label: '爆炸线'
+  }, {
+    id: 6,
+    label: '排水管'
+  }, {
+    id: 7,
+    label: '信号线'
+  }]
+}, {
+  id: 2,
+  label: '设备',
+  children: [{
+    id: 8,
+    label: '局扇'
+  }, {
+    id: 9,
+    label: '工具存放硐室'
+  }, {
+    id: 10,
+    label: '应急硐室'
+  }]
+}]
+
+const changeLayer = () => { }
 </script>
 
 <template>
@@ -344,14 +382,7 @@ const activate = (type: string) => {
   <div id="layer-control-box">
     <span class="title">展示图层</span>
     <div class="content">
-      <el-switch v-model="tubeAll" active-color="#13ce66" inactive-color="#ff4949">
-      </el-switch><span class="item">管线</span>
-      <el-switch v-model="tubeAll" active-color="#13ce66" inactive-color="#ff4949">
-      </el-switch><span class="item">隧道</span>
-      <el-switch v-model="tubeAll" active-color="#13ce66" inactive-color="#ff4949">
-      </el-switch><span class="item">管线</span>
-      <el-switch v-model="tubeAll" active-color="#13ce66" inactive-color="#ff4949">
-      </el-switch><span class="item">管线</span>
+      <el-tree :data="catalogueListOption" highlight-current show-checkbox @check="changeLayer" node-key="id" />
     </div>
   </div>
 </template>
@@ -437,5 +468,46 @@ const activate = (type: string) => {
     left: 25px;
   }
 
+  .content {
+    padding-top: 10px;
+  }
+
+}
+</style>
+
+<style lang="scss">
+#layer-control-box {
+  .content {
+    .el-tree {
+      background-color: transparent;
+      color: #fff;
+      height: 75%;
+      overflow: auto;
+      font-size: 16px;
+
+      .el-tree-node__content:hover {
+        background-color: transparent;
+      }
+
+      .el-tree-node.is-current>.el-tree-node__content {
+        background-color: transparent;
+      }
+
+      .el-tree-node:focus>.el-tree-node__content {
+        background-color: transparent;
+      }
+
+      .el-checkbox__inner {
+        background-color: transparent;
+        border: 1px solid #3B7BED;
+      }
+
+      .is-checked {
+        .el-checkbox__inner {
+          background-color: #3B7BED;
+        }
+      }
+    }
+  }
 }
 </style>
