@@ -67,6 +67,45 @@ const polygon = {
     type: 'Polygon',
   },
 }
+const line = {
+  type: 'Feature',
+  properties: {
+    id: '7kuMolrTCYE',
+    name: '7kuMolrTCYE',
+  },
+  geometry: {
+    coordinates: [
+      [111.181279144793564, 31.363959102231885],
+      [111.180659797649355, 31.363911025208314],
+      [111.179758929075945, 31.364175448533619],
+      [111.178942516931315, 31.363670639721651],
+      [111.177929039786193, 31.363598523955773],
+      [111.177112627641549, 31.363814871087428],
+      [111.176070998353509, 31.36299755708858],
+      [111.175113825494293, 31.362901402033284],
+      [111.173649914062509, 31.363093712045515],
+      [111.172749045489056, 31.363766793990077],
+      [111.170834699770552, 31.366435035702661],
+      [111.172157850487764, 31.368502269997485],
+      [111.17255198048862, 31.369535870093689],
+      [111.171932633344426, 31.36948779592268],
+      [111.171763720486879, 31.370064684351714],
+      [111.173368392633307, 31.373045218152502],
+      [111.175029369065513, 31.373429796272905],
+      [111.176690345497761, 31.373910516709948],
+      [111.179195886217556, 31.373766300837065],
+      [111.181391753365276, 31.3726606384581],
+      [111.182405230510369, 31.371002120495923],
+      [111.183869141942154, 31.369968536526137],
+      [111.183418707655449, 31.369776240579867],
+      [111.184432184800528, 31.366627338485408],
+      [111.18451664122928, 31.365016790529037],
+      [111.182095556938236, 31.364223525421934],
+      [111.181279144793564, 31.363959102231885],
+    ],
+    type: 'LineString',
+  },
+}
 
 
 const show_reset_btn = ref(false)
@@ -80,7 +119,7 @@ onMounted(async () => {
   viewer = gs3d.global.initViewer('mapContainer', defopt)
   // viewer.scene.globe.depthTestAgainstTerrain = true
   viewer.camera.setView({
-    destination: Cesium.Cartesian3.fromDegrees(111.1748789388638, 31.154052261877535, 30000),
+    destination: Cesium.Cartesian3.fromDegrees(111.1748789388638, 31.154052261877535, 25000),
     orientation: {
       heading: Cesium.Math.toRadians(0),
       pitch: Cesium.Math.toRadians(-45),
@@ -88,7 +127,7 @@ onMounted(async () => {
     }
   })
   addTerrain()
-  addPolygon()
+  // addPolygon()
   addUnderGroundControler()
 
   // viewer.camera.moveEnd.addEventListener(flyingHandler)
@@ -121,16 +160,22 @@ let flyingHandler = function () {
   })
   viewer.camera.moveEnd.removeEventListener(flyingHandler)
 }
+let hasTerrainGrid = ref(false)
 let isUnderGround = ref(false)
 const addUnderGroundControler = () => {
   viewer.camera.changed.addEventListener(async function () {
     // 获取当前相机高度
     let cameraHeight = viewer.camera.positionCartographic.height
     console.log('cameraHeight：', cameraHeight)
-    if (cameraHeight < 25000) {
-      isUnderGround.value = true
+    hasTerrainGrid.value && cameraHeight < 10000 && removePolygon()
+    if (!hasTerrainGrid.value) {
+      drawTerrainGrid()
     } else {
-      isUnderGround.value = false
+      if (cameraHeight < 10000) {
+        isUnderGround.value = true
+      } else {
+        isUnderGround.value = false
+      }
     }
   })
 }
@@ -188,9 +233,6 @@ const addTerrain = () => {
   // viewer.scene.globe.terrainExaggeration = 4
   // //夸大地形的高度。默认为0.0（相对于椭球表面缩放）。高于此高度的地形将向上缩放，低于此高度的地形将向下缩放。请注意，地形夸大不会修改任何其他图元，因为它们是相对于椭圆体定位的。如果Globe#terrainExaggeration是1.0这个值将没有效果。
   // viewer.scene.globe.terrainExaggerationRelativeHeight = 1.0
-
-
-
 }
 
 const removeTerrain = () => {
@@ -198,14 +240,24 @@ const removeTerrain = () => {
 
 }
 const addPolygon = () => {
-  let optionPolygon = {
-    graphicName: '',
+  gs3d.common.draw.drawGraphic(viewer, line.geometry, {
+    graphicName: "basePolygon",
+    width: 1,
+    color: "#FFDE59",
     showBillBoard: false,
-    clampToGround: true,
-    entityProperties: {},
-  }
-  let entity = gs3d.common.draw.drawGraphic(viewer, polygon.geometry, optionPolygon)
+    clampToGround: true
+  })
   // gs3d.common.position.locationEntity(viewer, entity)
+
+  gs3d.effect.breath.draw(viewer, polygon.geometry, {
+    clampToGround: true,
+    color: "#ff0000",
+    fill: true
+  })
+}
+const removePolygon = () => {
+  gs3d.common.draw.clearGraphicByGraphicName(viewer, 'basePolygon')
+  gs3d.effect.breath.clear()
 }
 
 const drawTerrainGrid = () => {
@@ -276,6 +328,7 @@ const drawModelGrid = (gridOptions: any) => {
     rectangleGrid = new gs3d.grid.rectangleGrid(viewer)
   }
   rectangleGrid.draw(gridOptions)
+  hasTerrainGrid.value = true
 }
 const clearModelGrid = () => {
   rectangleGrid && rectangleGrid.destroy()
@@ -340,6 +393,7 @@ const cancelUnderGround = () => {
       layer.alpha = 1
     }
   }
+  // addTerrain()
 }
 
 let showBox = ref(false)
@@ -451,7 +505,7 @@ const changeLayer = () => { }
   <div class="active-btn">
     <el-button v-show="show_reset_btn" @click="reset">重置</el-button>
     <el-button @click="activate('line')">画线</el-button>
-    <el-button @click="drawTerrainGrid">构建矿山网格模型</el-button>
+    <el-button @click="addPolygon()">画面</el-button>
     <el-button id="fill-show-hidden" @click="gs3d.grid.buildGrid.changeBoxShow()">填充显/隐</el-button>
     <el-button id="border-show-hidden" @click="gs3d.grid.buildGrid.changeOutlineShow()">边框显/隐</el-button>
     <el-upload class="upload-demo" action="#" :show-file-list="false" style="display: inline-block; margin-left: 10px"
