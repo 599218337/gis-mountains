@@ -69,8 +69,9 @@ const polygon = {
   },
 }
 
-let show_reset_btn = ref(false)
-let show_build_btn = ref(false)
+
+const show_reset_btn = ref(false)
+const show_build_btn = ref(false)
 
 onMounted(async () => {
   const defopt = {
@@ -229,6 +230,8 @@ const drawTerrainGrid = () => {
       return
     }
     drawModelGrid(gridOptions)
+    let baseLayer = viewer.imageryLayers.get(0)
+    baseLayer.alpha = 0
   })
 }
 let featuresData: Array<any> = []
@@ -348,15 +351,109 @@ const showInformation = () => {
 }
 
 const reset = () => {
-  let baseLayer = viewer.imageryLayers.get(0)
-  baseLayer.alpha = 50
+  let baseLayer = viewer.imageryLayers.get(0);
+  viewer.scene.setTerrain(
+    new Cesium.Terrain(
+      Cesium.CesiumTerrainProvider.fromIonAssetId(1),
+    ),
+  );
+  baseLayer.alpha = 1;
 }
+
+let tubeAll = ref(false)
+
+let gridPickSearch: any
+const initGridPickSearch = () => {
+  // 实例网格拾取
+  gridPickSearch = new gs3d.tools.areaFeaturePick({
+    viewer,
+    callback: (pm: any, type: any) => {
+      console.log('拾取回调', pm, type)//pm为拾取的geojson，type分为三种：1.'draw'：本次为绘制的回调 2.'clear'：本次为清除事件的回调 3.'checkGrid'：本次为开启网格拾取的回调 
+    },
+  })
+}
+const activate = (type: string) => {
+  if (!gridPickSearch) {
+    initGridPickSearch()
+  }
+  console.log('绘制')
+  // 调用绘制方法
+  gridPickSearch.activate({
+    type: type,
+    option: {
+      graphicName: type == "point" ? "pointGra" : "otherGra",
+      geoLevel: null,//网格层级，可选，若不传或值为null会自动取当前地图的网格层级
+      maxGridNumber: 100000, //最大网格数，可选，默认为100000
+      color: "#ff0000",//颜色(适用于：点、线、面、矩形)
+      opacity: type == "polygon" ? 0.4 : 1,//不透明度(适用于：点、线、面、矩形)
+      width: 2,//尺寸(适用于：点、线)
+      fill: true,//是否填充内部(适用于：面、矩形),
+      outline: true,//外边线(适用于：面、矩形)
+      outlineColor: "#ff0000",//外边线颜色(适用于：点、面、矩形)
+      outlineWidth: 1,////外边线宽度(适用于：点、矩形)
+      height: 0,//底部高度(适用于：面)
+      extrudedHeight: 0,//实体高度(适用于：面)
+      isContinuous: true,//是否连续绘制，默认true，即默认连续点击(适用于：点)
+      // isPerCallBack: true,//暂无法使用,连续绘制时是否每绘一个点就返回该个点，结束时不再返回，默认false。若项目中需要此需求，可参考mouseManager.html【鼠标管理】中动态连续绘制的实现方式
+      showLabel: true,//是否显示label，默认true(适用于：点)
+      clampToGround: false,//是否贴地，默认false(适用于：线、面)
+      showImage: true,//是否显示为图片，默认true(适用于：点)
+      imageOption: {
+        distance: { near: 0, far: 30000000 }, //图标显示距离范围,默认near:0,far:30000000
+        url: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAA3NJREFUWEetlk1oE0EUx/9vY5U2m9ZaQQU/2k3VfuxGoRUFPejFouDBD/Sg56og9iZ6Um96E0X8wJseBBWhglREvCjiR7FkoxVsdosUaaVWbTbWpuk+2dSKNjs7Sdq5znv//2/ezJsZQpFjtNZoIIWaQ8zLsuBKAEMhwqBLyutIMv6lSDlQIQnfVxrVoXncoRC1MWOTKIcInZMuPai04zcK0fVipABpLXaUwR0A1hYqCuCJy3Sx0o53ynICAZy62G0QH5CJCCsCPhO2EmeD8oUAjmY8BLCjVPPpPIX4eEUycUkM6TOT0vQzBDo9W/PpfGbsj9jmHT+9vAqko0Y7M67Nlfm0DhFaw0mze6ZuHoCjGW8AtEgABgh4wUSf4HILKBcfCcphxvWIbR4OBHA04yCAW8UK/dLWrcmyew2ErUG5WYXrF/Ylkv/G/FcBRzM8cw/CfzBvV+3EY9G0oxnnAZwI6IqjYStxNQjgK4BFAoFzqmWekp0NJ6p3ganNL46B+xHL3OMLMNrQUKNkyoYDVr9OtRNxGUBa048w6IogzlQtM+YL4GiGAUBkMKRa5lKZuTfv1DathxJ66xvL+Kra5mJfgJ/R5s0uK88EJt2qZbYWAsD19ZVpt/yHoOcnwpY53xcgtUpvpBC9F5mElbEq6usblUE4tc1tUJQuQVxeJf92gVOnLwHRoLABQPsiVvyeDCDwFiX0qkmzybcCb1payhq+ZTLiQ5i/fzNjnTp9O4geBSziecSKbxG3oeT1I9DzCuXnTr+tGK9vbppwlXdBFSKw5B6QrGBKnIbB7rlJVp5V9cdfpqPGDpd5o+zxIsCpcEMrqL/nu7ACuTbSjFcANsj2uth5Ai6HLfPYzLy8xyhVq28lhby/QHmxJqJ4Al6GLdP3K+f7IfkD8XSOAEZUy6wJgPOfmhMIQlZNmmXBBzNgdpYQ6Q/V86tbu7snSgbwEkuBYGBEzajLaeDFmGwbpd9yT8BrNWZ4B1M+CJ/HaayxpoBrO9fUcsWpiJQW20vgu5J4O5xxW2ng3UihugUD5O6IOv0QiG76ihN64fI21U4MFWpeVAWmRVNRo53yfs3UM65gV01ffKAY85IAcpXQYh0AX5gy456QO293eX9Pf7HmJQNMQRgnvQ/sJLJ7qqzej6WYzwrASx5frTcu+JjoLdXcy/sNddw9MPLcyvEAAAAASUVORK5CYII=',
+        width: 40, //图片宽，默认40，
+        height: 40 //图片高，默认40
+      },
+      scaleByDistance: null, //根据距离缩放点的属性值，数组中依次[近距，近距缩放比例，远距，远距缩放比例]，比如点的原始属性width：10，outlineWidth：10，那么根据[1000,1,10000,0.5]表示为，当点视角在1000米高度时，点的属性值缩放比例为1，即width：10，outlineWidth：10；当视角在10000米高度时，点的属性值缩放比例为0.5，即width：5，outlineWidth：5，默认null。(适用于：点)
+      translucencyByDistance: null, //根据与相机的距离设置半透明性。数组中依次[近距，近距缩放比例，远距，远距缩放比例]，比如[1000,0.5,10000,1]，那么在1000米高度时，所看到的图形透明度为0.5，高于10000时，透明度为1，默认null。(适用于：点)
+      distanceDisplayCondition: [0, null], //在距离相机多远的地方显示此点，数组中依次[最小高度，最大高度]，比如[1000,10000]，即在1000-10000米范围内才能看到图形数据。默认[0, null]。(适用于：点,线,面,矩形)
+      disableDepthTestDistance: null //指定要禁用深度测试的相机与相机之间的距离。比如disableDepthTestDistance：50000，即对象在高度50000下不再受深度的影响而显示离。默认永远不受深度影响。(适用于：点)
+    }
+  })
+}
+
+const catalogueListOption = [{
+  id: 1,
+  label: '管线',
+  children: [{
+    id: 3,
+    label: '隧道',
+  }, {
+    id: 4,
+    label: '风管'
+  }, {
+    id: 5,
+    label: '爆炸线'
+  }, {
+    id: 6,
+    label: '排水管'
+  }, {
+    id: 7,
+    label: '信号线'
+  }]
+}, {
+  id: 2,
+  label: '设备',
+  children: [{
+    id: 8,
+    label: '局扇'
+  }, {
+    id: 9,
+    label: '工具存放硐室'
+  }, {
+    id: 10,
+    label: '应急硐室'
+  }]
+}]
+
+const changeLayer = () => { }
 </script>
 
 <template>
   <div id="mapContainer"></div>
   <div class="active-btn">
     <el-button v-show="show_reset_btn" @click="reset">重置</el-button>
+    <el-button @click="activate('line')">画线</el-button>
     <el-button @click="drawTerrainGrid">构建矿山网格模型</el-button>
     <el-button id="fill-show-hidden" @click="gs3d.grid.buildGrid.changeBoxShow()">填充显/隐</el-button>
     <el-button id="border-show-hidden" @click="gs3d.grid.buildGrid.changeOutlineShow()">边框显/隐</el-button>
@@ -383,7 +480,14 @@ const reset = () => {
         </li>
       </ul>
     </div>
-    <div class="operate"><el-button type="primary" @click="showBox = false">关闭</el-button></div>
+    <div class="operate"> <el-button type="primary" @click="showBox = false">关闭</el-button></div>
+  </div>
+
+  <div id="layer-control-box">
+    <span class="title">展示图层</span>
+    <div class="content">
+      <el-tree :data="catalogueListOption" highlight-current show-checkbox @check="changeLayer" node-key="id" />
+    </div>
   </div>
 </template>
 
@@ -447,6 +551,67 @@ const reset = () => {
   .operate {
     text-align: center;
     margin-top: 40px;
+  }
+}
+
+#layer-control-box {
+  color: white;
+  width: 200px;
+  height: 400px;
+  background-image: url(assets/border-top-right.webp);
+  background-size: 100% 100%;
+  position: fixed;
+  top: 150px;
+  left: 50px;
+  z-index: 9;
+  font-weight: 500;
+
+  .title {
+    position: relative;
+    top: 3px;
+    left: 25px;
+  }
+
+  .content {
+    padding-top: 10px;
+  }
+
+}
+</style>
+
+<style lang="scss">
+#layer-control-box {
+  .content {
+    .el-tree {
+      background-color: transparent;
+      color: #fff;
+      height: 75%;
+      overflow: auto;
+      font-size: 16px;
+
+      .el-tree-node__content:hover {
+        background-color: transparent;
+      }
+
+      .el-tree-node.is-current>.el-tree-node__content {
+        background-color: transparent;
+      }
+
+      .el-tree-node:focus>.el-tree-node__content {
+        background-color: transparent;
+      }
+
+      .el-checkbox__inner {
+        background-color: transparent;
+        border: 1px solid #3B7BED;
+      }
+
+      .is-checked {
+        .el-checkbox__inner {
+          background-color: #3B7BED;
+        }
+      }
+    }
   }
 }
 </style>
