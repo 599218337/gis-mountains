@@ -229,8 +229,6 @@ const drawTerrainGrid = () => {
       return
     }
     drawModelGrid(gridOptions)
-    let baseLayer = viewer.imageryLayers.get(0)
-    baseLayer.alpha = 0
   })
 }
 let featuresData: Array<any> = []
