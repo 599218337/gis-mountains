@@ -289,17 +289,17 @@ const enterUnderGround = () => {
   scene.globe.depthTestAgainstTerrain = false
   scene.screenSpaceCameraController.inertiaZoom = 0.5 //调整相机惯性缩放时长
   scene.screenSpaceCameraController.enableCollisionDetection = false //禁用相机与地形的碰撞检测
-  // scene.highDynamicRange = false //关闭高动态范围渲染
-  // scene.skyAtmosphere.show = false //关闭大气
-  // scene.skyBox.show = false //关闭天空盒
-  // scene.fog.enabled = false //关闭雾
+  scene.highDynamicRange = false //关闭高动态范围渲染
+  scene.skyAtmosphere.show = false //关闭大气
+  scene.skyBox.show = false //关闭天空盒
+  scene.fog.enabled = false //关闭雾
   // globe.baseColor = Cesium.Color.BLACK
   globe.baseColor = Cesium.Color.TRANSPARENT
   if (imageryLayers && imageryLayers.length > 0) {
     // 遍历所有的影像，把影像透明度调整为0.7
     for (let index = 0; index < imageryLayers.length; index++) {
       const layer = imageryLayers.get(index)
-      layer.alpha = 0.2
+      layer.alpha = 0
     }
   }
   //当相机在地下或地球是半透明时渲染地球背面的颜色，根据相机的距离与地球颜色混合。
