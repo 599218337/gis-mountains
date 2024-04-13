@@ -4,7 +4,7 @@
  * @Author: YangYuzhuo
  * @Date: 2023-08-29 09:24:27
  * @LastEditors: yangyzZWYL yangyz@zhiwyl.com
- * @LastEditTime: 2024-04-13 16:34:00
+ * @LastEditTime: 2024-04-13 17:26:47
  * Copyright 2023
  * listeners
  * @Descripttion: <文件用途说明>
@@ -248,8 +248,9 @@ gs3d.common.draw.drawGraphic(viewer, geometry, option)
     entityId = entityId || common.getUuid(10)
     let coordArray: Array<any> = []
     geometry.coordinates.forEach((item: any) => {
-      coordArray.push(item[0])
-      coordArray.push(item[1])
+      item.forEach((i:number)=>{
+        coordArray.push(i)
+      })
     })
     // dashed solid 增加绘制虚线或实线
     let material: any
@@ -262,7 +263,7 @@ gs3d.common.draw.drawGraphic(viewer, geometry, option)
       material = option.color ? Cesium.Color.fromCssColorString(option.color) : Cesium.Color.RED
     }
     let polylineOption: any ={
-        positions: Cesium.Cartesian3.fromDegreesArray(coordArray),
+        positions:  geometry.coordinates?.length==3?Cesium.Cartesian3.fromDegreesArrayHeights(coordArray):Cesium.Cartesian3.fromDegreesArray(coordArray),
         width: option.width ? parseInt(option.width) : 5,
         material: material,
       }
