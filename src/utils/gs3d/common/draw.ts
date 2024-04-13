@@ -3,8 +3,8 @@
  * @version: 1.0.0
  * @Author: YangYuzhuo
  * @Date: 2023-08-29 09:24:27
- * @LastEditors GS3D
- * @LastEditTime 2023-12-14 10:36:48
+ * @LastEditors: yangyzZWYL yangyz@zhiwyl.com
+ * @LastEditTime: 2024-04-13 12:19:13
  * Copyright 2023
  * listeners
  * @Descripttion: <文件用途说明>
@@ -331,25 +331,32 @@ gs3d.common.draw.drawGraphic(viewer, geometry, option)
       entity = drawWall(viewer, geometry, option, holes, entityId)
       entity.graphicType = 'polygon'
     } else {
+      let polygonOption: any = {
+        //box，ellipse，cylinder.......
+        hierarchy: {
+          positions: Cesium.Cartesian3.fromDegreesArray(coordinates),
+          holes: holes
+        },
+        outline: option.outline || false,
+        outlineColor: option.outlineColor ? Cesium.Color.fromCssColorString(option.outlineColor) : Cesium.Color.RED,
+        outlineWidth: option.outlineWidth || 1,
+        material: option.color ? Cesium.Color.fromCssColorString(option.color) : Cesium.Color.fromCssColorString('rgba(255,0,0,0.3)'),
+        height: option.height ? parseFloat(option.height) : 0,
+        extrudedHeight: option.extrudedHeight ? parseFloat(option.extrudedHeight) : 0,
+        distanceDisplayCondition: new Cesium.DistanceDisplayCondition(option.distance.near || 0, option.distance.far || 30000000),
+        // classificationType: Cesium.ClassificationType.TERRAIN
+        // heightReference: Cesium.HeightReference.CLAMP_TO_GROUND//设置HeightReference高度参考类型为CLAMP_TO_GROUND贴地类型
+        // shadows:Cesium.ShadowMode.ENABLED
+      }
+      if (option.clampToGround) {
+        delete polygonOption.height
+        delete polygonOption.extrudedHeight
+        polygonOption.heightReference = Cesium.HeightReference.CLAMP_TO_GROUND
+      }
       entity = viewer.entities.add({
-        polygon: {
-          //box，ellipse，cylinder.......
-          hierarchy: {
-            positions: Cesium.Cartesian3.fromDegreesArray(coordinates),
-            holes: holes
-          },
-          outline: option.outline || false,
-          outlineColor: option.outlineColor ? Cesium.Color.fromCssColorString(option.outlineColor) : Cesium.Color.RED,
-          outlineWidth: option.outlineWidth || 1,
-          material: option.color ? Cesium.Color.fromCssColorString(option.color) : Cesium.Color.fromCssColorString('rgba(255,0,0,0.3)'),
-          height: option.height ? parseFloat(option.height) : 0,
-          extrudedHeight: option.extrudedHeight ? parseFloat(option.extrudedHeight) : 0,
-          distanceDisplayCondition: new Cesium.DistanceDisplayCondition(option.distance.near || 0, option.distance.far || 30000000)
-          // classificationType: Cesium.ClassificationType.TERRAIN
-          // heightReference: Cesium.HeightReference.CLAMP_TO_GROUND//设置HeightReference高度参考类型为CLAMP_TO_GROUND贴地类型
-          // shadows:Cesium.ShadowMode.ENABLED
-        }
+        polygon: polygonOption
       })
+
       entity.graphicType = 'polygon'
       entity.graphicName = option.graphicName
       entity.entityId = entityId

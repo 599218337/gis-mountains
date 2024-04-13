@@ -4,6 +4,7 @@ import { onMounted, ref } from 'vue'
 import kuangData from '@/static/kuang'
 let viewer: any
 const { Cesium } = window
+const { turf } = gs3d
 
 let options = {
   height: 100.76, // 楼高
@@ -73,7 +74,7 @@ let show_build_btn = ref(false)
 onMounted(async () => {
   const defopt = {
     msaaSamples: 4,
-    // terrain: Cesium.Terrain.fromWorldTerrain(),
+    terrain: Cesium.Terrain.fromWorldTerrain(),
   }
 
   viewer = gs3d.global.initViewer('mapContainer', defopt)
@@ -81,8 +82,8 @@ onMounted(async () => {
 
   addPolygon()
   // viewer.camera.moveEnd.addEventListener(flyingHandler)
-  gs3d.grid.buildGrid.draw(options, viewer)
-  addModel()
+  // gs3d.grid.buildGrid.draw(options, viewer)
+  // addModel()
   // addTerrain()
 
   let handle = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas)
@@ -159,10 +160,82 @@ const addPolygon = () => {
   let optionPolygon = {
     graphicName: '',
     showBillBoard: false,
+    clampToGround: true,
     entityProperties: {},
   }
   let entity = gs3d.common.draw.drawGraphic(viewer, polygon.geometry, optionPolygon)
   gs3d.common.position.locationEntity(viewer, entity)
+}
+
+const drawTerrainGrid = () => {
+  let gridOptions = {
+    lineColor: "#FFFF00",
+    lineAlpha: 0.75,
+    lineWidth: 1,
+    fillClear: "#FF0000",
+    fillAlpha: 0.05,
+    clampToGround: false,
+    elevation: 0,
+    // elevation: 420.0,
+    features: [],
+    height: 1,
+    name: ''
+  }
+  getTerrainHeight(kuangData, (features: any) => {
+    gridOptions.features = features
+    if (!features?.length) {
+      console.log('未查找到模型数据，请尝试重新绘制或选择其他层级')
+
+      return
+    }
+    drawModelGrid(gridOptions)
+  })
+}
+let featuresData: Array<any> = []
+const getTerrainHeight = (_positions: any, callback: any) => {
+  let cartesians: any = []
+  featuresData = []
+  let features: any = _positions.map((geo: any) => {
+    const line = turf.lineString([
+      [geo.geoNumScope[1], geo.geoNumScope[0]],
+      [geo.geoNumScope[3], geo.geoNumScope[2]],
+    ])
+    const bbox = turf.bbox(line)
+    const feature = turf.bboxPolygon(bbox, { properties: { id: geo.geoNum4, bbox: bbox } })
+    const centroid = turf.centroid(feature)
+    let center = turf.getCoord(centroid)
+    feature.properties['center'] = center
+    cartesians.push(Cesium.Cartographic.fromDegrees(center[0], center[1], 0))
+    return feature
+  })
+
+  Cesium.sampleTerrainMostDetailed(viewer.terrainProvider, cartesians).then((clampedCartesians: any) => {
+    if (clampedCartesians.length) {
+      let heightArray: Array<any> = []
+      clampedCartesians.forEach((item: any) => {
+        item && heightArray.push(item.height)
+      })
+      let min = Math.min(...heightArray)
+
+      clampedCartesians.map((item: any, n: any) => {
+        if (item) {
+          let feature: any = features[n]
+          let height = item.height
+          feature.properties.height = min
+          feature.properties.extruded = height < min ? 0 : height - min
+          height >= min && featuresData.push(feature)
+        }
+      })
+    }
+    callback(featuresData)
+  })
+}
+let rectangleGrid: any = null
+const drawModelGrid = (gridOptions: any) => {
+  if (!rectangleGrid) {
+    rectangleGrid = new gs3d.grid.rectangleGrid(viewer)
+  }
+  rectangleGrid.draw(gridOptions)
 }
 
 let showBox = ref(false)
@@ -180,15 +253,11 @@ const reset = () => {
   <div id="mapContainer"></div>
   <div class="active-btn">
     <el-button v-show="show_reset_btn" @click="reset">重置</el-button>
+    <el-button @click="drawTerrainGrid">构建矿山网格模型</el-button>
     <el-button id="fill-show-hidden" @click="gs3d.grid.buildGrid.changeBoxShow()">填充显/隐</el-button>
     <el-button id="border-show-hidden" @click="gs3d.grid.buildGrid.changeOutlineShow()">边框显/隐</el-button>
-    <el-upload
-      class="upload-demo"
-      action="#"
-      :show-file-list="false"
-      style="display: inline-block; margin-left: 10px"
-      @change="showInformation"
-    >
+    <el-upload class="upload-demo" action="#" :show-file-list="false" style="display: inline-block; margin-left: 10px"
+      @change="showInformation">
       <el-button>信息导入</el-button>
     </el-upload>
   </div>
