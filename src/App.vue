@@ -4,8 +4,8 @@ import { onMounted, ref } from 'vue';
 import kuangData from '@/static/kuang'
 let viewer: any;
 const { Cesium } = window;
-let options = {
-  height: 1000.76,        // 楼高
+const options = {
+  height: 1200.76,        // 楼高
   floor: 5,            // 楼层数
   lineColor: "#FFA500", // 边线色
   lineAlpha: 0.5,
@@ -24,20 +24,10 @@ options.geometries = kuangData.map((geo) => {
   }
 })
 
-const polygon = {
-  "type": "Feature",
-  "properties": {
-    "id": "7kuMolrTCYE",
-    "name": "7kuMolrTCYE"
-  },
-  "geometry": {
-    "coordinates": [[[111.181279144793564, 31.363959102231885], [111.180659797649355, 31.363911025208314], [111.179758929075945, 31.364175448533619], [111.178942516931315, 31.363670639721651], [111.177929039786193, 31.363598523955773], [111.177112627641549, 31.363814871087428], [111.176070998353509, 31.36299755708858], [111.175113825494293, 31.362901402033284], [111.173649914062509, 31.363093712045515], [111.172749045489056, 31.363766793990077], [111.170834699770552, 31.366435035702661], [111.172157850487764, 31.368502269997485], [111.17255198048862, 31.369535870093689], [111.171932633344426, 31.36948779592268], [111.171763720486879, 31.370064684351714], [111.173368392633307, 31.373045218152502], [111.175029369065513, 31.373429796272905], [111.176690345497761, 31.373910516709948], [111.179195886217556, 31.373766300837065], [111.181391753365276, 31.3726606384581], [111.182405230510369, 31.371002120495923], [111.183869141942154, 31.369968536526137], [111.183418707655449, 31.369776240579867], [111.184432184800528, 31.366627338485408], [111.18451664122928, 31.365016790529037], [111.182095556938236, 31.364223525421934], [111.181279144793564, 31.363959102231885]]],
-    "type": "Polygon"
-  }
-}
 
-let show_reset_btn = ref(false)
-let show_build_btn = ref(false)
+
+const show_reset_btn = ref(false)
+const show_build_btn = ref(false)
 
 onMounted(async () => {
   const defopt = {
@@ -48,38 +38,55 @@ onMounted(async () => {
   viewer = gs3d.global.initViewer('mapContainer', defopt);
   viewer.scene.globe.depthTestAgainstTerrain = true;
 
-  let geojsonOptions = {
-    clampToGround: true //使数据贴地
-  };
-  Cesium.GeoJsonDataSource.load(polygon, geojsonOptions).then((dataSource: any) => {
-    viewer.dataSources.add(dataSource);
-    console.log('dataSource：', dataSource);
-    viewer.flyTo(dataSource);
-    viewer.camera.moveEnd.addEventListener(flyingHandler);
+  // let geojsonOptions = {
+  //   clampToGround: true //使数据贴地
+  // };
+  // Cesium.GeoJsonDataSource.load(polygon, geojsonOptions).then((dataSource: any) => {
+  //   viewer.dataSources.add(dataSource);
+  //   // console.log('dataSource：', dataSource);
+  //   viewer.flyTo(dataSource);
+  //   // viewer.camera.moveEnd.addEventListener(flyingHandler);
 
-    gs3d.grid.buildGrid.draw(options, viewer)
-  })
+  //   // gs3d.grid.buildGrid.draw(options, viewer)
+  // })
+
+  const optionPolygon = {
+    graphicName: "", //面的标识名，自定义
+    pixelSize: 10,//面尺寸，默认10
+    color: "rgba(255,0,0,0.3)", //面颜色，默认红色
+    outline: true,//面是否显示边界线，默认false
+    outlineColor: "#ff0000",//边界线颜色，默认"#00ff00"
+    outlineWidth: 1,//边界线宽度,默认1，此属性无效
+    height: 0,//指定多边形的恒定高度
+    extrudedHeight: 0,//指定多边形的凸出面相对于椭球面的高度
+    distance: { near: 0, far: 1500000 },//面显示距离范围,默认near:0,far:1500000
+    properties: {}, //点上关联的业务属性
+    isWall: true,//是否绘制为wall(立体墙)
+    wallOption: { //wall样式配置，当isWall为true时生效
+      maximumHeights: 5000,//立体墙的最大高度，默认50
+      minimumHeights: 0//立体墙的最小高度，默认0
+    }
+  }
+
+  const geometryPolygon = {
+    "type": "Polygon",
+    "coordinates": [[[111.181279144793564, 31.363959102231885], [111.180659797649355, 31.363911025208314], [111.179758929075945, 31.364175448533619], [111.178942516931315, 31.363670639721651], [111.177929039786193, 31.363598523955773], [111.177112627641549, 31.363814871087428], [111.176070998353509, 31.36299755708858], [111.175113825494293, 31.362901402033284], [111.173649914062509, 31.363093712045515], [111.172749045489056, 31.363766793990077], [111.170834699770552, 31.366435035702661], [111.172157850487764, 31.368502269997485], [111.17255198048862, 31.369535870093689], [111.171932633344426, 31.36948779592268], [111.171763720486879, 31.370064684351714], [111.173368392633307, 31.373045218152502], [111.175029369065513, 31.373429796272905], [111.176690345497761, 31.373910516709948], [111.179195886217556, 31.373766300837065], [111.181391753365276, 31.3726606384581], [111.182405230510369, 31.371002120495923], [111.183869141942154, 31.369968536526137], [111.183418707655449, 31.369776240579867], [111.184432184800528, 31.366627338485408], [111.18451664122928, 31.365016790529037], [111.182095556938236, 31.364223525421934], [111.181279144793564, 31.363959102231885]]]
+  };
+  const _entity = gs3d.common.draw.drawGraphic(viewer, geometryPolygon, optionPolygon)
+  gs3d.common.position.locationEntity(viewer, _entity)
 
   //缩放到一定层级 清除背景开始建模
   let flyingHandler = function () {
     viewer.camera.changed.addEventListener(async function () {
       // 获取当前相机高度
       let cameraHeight = viewer.camera.positionCartographic.height;
-      console.log('cameraHeight：', cameraHeight);
+      // console.log('cameraHeight：', cameraHeight);
       let baseLayer = viewer.imageryLayers.get(0);
       if (cameraHeight > 30000 && baseLayer) {
-        // viewer.scene.terrainProvider = new Cesium.EllipsoidTerrainProvider({});
+        viewer.scene.terrainProvider = new Cesium.EllipsoidTerrainProvider({});
         gs3d.grid.buildGrid.draw(options, viewer)
         baseLayer.alpha = 0;
         show_reset_btn.value = true
-        // viewer.imageryLayers.remove(viewer.imageryLayers.get(0));
-      } else if (cameraHeight < 50000 && !baseLayer) {
-        viewer.scene.setTerrain(
-          new Cesium.Terrain(
-            Cesium.CesiumTerrainProvider.fromIonAssetId(1),
-          ),
-        );
-
       }
     });
     viewer.camera.moveEnd.removeEventListener(flyingHandler);
@@ -87,18 +94,18 @@ onMounted(async () => {
 
 
   let position = Cesium.Cartesian3.fromDegrees(111.185279144793564, 31.373959102231885)
-  const entity = viewer.entities.add({
-    name: 'dem',
-    position: position,
-    model: {
-      uri: '/src/assets/low_dem.gltf',
-      minimumPixelSize: 1000,
-      // maximumScale: 220000,
+  // const entity = viewer.entities.add({
+  //   name: 'dem',
+  //   position: position,
+  //   model: {
+  //     uri: '/src/assets/low_dem.gltf',
+  //     minimumPixelSize: 1000,
+  //     // maximumScale: 220000,
 
-      heightReference: Cesium.HeightReference.NONE,
-      imageBasedLightingFactor: new Cesium.Cartesian2(4, 1)
-    }
-  })
+  //     heightReference: Cesium.HeightReference.NONE,
+  //     imageBasedLightingFactor: new Cesium.Cartesian2(4, 1)
+  //   }
+  // })
   // var angle = Cesium.Math.toRadians(-90); // 旋转45度
   // var axis = new Cesium.Cartesian3(0, 0, 1); // 绕z轴旋转
 
@@ -122,9 +129,66 @@ const showInformation = () => {
 
 const reset = () => {
   let baseLayer = viewer.imageryLayers.get(0);
-  baseLayer.alpha = 50;
+  viewer.scene.setTerrain(
+    new Cesium.Terrain(
+      Cesium.CesiumTerrainProvider.fromIonAssetId(1),
+    ),
+  );
+  baseLayer.alpha = 1;
 }
 
+let tubeAll = ref(false)
+
+let gridPickSearch: any, features: any;
+const initGridPickSearch = () => {
+  // 实例网格拾取
+  gridPickSearch = new gs3d.tools.areaFeaturePick({
+    viewer,
+    callback: (pm: any, type: any) => {
+      features = pm.features
+      console.log('拾取回调', pm, type)//pm为拾取的geojson，type分为三种：1.'draw'：本次为绘制的回调 2.'clear'：本次为清除事件的回调 3.'checkGrid'：本次为开启网格拾取的回调 
+    },
+  })
+}
+const activate = (type: string) => {
+  if (!gridPickSearch) {
+    initGridPickSearch()
+  }
+  console.log('绘制')
+  // 调用绘制方法
+  gridPickSearch.activate({
+    type: type,
+    option: {
+      graphicName: type == "point" ? "pointGra" : "otherGra",
+      geoLevel: null,//网格层级，可选，若不传或值为null会自动取当前地图的网格层级
+      maxGridNumber: 100000, //最大网格数，可选，默认为100000
+      color: "#ff0000",//颜色(适用于：点、线、面、矩形)
+      opacity: type == "polygon" ? 0.4 : 1,//不透明度(适用于：点、线、面、矩形)
+      width: 2,//尺寸(适用于：点、线)
+      fill: true,//是否填充内部(适用于：面、矩形),
+      outline: true,//外边线(适用于：面、矩形)
+      outlineColor: "#ff0000",//外边线颜色(适用于：点、面、矩形)
+      outlineWidth: 1,////外边线宽度(适用于：点、矩形)
+      height: 0,//底部高度(适用于：面)
+      extrudedHeight: 0,//实体高度(适用于：面)
+      isContinuous: true,//是否连续绘制，默认true，即默认连续点击(适用于：点)
+      // isPerCallBack: true,//暂无法使用,连续绘制时是否每绘一个点就返回该个点，结束时不再返回，默认false。若项目中需要此需求，可参考mouseManager.html【鼠标管理】中动态连续绘制的实现方式
+      showLabel: true,//是否显示label，默认true(适用于：点)
+      clampToGround: false,//是否贴地，默认false(适用于：线、面)
+      showImage: true,//是否显示为图片，默认true(适用于：点)
+      imageOption: {
+        distance: { near: 0, far: 30000000 }, //图标显示距离范围,默认near:0,far:30000000
+        url: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAA3NJREFUWEetlk1oE0EUx/9vY5U2m9ZaQQU/2k3VfuxGoRUFPejFouDBD/Sg56og9iZ6Um96E0X8wJseBBWhglREvCjiR7FkoxVsdosUaaVWbTbWpuk+2dSKNjs7Sdq5znv//2/ezJsZQpFjtNZoIIWaQ8zLsuBKAEMhwqBLyutIMv6lSDlQIQnfVxrVoXncoRC1MWOTKIcInZMuPai04zcK0fVipABpLXaUwR0A1hYqCuCJy3Sx0o53ynICAZy62G0QH5CJCCsCPhO2EmeD8oUAjmY8BLCjVPPpPIX4eEUycUkM6TOT0vQzBDo9W/PpfGbsj9jmHT+9vAqko0Y7M67Nlfm0DhFaw0mze6ZuHoCjGW8AtEgABgh4wUSf4HILKBcfCcphxvWIbR4OBHA04yCAW8UK/dLWrcmyew2ErUG5WYXrF/Ylkv/G/FcBRzM8cw/CfzBvV+3EY9G0oxnnAZwI6IqjYStxNQjgK4BFAoFzqmWekp0NJ6p3ganNL46B+xHL3OMLMNrQUKNkyoYDVr9OtRNxGUBa048w6IogzlQtM+YL4GiGAUBkMKRa5lKZuTfv1DathxJ66xvL+Kra5mJfgJ/R5s0uK88EJt2qZbYWAsD19ZVpt/yHoOcnwpY53xcgtUpvpBC9F5mElbEq6usblUE4tc1tUJQuQVxeJf92gVOnLwHRoLABQPsiVvyeDCDwFiX0qkmzybcCb1payhq+ZTLiQ5i/fzNjnTp9O4geBSziecSKbxG3oeT1I9DzCuXnTr+tGK9vbppwlXdBFSKw5B6QrGBKnIbB7rlJVp5V9cdfpqPGDpd5o+zxIsCpcEMrqL/nu7ACuTbSjFcANsj2uth5Ai6HLfPYzLy8xyhVq28lhby/QHmxJqJ4Al6GLdP3K+f7IfkD8XSOAEZUy6wJgPOfmhMIQlZNmmXBBzNgdpYQ6Q/V86tbu7snSgbwEkuBYGBEzajLaeDFmGwbpd9yT8BrNWZ4B1M+CJ/HaayxpoBrO9fUcsWpiJQW20vgu5J4O5xxW2ng3UihugUD5O6IOv0QiG76ihN64fI21U4MFWpeVAWmRVNRo53yfs3UM65gV01ffKAY85IAcpXQYh0AX5gy456QO293eX9Pf7HmJQNMQRgnvQ/sJLJ7qqzej6WYzwrASx5frTcu+JjoLdXcy/sNddw9MPLcyvEAAAAASUVORK5CYII=',
+        width: 40, //图片宽，默认40，
+        height: 40 //图片高，默认40
+      },
+      scaleByDistance: null, //根据距离缩放点的属性值，数组中依次[近距，近距缩放比例，远距，远距缩放比例]，比如点的原始属性width：10，outlineWidth：10，那么根据[1000,1,10000,0.5]表示为，当点视角在1000米高度时，点的属性值缩放比例为1，即width：10，outlineWidth：10；当视角在10000米高度时，点的属性值缩放比例为0.5，即width：5，outlineWidth：5，默认null。(适用于：点)
+      translucencyByDistance: null, //根据与相机的距离设置半透明性。数组中依次[近距，近距缩放比例，远距，远距缩放比例]，比如[1000,0.5,10000,1]，那么在1000米高度时，所看到的图形透明度为0.5，高于10000时，透明度为1，默认null。(适用于：点)
+      distanceDisplayCondition: [0, null], //在距离相机多远的地方显示此点，数组中依次[最小高度，最大高度]，比如[1000,10000]，即在1000-10000米范围内才能看到图形数据。默认[0, null]。(适用于：点,线,面,矩形)
+      disableDepthTestDistance: null //指定要禁用深度测试的相机与相机之间的距离。比如disableDepthTestDistance：50000，即对象在高度50000下不再受深度的影响而显示离。默认永远不受深度影响。(适用于：点)
+    }
+  })
+}
 </script>
 
 <template>
@@ -132,7 +196,8 @@ const reset = () => {
   <div id="mapContainer"></div>
   <div class="active-btn">
     <el-button v-show="show_reset_btn" @click="reset">重置</el-button>
-    <el-button id="fill-show-hidden" @click="gs3d.grid.buildGrid.changeBoxShow()">填充显/隐</el-button>
+    <el-button @click="activate('line')">画线</el-button>
+    <el-button v-show="show_build_btn" @click="gs3d.grid.buildGrid.changeBoxShow()">模型显/隐</el-button>
     <el-button id="border-show-hidden" @click="gs3d.grid.buildGrid.changeOutlineShow()">边框显/隐</el-button>
     <el-upload class="upload-demo" action="#" :show-file-list="false" style="display: inline-block; margin-left: 10px"
       @change="showInformation">
@@ -157,6 +222,20 @@ const reset = () => {
       </ul>
     </div>
     <div class="operate"> <el-button type="primary" @click="showBox = false">关闭</el-button></div>
+  </div>
+
+  <div id="layer-control-box">
+    <span class="title">展示图层</span>
+    <div class="content">
+      <el-switch v-model="tubeAll" active-color="#13ce66" inactive-color="#ff4949">
+      </el-switch><span class="item">管线</span>
+      <el-switch v-model="tubeAll" active-color="#13ce66" inactive-color="#ff4949">
+      </el-switch><span class="item">隧道</span>
+      <el-switch v-model="tubeAll" active-color="#13ce66" inactive-color="#ff4949">
+      </el-switch><span class="item">管线</span>
+      <el-switch v-model="tubeAll" active-color="#13ce66" inactive-color="#ff4949">
+      </el-switch><span class="item">管线</span>
+    </div>
 
   </div>
 </template>
@@ -221,6 +300,26 @@ const reset = () => {
   .operate {
     text-align: center;
     margin-top: 40px;
+  }
+
+}
+
+#layer-control-box {
+  color: white;
+  width: 200px;
+  height: 400px;
+  background-image: url(assets/border-top-right.webp);
+  background-size: 100% 100%;
+  position: fixed;
+  top: 150px;
+  left: 50px;
+  z-index: 9;
+  font-weight: 500;
+
+  .title {
+    position: relative;
+    top: 3px;
+    left: 25px;
   }
 
 }
