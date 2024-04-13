@@ -4,7 +4,7 @@
  * @Author: YangYuzhuo
  * @Date: 2023-08-29 09:24:27
  * @LastEditors: yangyzZWYL yangyz@zhiwyl.com
- * @LastEditTime: 2024-04-13 12:19:13
+ * @LastEditTime: 2024-04-13 16:34:00
  * Copyright 2023
  * listeners
  * @Descripttion: <文件用途说明>
@@ -261,13 +261,17 @@ gs3d.common.draw.drawGraphic(viewer, geometry, option)
     } else {
       material = option.color ? Cesium.Color.fromCssColorString(option.color) : Cesium.Color.RED
     }
-    var entity = viewer.entities.add({
-      polyline: {
+    let polylineOption: any ={
         positions: Cesium.Cartesian3.fromDegreesArray(coordArray),
         width: option.width ? parseInt(option.width) : 5,
-        material: material
+        material: material,
       }
-    })
+    if (option.clampToGround) {
+      polylineOption.clampToGround = true;
+    }
+    var entity = viewer.entities.add({
+      polyline: polylineOption,
+    });
     entity.graphicType = 'polyline'
     entity.graphicName = option.graphicName
     entity.entityId = entityId
