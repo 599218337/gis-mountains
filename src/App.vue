@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import * as gs3d from '@/utils/gs3d/index'
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, reactive, ref, watch } from 'vue'
 import kuangData from '@/static/kuang'
+import layerControlOptions from '@/static/layerControlOptions'
 let viewer: any
 const { Cesium } = window
 const { turf } = gs3d
@@ -108,9 +109,7 @@ const line = {
 }
 
 
-const show_reset_btn = ref(false)
-const show_build_btn = ref(false)
-
+const show_layer_control_box = ref(false)
 onMounted(async () => {
   const defopt = {
     msaaSamples: 4,
@@ -129,37 +128,8 @@ onMounted(async () => {
   addTerrain()
   // addPolygon()
   addUnderGroundControler()
-
-  // viewer.camera.moveEnd.addEventListener(flyingHandler)
-  // gs3d.grid.buildGrid.draw(options, viewer)
-  // addModel()
-
-  // let handle = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas)
-  // handle.setInputAction(async (e: any) => {
-  //   let position = e.position
-  //   let pick = viewer.scene.pick(position)
-  //   console.log('click', pick)
-  // }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
 })
-//缩放到一定层级 清除背景开始建模
-let flyingHandler = function () {
-  viewer.camera.changed.addEventListener(async function () {
-    // 获取当前相机高度
-    let cameraHeight = viewer.camera.positionCartographic.height
-    console.log('cameraHeight：', cameraHeight)
-    let baseLayer = viewer.imageryLayers.get(0)
-    if (cameraHeight > 30000 && baseLayer) {
-      // viewer.scene.terrainProvider = new Cesium.EllipsoidTerrainProvider({});
-      gs3d.grid.buildGrid.draw(options, viewer)
-      baseLayer.alpha = 0
-      show_reset_btn.value = true
-      // viewer.imageryLayers.remove(viewer.imageryLayers.get(0));
-    } else if (cameraHeight < 50000 && !baseLayer) {
-      viewer.scene.setTerrain(new Cesium.Terrain(Cesium.CesiumTerrainProvider.fromIonAssetId(1)))
-    }
-  })
-  viewer.camera.moveEnd.removeEventListener(flyingHandler)
-}
+
 let hasTerrainGrid = ref(false)
 let isUnderGround = ref(false)
 const addUnderGroundControler = () => {
@@ -248,6 +218,7 @@ const addPolygon = () => {
   })
   // gs3d.common.position.locationEntity(viewer, entity)
 
+
   gs3d.effect.breath.draw(viewer, polygon.geometry, {
     clampToGround: true,
     color: "#ff0000",
@@ -267,7 +238,7 @@ const drawGraphic = () => {
       coordinates: [
         [111.17764741533298, 31.372454845970655, 1000],
         [111.17772661356298, 31.371169105077225, 1000.3],
-        [111.17932568034516, 31.370750017208138, 1010]
+        [111.17932568034516, 31.370750017208138, 1100]
       ],
       type: 'LineString',
     }
@@ -281,16 +252,96 @@ const drawGraphic = () => {
   })
 
 }
-const clearGraphic=()=>{
+const clearGraphic = () => {
   gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic')
 }
+
+let graphicGrid: any = null
+const drawGraphicGrid = () => {
+  let graphicGridJson = [{
+    "geoNumScope": [
+      31.36277777777778,
+      111.1751388888889,
+      31.362916666666667,
+      111.17527777777778
+    ],
+    "geoNum": 414271356135276544,
+    "geoNum4": "G0011233330212122133301",
+    "bdCode": null,
+    "range": null,
+    "height": 1000,
+    "deviceId": "001"
+  },
+  {
+    "geoNumScope": [
+      31.362916666666667,
+      111.17388888888888,
+      31.363055555555555,
+      111.17402777777778
+    ],
+    "geoNum": 414271356069216256,
+    "geoNum4": "G0011233330212122132302",
+    "bdCode": null,
+    "range": null,
+    height: 2000,
+    deviceId: "002"
+  },
+  {
+    "geoNumScope": [
+      31.362916666666667,
+      111.17402777777778,
+      31.363055555555555,
+      111.17416666666666
+    ],
+    "geoNum": 414271356070264832,
+    "geoNum4": "G0011233330212122132303",
+    "bdCode": null,
+    "range": null,
+    height: 3000,
+    deviceId: "003"
+  }]
+  let gridOptions = {
+    lineColor: "#FFFF00",
+    lineAlpha: 0.75,
+    lineWidth: 1,
+    fillClear: "#FF0000",
+    fillAlpha: 1,
+    clampToGround: false,
+    elevation: 0,
+    features: [],
+    height: 1,
+    name: ''
+  }
+  let features: any = graphicGridJson.map((geo: any) => {
+    const line = turf.lineString([
+      [geo.geoNumScope[1], geo.geoNumScope[0]],
+      [geo.geoNumScope[3], geo.geoNumScope[2]],
+    ])
+    const bbox = turf.bbox(line)
+    const feature = turf.bboxPolygon(bbox, { properties: { id: geo.geoNum4, bbox: bbox } })
+    const centroid = turf.centroid(feature)
+    let center = turf.getCoord(centroid)
+    feature.properties['center'] = center
+    feature.properties['height'] = geo.height
+    feature.properties['extruded'] = 30
+    feature.properties['id'] = geo.deviceId
+    return feature
+  })
+
+  gridOptions.features = features
+  if (!graphicGrid) {
+    graphicGrid = new gs3d.grid.rectangleGrid(viewer)
+  }
+  graphicGrid.draw(gridOptions)
+}
+
 
 const drawTerrainGrid = () => {
   let gridOptions = {
     lineColor: "#FFFF00",
     lineAlpha: 0.75,
     lineWidth: 1,
-    fillClear: "#FF0000",
+    fillClear: "#887070",
     fillAlpha: 0.05,
     clampToGround: false,
     elevation: 0,
@@ -306,6 +357,8 @@ const drawTerrainGrid = () => {
       return
     }
     drawModelGrid(gridOptions)
+    console.log('gridOptions', gridOptions);
+
   })
 }
 let featuresData: Array<any> = []
@@ -354,10 +407,12 @@ const drawModelGrid = (gridOptions: any) => {
   }
   rectangleGrid.draw(gridOptions)
   hasTerrainGrid.value = true
+  show_layer_control_box.value = true
 }
 const clearModelGrid = () => {
   rectangleGrid && rectangleGrid.destroy()
 }
+
 const enterUnderGround = () => {
   const { scene } = viewer
   const { globe } = viewer.scene
@@ -421,22 +476,6 @@ const cancelUnderGround = () => {
   // addTerrain()
 }
 
-let showBox = ref(false)
-const showInformation = () => {
-  showBox.value = true
-}
-
-const reset = () => {
-  let baseLayer = viewer.imageryLayers.get(0);
-  viewer.scene.setTerrain(
-    new Cesium.Terrain(
-      Cesium.CesiumTerrainProvider.fromIonAssetId(1),
-    ),
-  );
-  baseLayer.alpha = 1;
-}
-
-let tubeAll = ref(false)
 
 let gridPickSearch: any
 const initGridPickSearch = () => {
@@ -488,62 +527,82 @@ const activate = (type: string) => {
   })
 }
 
-const catalogueListOption = [{
-  id: 1,
-  label: '管线',
-  children: [{
-    id: 3,
-    label: '隧道',
-  }, {
-    id: 4,
-    label: '风管'
-  }, {
-    id: 5,
-    label: '爆炸线'
-  }, {
-    id: 6,
-    label: '排水管'
-  }, {
-    id: 7,
-    label: '信号线'
-  }]
-}, {
-  id: 2,
-  label: '设备',
-  children: [{
-    id: 8,
-    label: '局扇'
-  }, {
-    id: 9,
-    label: '工具存放硐室'
-  }, {
-    id: 10,
-    label: '应急硐室'
-  }]
-}]
 
-const changeLayer = () => { }
+const changeLayer = (e: any, { checkedKeys }) => {
+  checkedKeys.forEach((item: number) => {
+    showLayer(item)
+  })
+}
+
+const showLayer = (item: number) => {
+  if (item === 3) {
+    drawGraphic()
+  }
+}
+
+let showBox = ref(false)
+const showInformation = () => {
+  showBox.value = true
+  showProcessBox.value = false
+}
+
+let showProcessBox = ref(false)
+const showProcess = () => {
+  showProcessBox.value = true
+  showBox.value = false
+}
+
+let processFrom = reactive({
+  time: '',
+  operator: '',
+  range: '',
+  clear: '2'
+})
+
+let video_show = ref(false)
+let showNormalBox = ref(false)
+let showUnusualBox = ref(false)
+let unusual_step = ref(1)
+let camera_video_show = ref(false)
 </script>
 
 <template>
+  <div class="header">
+    <div class="title">
+      <h1>时空网格矿山编码融合系统</h1>
+    </div>
+  </div>
+  <video controls class="mp4_video" v-show="video_show">
+    <source src="./assets/1154333232-1-1921.mp4" type="video/mp4" />
+  </video>
+
+  <video controls class="camera_video" v-show="camera_video_show">
+    <source src="./assets/camera.mp4" type="video/mp4" />
+  </video>
   <div id="mapContainer"></div>
-  <div class="active-btn">
-    <el-button @click="addPolygon()">画面</el-button>
-    <el-button @click="drawGraphic()">画线要素</el-button>
-    <el-button v-show="show_reset_btn" @click="reset">重置</el-button>
-    <el-button @click="activate('line')">画线</el-button>
-    <el-button id="fill-show-hidden" @click="gs3d.grid.buildGrid.changeBoxShow()">填充显/隐</el-button>
-    <el-button id="border-show-hidden" @click="gs3d.grid.buildGrid.changeOutlineShow()">边框显/隐</el-button>
+
+  <div class="location" @click="addPolygon()"> <span>树崆坪</span> </div>
+  <div id="layer-control-box" v-show="show_layer_control_box">
+    <span class="title">展示图层</span>
+    <div class="content">
+      <el-tree :data="layerControlOptions" highlight-current show-checkbox @check="changeLayer" node-key="id" />
+    </div>
+  </div>
+
+  <div class="operate-btn" v-show="show_layer_control_box">
     <el-upload class="upload-demo" action="#" :show-file-list="false" style="display: inline-block; margin-left: 10px"
       @change="showInformation">
       <el-button>信息导入</el-button>
     </el-upload>
+    <el-button @click="showProcess">爆破流程</el-button>
   </div>
+
   <div id="information-box" v-show="showBox">
-    <span class="title">爆破信息</span>
+    <span class="title">爆破历史信息</span>
     <div class="details">
       <ul>
         <li>负责人：王阳</li>
+        <li>爆破时间：2024年2月12日</li>
         <li>爆破长度：100米</li>
         <li>爆破区域：如图</li>
         <li>
@@ -560,25 +619,152 @@ const changeLayer = () => { }
     <div class="operate"> <el-button type="primary" @click="showBox = false">关闭</el-button></div>
   </div>
 
-  <div id="layer-control-box">
-    <span class="title">展示图层</span>
-    <div class="content">
-      <el-tree :data="catalogueListOption" highlight-current show-checkbox @check="changeLayer" node-key="id" />
+  <div id="process-box" v-show="showProcessBox" class="form_box">
+    <span class="title">爆破流程</span>
+    <el-form label-width="80px">
+      <el-form-item label="操作人">
+        <el-input v-model="processFrom.operator" />
+      </el-form-item>
+      <el-form-item label="爆破时间" class="time-input">
+        <el-date-picker type="date" placeholder="选择日期" v-model="processFrom.time"></el-date-picker>
+      </el-form-item>
+
+      <el-form-item label="爆破区域">
+        <el-input v-model="processFrom.range" />
+      </el-form-item>
+      <el-form-item label="人员清场">
+        <el-radio v-model="processFrom.clear" label="1">是</el-radio>
+        <el-radio v-model="processFrom.clear" label="2">否</el-radio>
+      </el-form-item>
+    </el-form>
+    <div class="operate"> <el-button type="primary" @click="showProcessBox = false" class="boom-btn"
+        :disabled="processFrom.clear === '2'">确认爆破</el-button></div>
+  </div>
+
+  <div id="normal_device_box" v-show="showNormalBox">
+    <span class="title">设备信息</span>
+    <div class="details">
+      <ul>
+        <li>设备名称：二号风机</li>
+        <li>实时功率：74.5 KW</li>
+        <li>输出电压：303.0 V</li>
+        <li>输出电流：194.0 A</li>
+        <li>轴承温度：28.6 °C</li>
+        <li>线圈温度：26.8 °C</li>
+        <li>实时振动：0.0 mm/S</li>
+        <li>实时风速：3.3 m/S</li>
+        <li>实时负压：0.6 kpa</li>
+      </ul>
+    </div>
+    <div class="operate"> <el-button type="primary" @click="showNormalBox = false">关闭</el-button></div>
+  </div>
+  <div v-show="showUnusualBox" :class="unusual_step === 1 ? 'unusual_device_box' : 'form_box'">
+    <span class="title">异常设备</span>
+    <div class="details" v-if="unusual_step === 1">
+      <ul>
+        <li>设备名称：环境监测</li>
+        <li>使用地点：西二巷304Q4</li>
+      </ul>
+    </div>
+    <el-form label-width="80px" v-else>
+      <el-form-item label="故障现象">
+        <el-input v-model="processFrom.operator" />
+      </el-form-item>
+      <el-form-item label="原因分析">
+        <el-input v-model="processFrom.operator" />
+      </el-form-item>
+
+      <el-form-item label="处理措施">
+        <el-input v-model="processFrom.range" />
+      </el-form-item>
+      <el-form-item label="处理人">
+        <el-input v-model="processFrom.range" />
+      </el-form-item>
+      <el-form-item label="处理时间" class="time-input">
+        <el-date-picker type="datetime" placeholder="选择日期时间" v-model="processFrom.time"></el-date-picker>
+      </el-form-item>
+      <el-form-item label="处理结果">
+        <el-radio v-model="processFrom.clear" label="1">已恢复</el-radio>
+        <el-radio v-model="processFrom.clear" label="2">未恢复</el-radio>
+      </el-form-item>
+    </el-form>
+    <div class="operate">
+      <el-button type="warning" @click="unusual_step = 2" v-if="unusual_step === 1">异常上报</el-button>
+      <el-button type="primary" @click="showUnusualBox = false" v-else>提交</el-button>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+.mp4_video {
+  top: 15vh;
+  right: 30vw;
+  z-index: 9;
+  position: fixed;
+  width: 600px;
+  height: 338px;
+}
+
+.camera_video {
+  top: 15vh;
+  right: 30px;
+  z-index: 9;
+  position: fixed;
+  width: 450px;
+  height: 288px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  position: fixed;
+  height: 100px;
+  width: 100%;
+  background-image: url(assets/header-bg.webp);
+  background-size: 100% 100%;
+  z-index: 9;
+
+  .title {
+    flex: 1;
+    text-align: center;
+
+    h1 {
+      margin: 0;
+      font-size: 1.4vw;
+      line-height: 60px;
+      display: inline-block;
+      width: 600px;
+      max-width: 30vw;
+      color: #fff;
+    }
+  }
+}
+
 #mapContainer {
   height: 100vh;
   width: 100vw;
 }
 
-.active-btn {
+.operate-btn {
   top: 20px;
-  left: 50px;
+  right: 50px;
   z-index: 9;
   position: fixed;
+  display: flex;
+
+  button {
+    background-color: #1762e8c7;
+    border-color: #3B7BED;
+    margin-right: 10px;
+
+    :deep(span) {
+      color: #fff;
+      opacity: 1
+    }
+
+
+  }
 }
 
 #information-box {
@@ -588,8 +774,8 @@ const changeLayer = () => { }
   background-image: url(assets/border-top-right.webp);
   background-size: 100% 100%;
   position: fixed;
-  top: 50px;
-  right: 50px;
+  top: 80px;
+  right: 20px;
   z-index: 9;
   font-weight: 500;
 
@@ -631,6 +817,115 @@ const changeLayer = () => { }
   }
 }
 
+.form_box {
+  color: white;
+  width: 350px;
+  height: 500px;
+  background-image: url(assets/border-top-right.webp);
+  background-size: 100% 100%;
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 9;
+  font-weight: 500;
+  background-color: #063584a4;
+
+  .title {
+    font-size: 20px;
+    position: relative;
+    top: 3px;
+    left: 45px;
+  }
+
+  :deep(.el-form) {
+    width: 90%;
+    margin: 20px auto;
+
+    .time-input {
+      .el-date-editor.el-input {
+        width: 100%;
+
+        .el-input__wrapper {
+          .el-input__inner {
+            padding-left: 0;
+          }
+        }
+      }
+    }
+
+    .el-form-item__label {
+      color: #fff;
+    }
+
+    .el-form-item__content {
+      .el-input__wrapper {
+        background-color: transparent;
+        padding: 0;
+        box-shadow: none;
+
+
+        .el-input__inner {
+          border: 0;
+          border-bottom: 1px solid #025eff;
+          color: #fff;
+        }
+      }
+    }
+
+    .el-date-editor--year {
+      .el-input__inner {
+        padding-left: 22px;
+        padding-right: 0;
+      }
+
+      .el-input__prefix {
+        left: 0
+      }
+
+      .el-input__suffix {
+        right: 2px;
+      }
+    }
+  }
+
+  .operate {
+    text-align: center;
+    margin-top: 40px;
+
+    .boom-btn {
+      background-color: #d01313;
+      border: none;
+
+
+    }
+
+    .el-button.is-disabled {
+      background-color: #d26363;
+    }
+  }
+}
+
+.location {
+  width: 200px;
+  height: 65px;
+  background-image: url(assets/internet_1.webp);
+  background-size: 100% 100%;
+  position: fixed;
+  top: 70px;
+  left: 50px;
+  z-index: 9;
+  cursor: pointer;
+
+  span {
+    font-size: 20px;
+    font-weight: 500;
+    position: relative;
+    top: 18px;
+    left: 80px;
+    color: #fff;
+  }
+}
+
 #layer-control-box {
   color: white;
   width: 200px;
@@ -652,7 +947,82 @@ const changeLayer = () => { }
   .content {
     padding-top: 10px;
   }
+}
 
+#normal_device_box {
+  color: white;
+  width: 280px;
+  height: 480px;
+  background-image: url(assets/border-top-right.webp);
+  background-size: 100% 100%;
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 9;
+  font-weight: 500;
+
+  .title {
+    font-size: 20px;
+    position: relative;
+    top: 3px;
+    left: 45px;
+  }
+
+  .details {
+    margin-top: 30px;
+    margin-left: 15px;
+
+    ul {
+      list-style-type: none;
+
+      li {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .operate {
+    text-align: center;
+    margin-top: 40px;
+  }
+}
+
+.unusual_device_box {
+  color: white;
+  width: 280px;
+  height: 480px;
+  background-image: url(assets/border-top-right.webp);
+  background-size: 100% 100%;
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 9;
+  font-weight: 500;
+
+  .title {
+    font-size: 20px;
+    position: relative;
+    top: 3px;
+    left: 45px;
+  }
+
+  .details {
+    margin-top: 30px;
+    margin-left: 15px;
+
+    ul {
+      list-style-type: none;
+
+      li {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .operate {
+    text-align: center;
+    margin-top: 40px;
+  }
 }
 </style>
 
@@ -689,6 +1059,55 @@ const changeLayer = () => { }
         }
       }
     }
+  }
+}
+
+.el-picker__popper {
+  background-color: #063584e8 !important;
+
+  .el-date-picker {
+    background-color: #063584e8;
+    color: #fff;
+
+    .el-date-picker__time-header {
+      .el-date-picker__editor-wrap {
+        .el-input__wrapper {
+          background-color: transparent;
+          padding: 0;
+          box-shadow: none;
+
+
+          .el-input__inner {
+            border: 0;
+            border-bottom: 1px solid #025eff;
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    .el-picker-panel__icon-btn {
+      color: #fff;
+    }
+
+    .el-date-picker__header-label {
+      color: #fff;
+    }
+
+    .el-date-table th {
+      color: #fff;
+    }
+
+    .el-picker-panel__footer {
+      background-color: #063584e8;
+
+      button {
+        background-color: transparent;
+        color: #fff;
+        border: none;
+      }
+    }
+
   }
 }
 </style>
