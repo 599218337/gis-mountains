@@ -99,15 +99,14 @@ onMounted(async () => {
   viewer = gs3d.global.initViewer('mapContainer', defopt)
   // viewer.scene.globe.depthTestAgainstTerrain = true
   viewer.camera.setView({
-    destination: Cesium.Cartesian3.fromDegrees(111.1748789388638, 31.154052261877535, 25000),
+    destination: Cesium.Cartesian3.fromDegrees(111.16281750317003, 31.302816199976156, 3000),
     orientation: {
-      heading: Cesium.Math.toRadians(0),
-      pitch: Cesium.Math.toRadians(-45),
+      heading: Cesium.Math.toRadians(11.4455466194539870),
+      pitch: Cesium.Math.toRadians(-14.695843893488675),
       roll: 0.0
     }
   })
   addTerrain()
-  // addPolygon()
   addUnderGroundControler()
 })
 
@@ -117,10 +116,9 @@ const addUnderGroundControler = () => {
   viewer.camera.changed.addEventListener(async function () {
     // 获取当前相机高度
     let cameraHeight = viewer.camera.positionCartographic.height
-    console.log('cameraHeight：', cameraHeight)
-    // hasTerrainGrid.value && cameraHeight < 10000 && removePolygon()
+    // console.log('cameraHeight：', cameraHeight)
 
-    if (cameraHeight < 10000) {
+    if (cameraHeight < 3000) {
       if (!hasTerrainGrid.value) {
         drawTerrainGrid()
         show_layer_control_box.value = true
@@ -191,26 +189,120 @@ const removeTerrain = () => {
   gs3d.manager.layerManager.removeLayer({ id: 'cesium_terrain' })
 
 }
-const addPolygon = () => {
-  gs3d.common.draw.drawGraphic(viewer, line.geometry, {
-    graphicName: "basePolygon",
-    width: 1,
-    color: "#FFDE59",
-    showBillBoard: false,
-    clampToGround: true
-  })
-  // gs3d.common.position.locationEntity(viewer, entity)
-
+let entityWall: any = null
+const addPolygon = async () => {
   gs3d.effect.breath.draw(viewer, polygon.geometry, {
     clampToGround: true,
     color: "#ff0000",
     fill: true,
   })
+
+  entityWall = await addWall(polygon.geometry, {
+    graphicName: "basePolygon",
+    width: 1,
+    color: "#FFDE59",
+    // color: "#FF0000",
+    wallOption: {
+      maximumHeights: 500,
+      minimumHeights: 0,
+      clampToGround: true
+    },
+  })
 }
 const removePolygon = () => {
-  gs3d.common.draw.clearGraphicByGraphicName(viewer, 'basePolygon')
+  removeWall()
   gs3d.effect.breath.clear()
 }
+
+// 贴地墙
+const addWall = async (geometry: any, option: any) => {
+  let { maximumHeights, minimumHeights, clampToGround } = option.wallOption || {}
+  let coordinates: Array<any> = []
+  let length = geometry.coordinates[0].length
+  let maximumHeight: Array<any> = new Array(length).fill(maximumHeights || 50)
+  let minimumHeight: Array<any> = new Array(length).fill(minimumHeights || 0)
+  var rgba = option.color ? Cesium.Color.fromCssColorString(option.color) : Cesium.Color.fromCssColorString('#00FF33')
+
+  let cartesians: Array<any> = []
+  geometry.coordinates.forEach((item: Array<any>) => {
+    item.forEach((coord: Array<any>) => {
+      cartesians.push(Cesium.Cartographic.fromDegrees(coord[0], coord[1], 0))
+      coord.forEach((i: number) => {
+        coordinates.push(i)
+      })
+    })
+  })
+
+  if (clampToGround) {
+    maximumHeight = [];
+    minimumHeight = [];
+    let clampedCartesians = await Cesium.sampleTerrainMostDetailed(viewer.terrainProvider, cartesians);
+    if (clampedCartesians.length) {
+      clampedCartesians.forEach((item: any) => {
+        item && minimumHeight.push(item.height + minimumHeights);
+        item && maximumHeight.push(item.height + maximumHeights);
+      });
+    }
+  }
+
+  var entity = viewer.entities.add({
+    wall: {
+      positions:
+        geometry.coordinates[0][0].length == 3
+          ? Cesium.Cartesian3.fromDegreesArrayHeights(coordinates)
+          : Cesium.Cartesian3.fromDegreesArray(coordinates),
+      maximumHeights: maximumHeight,
+      minimumHeights: minimumHeight,
+      material: new Cesium.ImageMaterialProperty({
+        transparent: true, //设置透明
+        image: getColorRamp({
+          0.0: rgba.withAlpha(1.0).toCssColorString().replace(")", ",1.0)"),
+          0.045: rgba.withAlpha(0.8).toCssColorString(),
+          0.1: rgba.withAlpha(0.6).toCssColorString(),
+          0.15: rgba.withAlpha(0.4).toCssColorString(),
+          0.37: rgba.withAlpha(0.2).toCssColorString(),
+          0.54: rgba.withAlpha(0.1).toCssColorString(),
+          1.0: rgba.withAlpha(0).toCssColorString(),
+        }), //Canvas
+      }),
+    },
+    polyline: {
+      positions:
+        geometry.coordinates[0][0].length == 3
+          ? Cesium.Cartesian3.fromDegreesArrayHeights(coordinates)
+          : Cesium.Cartesian3.fromDegreesArray(coordinates),
+      width: option.width || 5,
+      material: rgba,
+      clampToGround: clampToGround ?? true,
+      zIndex: 10,
+    },
+  });
+  entity.graphicType = 'wall'
+  entity.graphicName = option.graphicName
+  entity.entityProperties = option.entityProperties //entityProperties
+  return entity
+}
+//墙体渐变色
+const getColorRamp = (val: any) => {
+  if (val == null) {
+    val = { 0.0: 'blue', 0.1: 'cyan', 0.37: 'lime', 0.54: 'yellow', 1: 'red' }
+  }
+  var ramp = document.createElement('canvas')
+  ramp.width = 1
+  ramp.height = 100
+  var ctx: any = ramp.getContext('2d')
+  var grd = ctx.createLinearGradient(0, 0, 0, 100)
+  for (var key in val) {
+    grd.addColorStop(1 - Number(key), val[key])
+  }
+  ctx.fillStyle = grd
+  ctx.fillRect(0, 0, 1, 100)
+  return ramp
+}
+const removeWall = () => {
+  entityWall && viewer.entities.remove(entityWall)
+}
+
 
 const drawGraphic = () => {
   console.log('tubeJson：', tubeJson);
