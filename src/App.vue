@@ -90,32 +90,25 @@ const addModel = () => {
 }
 
 const addTerrain = () => {
-  let options = {
-    id: 'cesium_terrain',
-    label: 'Cesium默认地形【cesium】',
-    type: 'cesium_terrain',
-    requestVertexNormals: true, //开启地形光照
-    requestWaterMask: true // 开启水面波纹
-  }
-  gs3d.manager.layerManager.addLayer([options])
-  // let options={
-  //       id: 'modelLayer',
-  //       label: 'TerrainGrid',
-  //       type: 'cesium_terrain',
-  //       url: '/dem',
-  //       requestVertexNormals: true, //开启地形光照
-  //       requestWaterMask: true, // 开启水面波纹
-  //       terrainExaggeration:100000,
-  //       terrainExaggerationRelativeHeight:1000
-  //     }
+  // let options = {
+  //   id: 'cesium_terrain',
+  //   label: 'Cesium默认地形【cesium】',
+  //   type: 'cesium_terrain',
+  //   requestVertexNormals: true, //开启地形光照
+  //   requestWaterMask: true // 开启水面波纹
+  // }
   // gs3d.manager.layerManager.addLayer([options])
-
-  // let terrainProvider = Cesium.CesiumTerrainProvider.fromUrl('/dem')
-  // viewer.terrainProvider = terrainProvider
-  // //用于夸大地形的标量。默认为1.0（不夸张）。值2.0将地形缩放 2 倍。的值0.0使地形完全平坦。请注意，地形夸大不会修改任何其他图元，因为它们是相对于椭圆体定位的。
-  // viewer.scene.globe.terrainExaggeration = 4
-  // //夸大地形的高度。默认为0.0（相对于椭球表面缩放）。高于此高度的地形将向上缩放，低于此高度的地形将向下缩放。请注意，地形夸大不会修改任何其他图元，因为它们是相对于椭圆体定位的。如果Globe#terrainExaggeration是1.0这个值将没有效果。
-  // viewer.scene.globe.terrainExaggerationRelativeHeight = 1.0
+  let options={
+        id: 'modelLayer',
+        label: 'TerrainGrid',
+        type: 'cesium_terrain',
+        url: 'demTerrain',
+        requestVertexNormals: true, //开启地形光照
+        requestWaterMask: true, // 开启水面波纹
+        // terrainExaggeration:1,
+        // terrainExaggerationRelativeHeight:1000
+      }
+  gs3d.manager.layerManager.addLayer([options])
 }
 const removeTerrain = () => {
   gs3d.manager.layerManager.removeLayer({ id: 'cesium_terrain' })
@@ -235,11 +228,6 @@ const getColorRamp = (val: any) => {
 const removeWall = () => {
   entityWall && viewer.entities.remove(entityWall)
 }
-
-
-
-
-
 
 const drawTerrainGrid = () => {
   let gridOptions = {
@@ -378,9 +366,8 @@ const cancelUnderGround = () => {
       layer.alpha = 1
     }
   }
-  // addTerrain()
+  addTerrain()
 }
-
 
 let gridPickSearch: any
 const initGridPickSearch = () => {
@@ -459,7 +446,7 @@ const drawGraphicGrid = (type: string) => {
     let center = turf.getCoord(centroid)
     feature.properties['center'] = center
     feature.properties['height'] = geo.height
-    feature.properties['extruded'] = 30
+    feature.properties['extruded'] = geo.extrudedHeight
     feature.properties['id'] = geo.deviceId
     return feature
   })
@@ -470,7 +457,6 @@ const drawGraphicGrid = (type: string) => {
   }
   graphicGrid.draw(gridOptions)
 }
-
 
 const drawGraphic = (type: string) => {
   let graphic = {
@@ -490,13 +476,24 @@ const drawGraphic = (type: string) => {
   })
   gs3d.common.position.locationEntity(viewer, entity)
 }
-
 const clearGraphic = () => {
   gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_wind')
   gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_boom')
   gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_water')
   gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_wifi')
 }
+
+const openPick=()=>{
+  let handle = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas)
+  handle.setInputAction(async (e: any) => {
+    let position = e.position
+    let pick = viewer.scene.drillPick(position)
+    console.log('click', pick)
+  }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
+}
+
+
+
 const changeLayer = (_e: any, { checkedKeys }: { checkedKeys: number[] }) => {
   clearGraphic()
   checkedKeys.forEach((item: number) => {
