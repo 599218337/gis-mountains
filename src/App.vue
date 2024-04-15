@@ -212,46 +212,8 @@ const removePolygon = () => {
   gs3d.effect.breath.clear()
 }
 
-const drawGraphic = () => {
-  console.log('tubeJson：', tubeJson);
-  let graphic = {
-    type: 'Feature',
-    properties: {},
-    geometry: {
-      // coordinates: [
-      //   [111.17764741533298, 31.372454845970655, 1000],
-      //   [111.17772661356298, 31.371169105077225, 1000.3],
-      //   [111.17932568034516, 31.370750017208138, 1100]
-      // ],
-      // coordinates: tubeJson,
-      coordinates: [
-        [
-          111.17635163107539,
-          31.371760662167855,
-          1000
-        ],
-        [
-          111.17657774879866,
-          31.371369715264233,
-          1000.3
-        ],
-      ],
-      type: 'LineString',
-    }
-  }
-  let entity = gs3d.common.draw.drawGraphic(viewer, graphic.geometry, {
-    graphicName: "graphic",
-    width: 5,
-    color: "blue",
-    showBillBoard: false,
-    // clampToGround: true
-  })
-  gs3d.common.position.locationEntity(viewer, entity)
 
-}
-const clearGraphic = () => {
-  gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic')
-}
+
 
 let graphicGrid: any = null
 const drawGraphicGrid = () => {
@@ -524,16 +486,51 @@ const activate = (type: string) => {
   })
 }
 
+const drawGraphic = (type: string) => {
+  console.log('tubeJson[type]：', type, tubeJson[type]);
+  let graphic = {
+    type: 'Feature',
+    properties: {},
+    geometry: {
+      coordinates: tubeJson[type],
+      type: 'LineString',
+    }
+  }
+  let entity = gs3d.common.draw.drawGraphic(viewer, graphic.geometry, {
+    graphicName: `graphic_${type}`,
+    width: type === 'wind' ? 3 : type === 'boom' ? 2 : type === 'water' ? 3 : type === 'wifi' ? 1 : 2,
+    color: type === 'wind' ? "green" : type === 'boom' ? 'red' : type === 'water' ? 'blue' : type === 'wifi' ? 'yellow' : '',
+    showBillBoard: false,
+    // clampToGround: true
+  })
+  gs3d.common.position.locationEntity(viewer, entity)
+}
 
+const clearGraphic = () => {
+  gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_wind')
+  gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_boom')
+  gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_water')
+  gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_wifi')
+}
 const changeLayer = (e: any, { checkedKeys }) => {
+  clearGraphic()
   checkedKeys.forEach((item: number) => {
     showLayer(item)
   })
 }
 
 const showLayer = (item: number) => {
-  if (item === 3) {
-    drawGraphic()
+  if (item === 4) {
+    drawGraphic('wind')
+  }
+  if (item === 5) {
+    drawGraphic('boom')
+  }
+  if (item === 6) {
+    drawGraphic('water')
+  }
+  if (item === 7) {
+    drawGraphic('wifi')
   }
 }
 
