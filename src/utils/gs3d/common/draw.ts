@@ -4,7 +4,7 @@
  * @Author: YangYuzhuo
  * @Date: 2023-08-29 09:24:27
  * @LastEditors: yangyzZWYL yangyz@zhiwyl.com
- * @LastEditTime: 2024-04-13 17:26:47
+ * @LastEditTime: 2024-04-15 10:37:49
  * Copyright 2023
  * listeners
  * @Descripttion: <文件用途说明>
@@ -263,7 +263,7 @@ gs3d.common.draw.drawGraphic(viewer, geometry, option)
       material = option.color ? Cesium.Color.fromCssColorString(option.color) : Cesium.Color.RED
     }
     let polylineOption: any ={
-        positions:  geometry.coordinates?.length==3?Cesium.Cartesian3.fromDegreesArrayHeights(coordArray):Cesium.Cartesian3.fromDegreesArray(coordArray),
+        positions:  geometry.coordinates[0]?.length==3?Cesium.Cartesian3.fromDegreesArrayHeights(coordArray):Cesium.Cartesian3.fromDegreesArray(coordArray),
         width: option.width ? parseInt(option.width) : 5,
         material: material,
       }

@@ -8,26 +8,6 @@ let viewer: any
 const { Cesium } = window
 const { turf } = gs3d
 
-let options = {
-  height: 100.76, // 楼高
-  floor: 5, // 楼层数
-  lineColor: '#FFA500', // 边线色
-  lineAlpha: 0.5,
-  outlineShow: true, // 边线默认值
-  fillClear: '#0000ff', // 填充色
-  fillAlpha: 0.05, // 填充色透明度
-  boxShow: true, // 填充默认值
-  elevation: 0, // 高程
-  geometries: [{ id: '', rectangle: [0, 0, 0, 0] }], // GEO信息 [{ id: String, rectangle:[west, south, east, north] }]
-}
-
-options.geometries = kuangData.map((geo) => {
-  return {
-    id: geo.geoNum4,
-    rectangle: [geo.geoNumScope[1], geo.geoNumScope[0], geo.geoNumScope[3], geo.geoNumScope[2]],
-  }
-})
-
 const polygon = {
   type: 'Feature',
   properties: {
@@ -138,16 +118,18 @@ const addUnderGroundControler = () => {
     // 获取当前相机高度
     let cameraHeight = viewer.camera.positionCartographic.height
     console.log('cameraHeight：', cameraHeight)
-    hasTerrainGrid.value && cameraHeight < 10000 && removePolygon()
-    if (!hasTerrainGrid.value) {
-      drawTerrainGrid()
-    } else {
-      if (cameraHeight < 10000) {
-        isUnderGround.value = true
-      } else {
-        isUnderGround.value = false
+    // hasTerrainGrid.value && cameraHeight < 10000 && removePolygon()
+
+    if (cameraHeight < 10000) {
+      if (!hasTerrainGrid.value) {
+        drawTerrainGrid()
+        show_layer_control_box.value = true
       }
+      isUnderGround.value = true
+    } else {
+      isUnderGround.value = false
     }
+
   })
 }
 watch(isUnderGround, (newVal) => {
@@ -219,7 +201,6 @@ const addPolygon = () => {
   })
   // gs3d.common.position.locationEntity(viewer, entity)
 
-
   gs3d.effect.breath.draw(viewer, polygon.geometry, {
     clampToGround: true,
     color: "#ff0000",
@@ -258,13 +239,14 @@ const drawGraphic = () => {
       type: 'LineString',
     }
   }
-  gs3d.common.draw.drawGraphic(viewer, graphic.geometry, {
+  let entity = gs3d.common.draw.drawGraphic(viewer, graphic.geometry, {
     graphicName: "graphic",
     width: 5,
     color: "blue",
     showBillBoard: false,
     // clampToGround: true
   })
+  gs3d.common.position.locationEntity(viewer, entity)
 
 }
 const clearGraphic = () => {
@@ -353,11 +335,11 @@ const drawGraphicGrid = () => {
 
 const drawTerrainGrid = () => {
   let gridOptions = {
-    lineColor: "#FFFF00",
-    lineAlpha: 0.75,
+    lineColor: "#ffffcc",
+    lineAlpha: 0.5,
     lineWidth: 1,
     fillClear: "#887070",
-    fillAlpha: 0.01,
+    fillAlpha: 0.02,
     clampToGround: false,
     elevation: 0,
     features: [],
@@ -422,7 +404,7 @@ const drawModelGrid = (gridOptions: any) => {
   }
   rectangleGrid.draw(gridOptions)
   hasTerrainGrid.value = true
-  show_layer_control_box.value = true
+  removePolygon()
 }
 const clearModelGrid = () => {
   rectangleGrid && rectangleGrid.destroy()
