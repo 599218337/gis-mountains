@@ -131,7 +131,7 @@ const addTerrain = () => {
         id: 'modelLayer',
         label: 'TerrainGrid',
         type: 'cesium_terrain',
-        url: 'http://localhost:9003/terrain/fIn3Sszx',
+        url: 'demTerrain',
         requestVertexNormals: true, //开启地形光照
         requestWaterMask: true, // 开启水面波纹
         // terrainExaggeration:1,
@@ -257,11 +257,6 @@ const getColorRamp = (val: any) => {
 const removeWall = () => {
   entityWall && viewer.entities.remove(entityWall)
 }
-
-
-
-
-
 
 const drawTerrainGrid = () => {
   let gridOptions = {
@@ -403,7 +398,6 @@ const cancelUnderGround = () => {
   addTerrain()
 }
 
-
 let gridPickSearch: any
 const initGridPickSearch = () => {
   // 实例网格拾取
@@ -481,7 +475,7 @@ const drawGraphicGrid = () => {
     let center = turf.getCoord(centroid)
     feature.properties['center'] = center
     feature.properties['height'] = geo.height
-    feature.properties['extruded'] = 30
+    feature.properties['extruded'] = geo.extrudedHeight
     feature.properties['id'] = geo.deviceId
     return feature
   })
@@ -492,7 +486,6 @@ const drawGraphicGrid = () => {
   }
   graphicGrid.draw(gridOptions)
 }
-
 
 const drawGraphic = (type: string) => {
   let graphic = {
@@ -512,13 +505,24 @@ const drawGraphic = (type: string) => {
   })
   gs3d.common.position.locationEntity(viewer, entity)
 }
-
 const clearGraphic = () => {
   gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_wind')
   gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_boom')
   gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_water')
   gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_wifi')
 }
+
+const openPick=()=>{
+  let handle = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas)
+  handle.setInputAction(async (e: any) => {
+    let position = e.position
+    let pick = viewer.scene.drillPick(position)
+    console.log('click', pick)
+  }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
+}
+
+
+
 const changeLayer = (_e: any, { checkedKeys }: { checkedKeys: number[] }) => {
   clearGraphic()
   checkedKeys.forEach((item: number) => {
