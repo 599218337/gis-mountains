@@ -98,16 +98,16 @@ const addTerrain = () => {
   //   requestWaterMask: true // 开启水面波纹
   // }
   // gs3d.manager.layerManager.addLayer([options])
-  let options={
-        id: 'modelLayer',
-        label: 'TerrainGrid',
-        type: 'cesium_terrain',
-        url: 'demTerrain',
-        requestVertexNormals: true, //开启地形光照
-        requestWaterMask: true, // 开启水面波纹
-        // terrainExaggeration:1,
-        // terrainExaggerationRelativeHeight:1000
-      }
+  let options = {
+    id: 'modelLayer',
+    label: 'TerrainGrid',
+    type: 'cesium_terrain',
+    url: 'demTerrain',
+    requestVertexNormals: true, //开启地形光照
+    requestWaterMask: true, // 开启水面波纹
+    // terrainExaggeration:1,
+    // terrainExaggerationRelativeHeight:1000
+  }
   gs3d.manager.layerManager.addLayer([options])
 }
 const removeTerrain = () => {
@@ -304,6 +304,7 @@ const drawModelGrid = (gridOptions: any) => {
 }
 const clearModelGrid = () => {
   rectangleGrid && rectangleGrid.destroy()
+  rectangleGrid = null
 }
 
 const enterUnderGround = () => {
@@ -419,7 +420,7 @@ const activate = (type: string) => {
   })
 }
 
-let graphicGrid: any = null
+let graphicGridArray: Array<any> = []
 const drawGraphicGrid = (type: string) => {
   console.log('drawGraphicGrid：', type);
   let graphicGridJson = type === 'suiDao' ? suiDaoJson : type === 'camera' ? deviceJson.camera : deviceJson.camera
@@ -452,10 +453,16 @@ const drawGraphicGrid = (type: string) => {
   })
 
   gridOptions.features = features
-  if (!graphicGrid) {
-    graphicGrid = new gs3d.grid.rectangleGrid(viewer)
-  }
+
+  let graphicGrid = new gs3d.grid.rectangleGrid(viewer)
   graphicGrid.draw(gridOptions)
+  graphicGridArray.push(graphicGrid)
+}
+const clearGraphicGrid = () => {
+  graphicGridArray.forEach((item) => {
+    item && item.destroy()
+  })
+  graphicGridArray = []
 }
 
 const drawGraphic = (type: string) => {
@@ -477,13 +484,14 @@ const drawGraphic = (type: string) => {
   gs3d.common.position.locationEntity(viewer, entity)
 }
 const clearGraphic = () => {
-  gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_wind')
-  gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_boom')
-  gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_water')
-  gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_wifi')
+  gs3d.common.draw.clearAllGraphic(viewer)
+  // gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_wind')
+  // gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_boom')
+  // gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_water')
+  // gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_wifi')
 }
 
-const openPick=()=>{
+const openPick = () => {
   let handle = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas)
   handle.setInputAction(async (e: any) => {
     let position = e.position
@@ -492,10 +500,9 @@ const openPick=()=>{
   }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
 }
 
-
-
 const changeLayer = (_e: any, { checkedKeys }: { checkedKeys: number[] }) => {
   clearGraphic()
+  clearGraphicGrid()
   checkedKeys.forEach((item: number) => {
     showLayer(item)
   })
