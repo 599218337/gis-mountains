@@ -65,29 +65,6 @@ const addUnderGroundControler = () => {
 watch(isUnderGround, (newVal) => {
   newVal ? enterUnderGround() : cancelUnderGround()
 })
-const addModel = () => {
-  let position = Cesium.Cartesian3.fromDegrees(111.185279144793564, 31.373959102231885)
-  const entity = viewer.entities.add({
-    name: 'dem',
-    position: position,
-    // orientation:Cesium.Quaternion.fromHeadingPitchRoll(new Cesium.HeadingPitchRoll(Cesium.Math.toRadians(0), Cesium.Math.toRadians(0), Cesium.Math.toRadians(0))),
-    model: {
-      uri: '/src/assets/low_dem.gltf',
-      // minimumPixelSize: 1000,
-      // maximumScale: 220000,
-      scale: 50000,
-      heightReference: Cesium.HeightReference.CLAMP_TO_TERRAIN,
-      imageBasedLightingFactor: new Cesium.Cartesian2(4, 1),
-    },
-  })
-  const origin = entity.position.getValue()
-  const heading = Cesium.Math.toRadians(45)
-  const pitch = Cesium.Math.toRadians(0)
-  const roll = Cesium.Math.toRadians(0)
-  const hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll)
-  const orientation = Cesium.Transforms.headingPitchRollQuaternion(origin, hpr)
-  entity.orientation = orientation
-}
 
 const addTerrain = () => {
   // let options = {
@@ -570,7 +547,7 @@ let camera_video_show = ref(false)
   </video>
   <div id="mapContainer"></div>
 
-  <div class="location" @click="addPolygon()"> <span>树崆坪</span> </div>
+  <div class="location" @click="addPolygon()"> <span>杉树垭</span> </div>
   <div id="layer-control-box" v-show="show_layer_control_box">
     <span class="title">展示图层</span>
     <div class="content">
