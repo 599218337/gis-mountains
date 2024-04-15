@@ -3,7 +3,9 @@ import * as gs3d from '@/utils/gs3d/index'
 import { onMounted, reactive, ref, watch } from 'vue'
 import kuangData from '@/static/kuang'
 import layerControlOptions from '@/static/layerControlOptions'
-import tubeJson from '@/static/line'
+import { tubeJson } from '@/static/line'
+import suiDaoJson from '@/static/suiDao'
+
 let viewer: any
 const { Cesium } = window
 const { turf } = gs3d
@@ -49,47 +51,6 @@ const polygon = {
     type: 'Polygon',
   },
 }
-const line = {
-  type: 'Feature',
-  properties: {
-    id: '7kuMolrTCYE',
-    name: '7kuMolrTCYE',
-  },
-  geometry: {
-    coordinates: [
-      [111.181279144793564, 31.363959102231885],
-      [111.180659797649355, 31.363911025208314],
-      [111.179758929075945, 31.364175448533619],
-      [111.178942516931315, 31.363670639721651],
-      [111.177929039786193, 31.363598523955773],
-      [111.177112627641549, 31.363814871087428],
-      [111.176070998353509, 31.36299755708858],
-      [111.175113825494293, 31.362901402033284],
-      [111.173649914062509, 31.363093712045515],
-      [111.172749045489056, 31.363766793990077],
-      [111.170834699770552, 31.366435035702661],
-      [111.172157850487764, 31.368502269997485],
-      [111.17255198048862, 31.369535870093689],
-      [111.171932633344426, 31.36948779592268],
-      [111.171763720486879, 31.370064684351714],
-      [111.173368392633307, 31.373045218152502],
-      [111.175029369065513, 31.373429796272905],
-      [111.176690345497761, 31.373910516709948],
-      [111.179195886217556, 31.373766300837065],
-      [111.181391753365276, 31.3726606384581],
-      [111.182405230510369, 31.371002120495923],
-      [111.183869141942154, 31.369968536526137],
-      [111.183418707655449, 31.369776240579867],
-      [111.184432184800528, 31.366627338485408],
-      [111.18451664122928, 31.365016790529037],
-      [111.182095556938236, 31.364223525421934],
-      [111.181279144793564, 31.363959102231885],
-    ],
-    type: 'LineString',
-  },
-}
-
-
 const show_layer_control_box = ref(false)
 onMounted(async () => {
   const defopt = {
@@ -292,130 +253,14 @@ const getColorRamp = (val: any) => {
   ctx.fillRect(0, 0, 1, 100)
   return ramp
 }
+
 const removeWall = () => {
   entityWall && viewer.entities.remove(entityWall)
 }
 
 
-const drawGraphic = () => {
-  console.log('tubeJson：', tubeJson);
-  let graphic = {
-    type: 'Feature',
-    properties: {},
-    geometry: {
-      // coordinates: [
-      //   [111.17764741533298, 31.372454845970655, 1000],
-      //   [111.17772661356298, 31.371169105077225, 1000.3],
-      //   [111.17932568034516, 31.370750017208138, 1100]
-      // ],
-      // coordinates: tubeJson,
-      coordinates: [
-        [
-          111.17635163107539,
-          31.371760662167855,
-          1000
-        ],
-        [
-          111.17657774879866,
-          31.371369715264233,
-          1000.3
-        ],
-      ],
-      type: 'LineString',
-    }
-  }
-  let entity = gs3d.common.draw.drawGraphic(viewer, graphic.geometry, {
-    graphicName: "graphic",
-    width: 5,
-    color: "blue",
-    showBillBoard: false,
-    // clampToGround: true
-  })
-  gs3d.common.position.locationEntity(viewer, entity)
 
-}
-const clearGraphic = () => {
-  gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic')
-}
 
-let graphicGrid: any = null
-const drawGraphicGrid = () => {
-  let graphicGridJson = [{
-    "geoNumScope": [
-      31.36277777777778,
-      111.1751388888889,
-      31.362916666666667,
-      111.17527777777778
-    ],
-    "geoNum": 414271356135276544,
-    "geoNum4": "G0011233330212122133301",
-    "bdCode": null,
-    "range": null,
-    "height": 1000,
-    "deviceId": "001"
-  },
-  {
-    "geoNumScope": [
-      31.362916666666667,
-      111.17388888888888,
-      31.363055555555555,
-      111.17402777777778
-    ],
-    "geoNum": 414271356069216256,
-    "geoNum4": "G0011233330212122132302",
-    "bdCode": null,
-    "range": null,
-    height: 2000,
-    deviceId: "002"
-  },
-  {
-    "geoNumScope": [
-      31.362916666666667,
-      111.17402777777778,
-      31.363055555555555,
-      111.17416666666666
-    ],
-    "geoNum": 414271356070264832,
-    "geoNum4": "G0011233330212122132303",
-    "bdCode": null,
-    "range": null,
-    height: 3000,
-    deviceId: "003"
-  }]
-  let gridOptions = {
-    lineColor: "#FFFF00",
-    lineAlpha: 0.75,
-    lineWidth: 1,
-    fillClear: "#FF0000",
-    fillAlpha: 1,
-    clampToGround: false,
-    elevation: 0,
-    features: [],
-    height: 1,
-    name: ''
-  }
-  let features: any = graphicGridJson.map((geo: any) => {
-    const line = turf.lineString([
-      [geo.geoNumScope[1], geo.geoNumScope[0]],
-      [geo.geoNumScope[3], geo.geoNumScope[2]],
-    ])
-    const bbox = turf.bbox(line)
-    const feature = turf.bboxPolygon(bbox, { properties: { id: geo.geoNum4, bbox: bbox } })
-    const centroid = turf.centroid(feature)
-    let center = turf.getCoord(centroid)
-    feature.properties['center'] = center
-    feature.properties['height'] = geo.height
-    feature.properties['extruded'] = 30
-    feature.properties['id'] = geo.deviceId
-    return feature
-  })
-
-  gridOptions.features = features
-  if (!graphicGrid) {
-    graphicGrid = new gs3d.grid.rectangleGrid(viewer)
-  }
-  graphicGrid.draw(gridOptions)
-}
 
 
 const drawTerrainGrid = () => {
@@ -609,8 +454,73 @@ const activate = (type: string) => {
   })
 }
 
+let graphicGrid: any = null
+const drawGraphicGrid = () => {
+  console.log('drawGraphicGrid：',);
+  let graphicGridJson = suiDaoJson
+  let gridOptions = {
+    lineColor: "#FFFF00",
+    lineAlpha: 0.75,
+    lineWidth: 1,
+    fillClear: "#b2985bfb",
+    fillAlpha: 1,
+    clampToGround: false,
+    elevation: 0,
+    features: [],
+    height: 1,
+    name: ''
+  }
+  let features: any = graphicGridJson.map((geo: any) => {
+    const line = turf.lineString([
+      [geo.geoNumScope[1], geo.geoNumScope[0]],
+      [geo.geoNumScope[3], geo.geoNumScope[2]],
+    ])
+    const bbox = turf.bbox(line)
+    const feature = turf.bboxPolygon(bbox, { properties: { id: geo.geoNum4, bbox: bbox } })
+    const centroid = turf.centroid(feature)
+    let center = turf.getCoord(centroid)
+    feature.properties['center'] = center
+    feature.properties['height'] = geo.height
+    feature.properties['extruded'] = 30
+    feature.properties['id'] = geo.deviceId
+    return feature
+  })
 
-const changeLayer = (e: any, { checkedKeys }) => {
+  gridOptions.features = features
+  if (!graphicGrid) {
+    graphicGrid = new gs3d.grid.rectangleGrid(viewer)
+  }
+  graphicGrid.draw(gridOptions)
+}
+
+
+const drawGraphic = (type: string) => {
+  let graphic = {
+    type: 'Feature',
+    properties: {},
+    geometry: {
+      coordinates: tubeJson[type],
+      type: 'LineString',
+    }
+  }
+  let entity = gs3d.common.draw.drawGraphic(viewer, graphic.geometry, {
+    graphicName: `graphic_${type}`,
+    width: type === 'wind' ? 3 : type === 'boom' ? 2 : type === 'water' ? 3 : type === 'wifi' ? 1 : 2,
+    color: type === 'wind' ? "green" : type === 'boom' ? 'red' : type === 'water' ? 'blue' : type === 'wifi' ? 'yellow' : '',
+    showBillBoard: false,
+    // clampToGround: true
+  })
+  gs3d.common.position.locationEntity(viewer, entity)
+}
+
+const clearGraphic = () => {
+  gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_wind')
+  gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_boom')
+  gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_water')
+  gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_wifi')
+}
+const changeLayer = (_e: any, { checkedKeys }: { checkedKeys: number[] }) => {
+  clearGraphic()
   checkedKeys.forEach((item: number) => {
     showLayer(item)
   })
@@ -618,7 +528,19 @@ const changeLayer = (e: any, { checkedKeys }) => {
 
 const showLayer = (item: number) => {
   if (item === 3) {
-    drawGraphic()
+    drawGraphicGrid()
+  }
+  if (item === 4) {
+    drawGraphic('wind')
+  }
+  if (item === 5) {
+    drawGraphic('boom')
+  }
+  if (item === 6) {
+    drawGraphic('water')
+  }
+  if (item === 7) {
+    drawGraphic('wifi')
   }
 }
 
