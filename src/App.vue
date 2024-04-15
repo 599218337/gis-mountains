@@ -5,6 +5,7 @@ import kuangData from '@/static/kuang'
 import layerControlOptions from '@/static/layerControlOptions'
 import { tubeJson } from '@/static/line'
 import suiDaoJson from '@/static/suiDao'
+import deviceJson from '@/static/device'
 
 let viewer: any
 const { Cesium } = window
@@ -17,37 +18,7 @@ const polygon = {
     name: '7kuMolrTCYE',
   },
   geometry: {
-    coordinates: [
-      [
-        [111.181279144793564, 31.363959102231885],
-        [111.180659797649355, 31.363911025208314],
-        [111.179758929075945, 31.364175448533619],
-        [111.178942516931315, 31.363670639721651],
-        [111.177929039786193, 31.363598523955773],
-        [111.177112627641549, 31.363814871087428],
-        [111.176070998353509, 31.36299755708858],
-        [111.175113825494293, 31.362901402033284],
-        [111.173649914062509, 31.363093712045515],
-        [111.172749045489056, 31.363766793990077],
-        [111.170834699770552, 31.366435035702661],
-        [111.172157850487764, 31.368502269997485],
-        [111.17255198048862, 31.369535870093689],
-        [111.171932633344426, 31.36948779592268],
-        [111.171763720486879, 31.370064684351714],
-        [111.173368392633307, 31.373045218152502],
-        [111.175029369065513, 31.373429796272905],
-        [111.176690345497761, 31.373910516709948],
-        [111.179195886217556, 31.373766300837065],
-        [111.181391753365276, 31.3726606384581],
-        [111.182405230510369, 31.371002120495923],
-        [111.183869141942154, 31.369968536526137],
-        [111.183418707655449, 31.369776240579867],
-        [111.184432184800528, 31.366627338485408],
-        [111.18451664122928, 31.365016790529037],
-        [111.182095556938236, 31.364223525421934],
-        [111.181279144793564, 31.363959102231885],
-      ],
-    ],
+    coordinates: kuangData.scope,
     type: 'Polygon',
   },
 }
@@ -271,7 +242,7 @@ const drawTerrainGrid = () => {
     height: 1,
     name: ''
   }
-  getTerrainHeight(kuangData, (features: any) => {
+  getTerrainHeight(kuangData.geometry, (features: any) => {
     gridOptions.features = features
     if (!features?.length) {
       console.log('未查找到模型数据，请尝试重新绘制或选择其他层级')
@@ -449,9 +420,9 @@ const activate = (type: string) => {
 }
 
 let graphicGrid: any = null
-const drawGraphicGrid = () => {
-  console.log('drawGraphicGrid：',);
-  let graphicGridJson = suiDaoJson
+const drawGraphicGrid = (type: string) => {
+  console.log('drawGraphicGrid：', type);
+  let graphicGridJson = type === 'suiDao' ? suiDaoJson : type === 'camera' ? deviceJson.camera : deviceJson.camera
   let gridOptions = {
     lineColor: "#FFFF00",
     lineAlpha: 0.75,
@@ -532,7 +503,7 @@ const changeLayer = (_e: any, { checkedKeys }: { checkedKeys: number[] }) => {
 
 const showLayer = (item: number) => {
   if (item === 3) {
-    drawGraphicGrid()
+    drawGraphicGrid('suiDao')
   }
   if (item === 4) {
     drawGraphic('wind')
@@ -545,6 +516,9 @@ const showLayer = (item: number) => {
   }
   if (item === 7) {
     drawGraphic('wifi')
+  }
+  if (item === 10) {
+    drawGraphicGrid('camera')
   }
 }
 
