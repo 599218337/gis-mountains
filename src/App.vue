@@ -96,15 +96,14 @@ let entityWall: any = null
 const addPolygon = async () => {
   gs3d.effect.breath.draw(viewer, polygon.geometry, {
     clampToGround: true,
-    color: "#ff0000",
+    color: "#57fcc87d",
     fill: true,
   })
 
   entityWall = await addWall(polygon.geometry, {
     graphicName: "basePolygon",
     width: 1,
-    color: "#FFDE59",
-    // color: "#FF0000",
+    color: "#4ee8f499",
     wallOption: {
       maximumHeights: 500,
       minimumHeights: 0,
@@ -206,7 +205,7 @@ const removeWall = () => {
 const drawTerrainGrid = () => {
   let gridOptions = {
     lineColor: "#ffffcc",
-    lineAlpha: 0.5,
+    lineAlpha: 0,
     lineWidth: 1,
     fillClear: "#887070",
     fillAlpha: 0.02,
@@ -394,9 +393,8 @@ const activate = (type: string) => {
 }
 
 let graphicGridArray: Array<any> = []
-const drawGraphicGrid = (type: string) => {
-  console.log('drawGraphicGrid：', type);
-  let graphicGridJson = type === 'suiDao' ? suiDaoJson : type === 'camera' ? deviceJson.camera : deviceJson.camera
+const drawGraphicGrid = (graphicGridJson: Record<string, any>) => {
+  console.log('drawGraphicGrid：', graphicGridJson);
   let gridOptions = {
     lineColor: "#FFFF00",
     lineAlpha: 0.75,
@@ -474,7 +472,9 @@ const changeLayer = (_e: any, { checkedKeys }: { checkedKeys: number[] }) => {
 
 const showLayer = (item: number) => {
   if (item === 3) {
-    drawGraphicGrid('suiDao')
+    Object.values(suiDaoJson).forEach((json) => {
+      drawGraphicGrid(json)
+    })
   }
   if (item === 4) {
     drawGraphic('wind')
@@ -489,7 +489,7 @@ const showLayer = (item: number) => {
     drawGraphic('wifi')
   }
   if (item === 10) {
-    drawGraphicGrid('camera')
+    drawGraphicGrid(deviceJson.camera)
   }
 }
 
@@ -514,7 +514,7 @@ let processFrom = reactive({
 
 let video_show = ref(false)
 let showNormalBox = ref(false)
-let showUnusualBox = ref(true)
+let showUnusualBox = ref(false)
 let unusual_step = ref(1)
 let camera_video_show = ref(false)
 </script>
@@ -542,13 +542,13 @@ let camera_video_show = ref(false)
     </div>
   </div>
 
-  <div class="operate-btn" v-show="show_layer_control_box">
+  <div class="operate-btn">
     <el-upload class="upload-demo" action="#" :show-file-list="false" style="display: inline-block; margin-left: 10px"
       @change="showInformation">
       <el-button>信息导入</el-button>
     </el-upload>
     <el-button @click="showProcess">爆破流程</el-button>
-    <!-- <el-button @click="activate('line')">画线</el-button> -->
+    <el-button @click="activate('line')">画线</el-button>
   </div>
 
   <div id="information-box" v-show="showBox">
