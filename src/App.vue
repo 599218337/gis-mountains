@@ -574,13 +574,13 @@ let camera_video_show = ref(false)
     </div>
   </div>
 
-  <div class="operate-btn">
+  <div class="operate-btn" v-show="show_layer_control_box">
     <el-upload class="upload-demo" action="#" :show-file-list="false" style="display: inline-block; margin-left: 10px"
       @change="showInformation">
       <el-button>信息导入</el-button>
     </el-upload>
     <el-button @click="showProcess">爆破流程</el-button>
-    <el-button @click="activate('line')">画线</el-button>
+    <!-- <el-button @click="activate('line')">画线</el-button> -->
   </div>
 
   <div id="information-box" v-show="showBox">
