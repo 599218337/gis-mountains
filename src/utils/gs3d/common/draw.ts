@@ -4,7 +4,7 @@
  * @Author: YangYuzhuo
  * @Date: 2023-08-29 09:24:27
  * @LastEditors: yangyzZWYL yangyz@zhiwyl.com
- * @LastEditTime: 2024-04-15 10:37:49
+ * @LastEditTime: 2024-04-15 14:09:29
  * Copyright 2023
  * listeners
  * @Descripttion: <文件用途说明>
@@ -397,59 +397,86 @@ gs3d.common.draw.drawGraphic(viewer, geometry, option)
     return ramp
   }
   //绘制墙
-  const drawWall = (viewer: any, geometry: any, option: any, holes: any, entityId?: string) => {
+  const  drawWall = (viewer: any, geometry: any, option: any, holes: any, entityId?: string) => {
     entityId = entityId || common.getUuid(10)
-    let { maximumHeights, minimumHeights } = option.wallOption || {}
+    let { maximumHeights, minimumHeights,clampToGround } = option.wallOption || {}
     let coordinates: Array<any> = []
     let length = geometry.coordinates[0].length
-    let maximumHeight = new Array(length).fill(maximumHeights || 50)
-    let minimumHeight = new Array(length).fill(minimumHeights || 0)
+    let maximumHeight:Array<any> = new Array(length).fill(maximumHeights || 50)
+    let minimumHeight:Array<any> = new Array(length).fill(minimumHeights || 0)
     var rgba = option.color ? Cesium.Color.fromCssColorString(option.color) : Cesium.Color.fromCssColorString('#00FF33')
+
+    let cartesians: Array<any>=[]
 
     geometry.coordinates.forEach((item: Array<any>, index: number) => {
       item.forEach((coord: Array<any>) => {
-        coordinates.push(coord[0])
-        coordinates.push(coord[1])
-        coordinates.push(option.height)
+        cartesians.push(Cesium.Cartographic.fromDegrees(coord[0], coord[1], 0))
+        coord.forEach((i:number)=>{
+          coordinates.push(i)
+          // coordinates.push(coord[0])
+          // coordinates.push(coord[1])
+          // coordinates.push(option.height)
+        })
       })
     })
 
+    // 绘制贴地墙，方法可行，但有异步传染，影响值存储-清除图形
+    // if (clampToGround) {
+    //   maximumHeight = [];
+    //   minimumHeight = [];
+    //   let clampedCartesians = await Cesium.sampleTerrainMostDetailed(viewer.terrainProvider, cartesians);
+    //   if (clampedCartesians.length) {
+    //     clampedCartesians.forEach((item: any) => {
+    //       item && minimumHeight.push(item.height + minimumHeights);
+    //       item && maximumHeight.push(item.height + maximumHeights);
+    //     });
+    //   }
+    // }
+    
     var entity = viewer.entities.add({
       wall: {
         // hierarchy:{
         //   positions: Cesium.Cartesian3.fromDegreesArrayHeights(coordinates),
         //   holes:holes
         // },
-        positions: Cesium.Cartesian3.fromDegreesArrayHeights(coordinates),
+        // positions: Cesium.Cartesian3.fromDegreesArrayHeights(coordinates),
+        positions:
+          geometry.coordinates[0][0].length == 3
+            ? Cesium.Cartesian3.fromDegreesArrayHeights(coordinates)
+            : Cesium.Cartesian3.fromDegreesArray(coordinates),
         maximumHeights: maximumHeight,
         minimumHeights: minimumHeight,
         material: new Cesium.ImageMaterialProperty({
           transparent: true, //设置透明
           image: getColorRamp({
-            0.0: rgba.withAlpha(1.0).toCssColorString().replace(')', ',1.0)'),
+            0.0: rgba.withAlpha(1.0).toCssColorString().replace(")", ",1.0)"),
             0.045: rgba.withAlpha(0.8).toCssColorString(),
             0.1: rgba.withAlpha(0.6).toCssColorString(),
             0.15: rgba.withAlpha(0.4).toCssColorString(),
             0.37: rgba.withAlpha(0.2).toCssColorString(),
             0.54: rgba.withAlpha(0.1).toCssColorString(),
-            1.0: rgba.withAlpha(0).toCssColorString()
-          }) //Canvas
-        })
+            1.0: rgba.withAlpha(0).toCssColorString(),
+          }), //Canvas
+        }),
       },
       polyline: {
-        positions: Cesium.Cartesian3.fromDegreesArrayHeights(coordinates),
-        width: 5,
+        positions:
+          geometry.coordinates[0][0].length == 3
+            ? Cesium.Cartesian3.fromDegreesArrayHeights(coordinates)
+            : Cesium.Cartesian3.fromDegreesArray(coordinates),
+        width: option.width || 5,
         material: rgba,
-        clampToGround: true,
-        zIndex: 10
-      }
-    })
+        clampToGround: clampToGround ?? true,
+        zIndex: 10,
+      },
+    });
     // entity.graphicType = 'wall'
     entity.graphicName = option.graphicName
     entity.entityId = entityId
     entity.entityProperties = option.entityProperties //entityProperties
     return entity
   }
+  
   //绘制billboard
   const drawBillBoard = (viewer: any, geometry: any, option: any, entityId?: string, entity?: any) => {
     entityId = entityId || common.getUuid(10)
