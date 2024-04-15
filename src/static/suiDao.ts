@@ -153,7 +153,7 @@ export default [
     "geoNum4": "G0011233330212301023313",
     "bdCode": null,
     "range": null,
-    height: 1000
+    height: 1020
   },
   {
     "geoNumScope": [
