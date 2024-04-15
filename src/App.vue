@@ -54,6 +54,7 @@ const addUnderGroundControler = () => {
       if (!hasTerrainGrid.value) {
         drawTerrainGrid()
         show_layer_control_box.value = true
+        openPick()
       }
       isUnderGround.value = true
     } else {
@@ -89,8 +90,8 @@ const addTerrain = () => {
 }
 const removeTerrain = () => {
   gs3d.manager.layerManager.removeLayer({ id: 'cesium_terrain' })
-
 }
+
 let entityWall: any = null
 const addPolygon = async () => {
   gs3d.effect.breath.draw(viewer, polygon.geometry, {
@@ -115,8 +116,6 @@ const removePolygon = () => {
   removeWall()
   gs3d.effect.breath.clear()
 }
-
-// 贴地墙
 const addWall = async (geometry: any, option: any) => {
   let { maximumHeights, minimumHeights, clampToGround } = option.wallOption || {}
   let coordinates: Array<any> = []
@@ -184,7 +183,6 @@ const addWall = async (geometry: any, option: any) => {
   entity.entityProperties = option.entityProperties //entityProperties
   return entity
 }
-//墙体渐变色
 const getColorRamp = (val: any) => {
   if (val == null) {
     val = { 0.0: 'blue', 0.1: 'cyan', 0.37: 'lime', 0.54: 'yellow', 1: 'red' }
@@ -201,7 +199,6 @@ const getColorRamp = (val: any) => {
   ctx.fillRect(0, 0, 1, 100)
   return ramp
 }
-
 const removeWall = () => {
   entityWall && viewer.entities.remove(entityWall)
 }
@@ -222,8 +219,7 @@ const drawTerrainGrid = () => {
   getTerrainHeight(kuangData.geometry, (features: any) => {
     gridOptions.features = features
     if (!features?.length) {
-      console.log('未查找到模型数据，请尝试重新绘制或选择其他层级')
-
+      console.log('模型数据计算失败')
       return
     }
     drawModelGrid(gridOptions)
@@ -424,7 +420,7 @@ const drawGraphicGrid = (type: string) => {
     let center = turf.getCoord(centroid)
     feature.properties['center'] = center
     feature.properties['height'] = geo.height
-    feature.properties['extruded'] = geo.extrudedHeight
+    feature.properties['extruded'] = geo.extrudedHeight || 30
     feature.properties['id'] = geo.deviceId
     return feature
   })
@@ -466,15 +462,6 @@ const clearGraphic = () => {
   // gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_boom')
   // gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_water')
   // gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_wifi')
-}
-
-const openPick = () => {
-  let handle = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas)
-  handle.setInputAction(async (e: any) => {
-    let position = e.position
-    let pick = viewer.scene.drillPick(position)
-    console.log('click', pick)
-  }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
 }
 
 const changeLayer = (_e: any, { checkedKeys }: { checkedKeys: number[] }) => {
@@ -527,7 +514,7 @@ let processFrom = reactive({
 
 let video_show = ref(false)
 let showNormalBox = ref(false)
-let showUnusualBox = ref(false)
+let showUnusualBox = ref(true)
 let unusual_step = ref(1)
 let camera_video_show = ref(false)
 </script>
@@ -549,7 +536,7 @@ let camera_video_show = ref(false)
 
   <div class="location" @click="addPolygon()"> <span>杉树垭</span> </div>
   <div id="layer-control-box" v-show="show_layer_control_box">
-    <span class="title">展示图层</span>
+    <span class="title">要素分类</span>
     <div class="content">
       <el-tree :data="layerControlOptions" highlight-current show-checkbox @check="changeLayer" node-key="id" />
     </div>
@@ -605,7 +592,7 @@ let camera_video_show = ref(false)
       </el-form-item>
     </el-form>
     <div class="operate"> <el-button type="primary" @click="showProcessBox = false" class="boom-btn"
-        :disabled="processFrom.clear === '2'">确认爆破</el-button></div>
+        :disabled="processFrom.clear === '2'">爆破申请</el-button></div>
   </div>
 
   <div id="normal_device_box" v-show="showNormalBox">
@@ -862,8 +849,6 @@ let camera_video_show = ref(false)
     .boom-btn {
       background-color: #d01313;
       border: none;
-
-
     }
 
     .el-button.is-disabled {
