@@ -3,6 +3,7 @@ import * as gs3d from '@/utils/gs3d/index'
 import { onMounted, reactive, ref, watch } from 'vue'
 import kuangData from '@/static/kuang'
 import layerControlOptions from '@/static/layerControlOptions'
+import tubeJson from '@/static/line'
 let viewer: any
 const { Cesium } = window
 const { turf } = gs3d
@@ -222,7 +223,7 @@ const addPolygon = () => {
   gs3d.effect.breath.draw(viewer, polygon.geometry, {
     clampToGround: true,
     color: "#ff0000",
-    fill: true
+    fill: true,
   })
 }
 const removePolygon = () => {
@@ -231,14 +232,28 @@ const removePolygon = () => {
 }
 
 const drawGraphic = () => {
+  console.log('tubeJson：', tubeJson);
   let graphic = {
     type: 'Feature',
     properties: {},
     geometry: {
+      // coordinates: [
+      //   [111.17764741533298, 31.372454845970655, 1000],
+      //   [111.17772661356298, 31.371169105077225, 1000.3],
+      //   [111.17932568034516, 31.370750017208138, 1100]
+      // ],
+      // coordinates: tubeJson,
       coordinates: [
-        [111.17764741533298, 31.372454845970655, 1000],
-        [111.17772661356298, 31.371169105077225, 1000.3],
-        [111.17932568034516, 31.370750017208138, 1100]
+        [
+          111.17635163107539,
+          31.371760662167855,
+          1000
+        ],
+        [
+          111.17657774879866,
+          31.371369715264233,
+          1000.3
+        ],
       ],
       type: 'LineString',
     }
@@ -342,7 +357,7 @@ const drawTerrainGrid = () => {
     lineAlpha: 0.75,
     lineWidth: 1,
     fillClear: "#887070",
-    fillAlpha: 0.05,
+    fillAlpha: 0.01,
     clampToGround: false,
     elevation: 0,
     features: [],
@@ -589,12 +604,13 @@ let camera_video_show = ref(false)
     </div>
   </div>
 
-  <div class="operate-btn" v-show="show_layer_control_box">
+  <div class="operate-btn">
     <el-upload class="upload-demo" action="#" :show-file-list="false" style="display: inline-block; margin-left: 10px"
       @change="showInformation">
       <el-button>信息导入</el-button>
     </el-upload>
     <el-button @click="showProcess">爆破流程</el-button>
+    <el-button @click="activate('line')">画线</el-button>
   </div>
 
   <div id="information-box" v-show="showBox">
