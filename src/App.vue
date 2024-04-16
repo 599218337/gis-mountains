@@ -31,10 +31,10 @@ onMounted(async () => {
   viewer = gs3d.global.initViewer('mapContainer', defopt)
   // viewer.scene.globe.depthTestAgainstTerrain = true
   viewer.camera.setView({
-    destination: Cesium.Cartesian3.fromDegrees(111.16281750317003, 31.302816199976156, 3000),
+    destination: Cesium.Cartesian3.fromDegrees(111.21811387327989, 31.318217744200087, 4010),
     orientation: {
-      heading: Cesium.Math.toRadians(11.4455466194539870),
-      pitch: Cesium.Math.toRadians(-14.695843893488675),
+      heading: Cesium.Math.toRadians(326.9135450905996),
+      pitch: Cesium.Math.toRadians(-25.46701437466343),
       roll: 0.0
     }
   })
@@ -50,7 +50,7 @@ const addUnderGroundControler = () => {
     let cameraHeight = viewer.camera.positionCartographic.height
     // console.log('cameraHeight：', cameraHeight)
 
-    if (cameraHeight < 3000) {
+    if (cameraHeight < 4000) {
       if (!hasTerrainGrid.value) {
         drawTerrainGrid()
         show_layer_control_box.value = true
@@ -93,7 +93,7 @@ const openPick = () => {
       idArray.push(item.id)
     })
     idArray = Array.from(new Set(idArray))
-    console.log('idArray', idArray);
+    // console.log('idArray', idArray);
 
     let idArray2 = idArray.filter((item: any) => {
       return !item.includes("suidao")
@@ -158,7 +158,7 @@ const addPolygon = async () => {
 
   entityWall = await addWall(polygon.geometry, {
     graphicName: "basePolygon",
-    width: 1,
+    width: 5,
     color: "#4ee8f499",
     wallOption: {
       maximumHeights: 500,
@@ -228,7 +228,12 @@ const addWall = async (geometry: any, option: any) => {
           ? Cesium.Cartesian3.fromDegreesArrayHeights(coordinates)
           : Cesium.Cartesian3.fromDegreesArray(coordinates),
       width: option.width || 5,
-      material: rgba,
+      // material: rgba,
+      material: new Cesium.PolylineGlowMaterialProperty({
+        glowPower: 0.1,
+        taperPower: 0.1,
+        color: rgba,
+      }),
       clampToGround: clampToGround ?? true,
       zIndex: 10,
     },
@@ -261,10 +266,10 @@ const removeWall = () => {
 const drawTerrainGrid = () => {
   let gridOptions = {
     lineColor: "#ffffcc",
-    lineAlpha: 0,
+    lineAlpha: 0.05,
     lineWidth: 1,
     fillClear: "#887070",
-    fillAlpha: 0.02,
+    fillAlpha: 0.01,
     clampToGround: false,
     elevation: 0,
     features: [],
@@ -483,7 +488,7 @@ const drawGraphicGrid = (graphicGridJson: Record<string, any>, options: any) => 
 
   let graphicGrid = new gs3d.grid.rectangleGrid(viewer)
   graphicGrid.draw(gridOptions)
-  console.log('gridOptions', gridOptions);
+  // console.log('gridOptions', gridOptions);
 
   graphicGridArray.push(graphicGrid)
 }
@@ -510,7 +515,14 @@ const drawGraphic = (type: string) => {
     showBillBoard: false,
     // clampToGround: true
   })
-  gs3d.common.position.locationEntity(viewer, entity)
+  gs3d.common.position.locationEntity(viewer, entity,
+    {
+      offset: {
+        heading: -40,
+        pitch: -30,
+      }
+    }
+  )
 }
 
 
