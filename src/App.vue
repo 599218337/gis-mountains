@@ -115,7 +115,7 @@ const openPick = () => {
       idArray.push(item.id)
     })
     idArray = Array.from(new Set(idArray))
-    console.log('idArray', idArray);
+    // console.log('idArray', idArray);
 
     let idArray2 = idArray.filter((item: any) => {
       return !item.includes("suidao")
@@ -296,7 +296,7 @@ const drawTerrainGrid = () => {
       return
     }
     drawModelGrid(gridOptions)
-    console.log('gridOptions', gridOptions);
+    // console.log('gridOptions', gridOptions);
 
   })
 }
@@ -501,7 +501,7 @@ const drawGraphicGrid = (graphicGridJson: Record<string, any>) => {
 
   let graphicGrid = new gs3d.grid.rectangleGrid(viewer)
   graphicGrid.draw(gridOptions)
-  console.log('gridOptions', gridOptions);
+  // console.log('gridOptions', gridOptions);
 
   graphicGridArray.push(graphicGrid)
 }
