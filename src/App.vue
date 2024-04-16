@@ -170,15 +170,14 @@ let entityWall: any = null
 const addPolygon = async () => {
   gs3d.effect.breath.draw(viewer, polygon.geometry, {
     clampToGround: true,
-    color: "#ff0000",
+    color: "#57fcc87d",
     fill: true,
   })
 
   entityWall = await addWall(polygon.geometry, {
     graphicName: "basePolygon",
     width: 1,
-    color: "#FFDE59",
-    // color: "#FF0000",
+    color: "#4ee8f499",
     wallOption: {
       maximumHeights: 500,
       minimumHeights: 0,
@@ -280,7 +279,7 @@ const removeWall = () => {
 const drawTerrainGrid = () => {
   let gridOptions = {
     lineColor: "#ffffcc",
-    lineAlpha: 0.5,
+    lineAlpha: 0,
     lineWidth: 1,
     fillClear: "#887070",
     fillAlpha: 0.02,
@@ -468,9 +467,8 @@ const activate = (type: string) => {
 }
 
 let graphicGridArray: Array<any> = []
-const drawGraphicGrid = (type: string) => {
-  console.log('drawGraphicGrid：', type);
-  let graphicGridJson = type === 'suiDao' ? suiDaoJson : type === 'camera' ? deviceJson.camera : deviceJson.camera
+const drawGraphicGrid = (graphicGridJson: Record<string, any>) => {
+  console.log('drawGraphicGrid：', graphicGridJson);
   let gridOptions = {
     lineColor: "#FFFF00",
     lineAlpha: 0.75,
@@ -550,7 +548,9 @@ const changeLayer = (_e: any, { checkedKeys }: { checkedKeys: number[] }) => {
 
 const showLayer = (item: number) => {
   if (item === 3) {
-    drawGraphicGrid('suiDao')
+    Object.values(suiDaoJson).forEach((json) => {
+      drawGraphicGrid(json)
+    })
   }
   if (item === 4) {
     drawGraphic('wind')
@@ -565,7 +565,7 @@ const showLayer = (item: number) => {
     drawGraphic('wifi')
   }
   if (item === 10) {
-    drawGraphicGrid('camera')
+    drawGraphicGrid(deviceJson.camera)
   }
 }
 
@@ -610,9 +610,9 @@ let camera_video_show = ref(false)
   </video>
   <div id="mapContainer"></div>
 
-  <div class="location" @click="addPolygon()"> <span>树崆坪</span> </div>
+  <div class="location" @click="addPolygon()"> <span>杉树垭</span> </div>
   <div id="layer-control-box" v-show="show_layer_control_box">
-    <span class="title">展示图层</span>
+    <span class="title">要素分类</span>
     <div class="content">
       <el-tree :data="layerControlOptions" highlight-current show-checkbox @check="changeLayer" node-key="id" />
     </div>
@@ -668,7 +668,7 @@ let camera_video_show = ref(false)
       </el-form-item>
     </el-form>
     <div class="operate"> <el-button type="primary" @click="showProcessBox = false" class="boom-btn"
-        :disabled="processFrom.clear === '2'">确认爆破</el-button></div>
+        :disabled="processFrom.clear === '2'">爆破申请</el-button></div>
   </div>
 
   <div id="normal_device_box" v-show="showNormalBox">
@@ -925,8 +925,6 @@ let camera_video_show = ref(false)
     .boom-btn {
       background-color: #d01313;
       border: none;
-
-
     }
 
     .el-button.is-disabled {

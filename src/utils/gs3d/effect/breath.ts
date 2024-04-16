@@ -84,11 +84,10 @@ export namespace breath {
       material: new Cesium.ColorMaterialProperty(
         new Cesium.CallbackProperty(() => {
           if (num % 2 === 0) {
-            alp -= 0.055;
+            alp -= 0.01;
           } else {
-            alp += 0.055;
+            alp += 0.01;
           }
-
           if (alp <= 0.3) {
             num++;
           } else if (alp >= 1) {
