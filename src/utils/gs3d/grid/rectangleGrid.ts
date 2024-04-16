@@ -4,7 +4,7 @@
  * @Author: hejin.gao
  * @Date: 2021-12-21 09:03:11
  * @LastEditors: yangyzZWYL yangyz@zhiwyl.com
- * @LastEditTime: 2024-04-15 18:32:01
+ * @LastEditTime: 2024-04-16 14:06:07
  * 
  feature : {
     bbox:  [0, 0, 10, 10]
@@ -99,19 +99,19 @@ export default class RectangleGrid {
       // 非贴地线
       let outlineGeomerty = null
       if (clampToGround) {
-        const coordinates = [].concat.apply([], geo.geometry.coordinates[0])
-        const positions = Cesium.Cartesian3.fromDegreesArray(coordinates)
+        const coordinates = [].concat.apply([], geo.geometry.coordinates[0]);
+        const positions = Cesium.Cartesian3.fromDegreesArray(coordinates);
         outlineGeomerty = new Cesium.GroundPolylineGeometry({
           positions: positions,
           loop: false,
-          width: lineWidth // 设置轮廓线宽度
+          width: lineWidth, // 设置轮廓线宽度
           // vertexFormat: Cesium.PolylineMaterialAppearance.VERTEX_FORMAT // 使用默认的轮廓线外观
-        })
+        });
       } else {
         outlineGeomerty = new Cesium.RectangleOutlineGeometry({
           ellipsoid: ellipsoid,
           rectangle: rectangle,
-          height: _extruded,
+          height: height,
           extrudedHeight: _extruded
           // vertexFormat: Cesium.PolylineMaterialAppearance.VERTEX_FORMAT, // 使用默认的轮廓线外观
         })
