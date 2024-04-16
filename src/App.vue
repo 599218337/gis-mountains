@@ -31,15 +31,15 @@ onMounted(async () => {
   viewer = gs3d.global.initViewer('mapContainer', defopt)
   // viewer.scene.globe.depthTestAgainstTerrain = true
   viewer.camera.setView({
-    destination: Cesium.Cartesian3.fromDegrees(111.16281750317003, 31.302816199976156, 3000),
+    destination: Cesium.Cartesian3.fromDegrees(111.21811387327989, 31.318217744200087, 4010),
     orientation: {
-      heading: Cesium.Math.toRadians(11.4455466194539870),
-      pitch: Cesium.Math.toRadians(-14.695843893488675),
+      heading: Cesium.Math.toRadians(326.9135450905996),
+      pitch: Cesium.Math.toRadians(-25.46701437466343),
       roll: 0.0
     }
   })
   addTerrain()
-  addUnderGroundControler()
+  // addUnderGroundControler()
 })
 
 let hasTerrainGrid = ref(false)
@@ -50,7 +50,7 @@ const addUnderGroundControler = () => {
     let cameraHeight = viewer.camera.positionCartographic.height
     // console.log('cameraHeight：', cameraHeight)
 
-    if (cameraHeight < 3000) {
+    if (cameraHeight < 4000) {
       if (!hasTerrainGrid.value) {
         drawTerrainGrid()
         show_layer_control_box.value = true
@@ -176,7 +176,7 @@ const addPolygon = async () => {
 
   entityWall = await addWall(polygon.geometry, {
     graphicName: "basePolygon",
-    width: 1,
+    width: 5,
     color: "#4ee8f499",
     wallOption: {
       maximumHeights: 500,
@@ -279,10 +279,10 @@ const removeWall = () => {
 const drawTerrainGrid = () => {
   let gridOptions = {
     lineColor: "#ffffcc",
-    lineAlpha: 0,
+    lineAlpha: 0.05,
     lineWidth: 1,
     fillClear: "#887070",
-    fillAlpha: 0.02,
+    fillAlpha: 0.01,
     clampToGround: false,
     elevation: 0,
     features: [],
@@ -296,7 +296,7 @@ const drawTerrainGrid = () => {
       return
     }
     drawModelGrid(gridOptions)
-    // console.log('gridOptions', gridOptions);
+    console.log('gridOptions', gridOptions);
 
   })
 }
@@ -528,7 +528,14 @@ const drawGraphic = (type: string) => {
     showBillBoard: false,
     // clampToGround: true
   })
-  gs3d.common.position.locationEntity(viewer, entity)
+  gs3d.common.position.locationEntity(viewer, entity,
+    {
+      offset: {
+        heading: -40,
+        pitch: -30,
+      }
+    }
+  )
 }
 const clearGraphic = () => {
   gs3d.common.draw.clearAllGraphic(viewer)
