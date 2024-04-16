@@ -67,6 +67,62 @@ watch(isUnderGround, (newVal) => {
   newVal ? enterUnderGround() : cancelUnderGround()
 })
 
+const openPick = () => {
+  let gridOptions = {
+    lineColor: "#FFFF00",
+    lineAlpha: 0.75,
+    lineWidth: 1,
+    fillClear: "#FF0000",
+    fillAlpha: 1,
+    clampToGround: false,
+    elevation: 0,
+    features: [] as Array<any>,
+    height: 1,
+    name: ''
+  }
+  let pickGrid = new gs3d.grid.rectangleGrid(viewer)
+  let handle = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas)
+  handle.setInputAction(async (e: any) => {
+    let position = e.position
+    let pick = viewer.scene.drillPick(position)
+    let targetPrimitiveArray = pick.filter((item: any) => { return typeof (item.id) == 'string' && item.id.includes('device') });
+
+    let deviceId = null
+    let idArray: Array<any> = []
+    targetPrimitiveArray.forEach((item: any) => {
+      idArray.push(item.id)
+    })
+    idArray = Array.from(new Set(idArray))
+    console.log('idArray', idArray);
+
+    let idArray2 = idArray.filter((item: any) => {
+      return !item.includes("suidao")
+    })
+    if (idArray2.length > 0) {
+      deviceId = idArray2[0]
+    } else {
+      deviceId = idArray.find((item: any) => {
+        return item.includes("suidao")
+      })
+    }
+    console.log('deviceId', deviceId)
+    camera_video_show.value = false
+    if (deviceId) {
+      let targetPrimitive = targetPrimitiveArray.find((item: any) => {
+        return item.id == deviceId
+      })
+      let targetInstance = targetPrimitive.primitive.geometryInstances.find((item: any) => { return item.id == targetPrimitive.id });
+      if (deviceId.includes("camera")) {
+        gridOptions.fillClear = '#004fff',
+          camera_video_show.value = true
+      }
+      // console.log('targetInstance', targetInstance);
+      gridOptions.features = [targetInstance.feature]
+      pickGrid.draw(gridOptions)
+    }
+  }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
+}
+
 const addTerrain = () => {
   // let options = {
   //   id: 'cesium_terrain',
@@ -393,14 +449,14 @@ const activate = (type: string) => {
 }
 
 let graphicGridArray: Array<any> = []
-const drawGraphicGrid = (graphicGridJson: Record<string, any>) => {
+const drawGraphicGrid = (graphicGridJson: Record<string, any>, options: any) => {
   console.log('drawGraphicGrid：', graphicGridJson);
   let gridOptions = {
     lineColor: "#FFFF00",
-    lineAlpha: 0.75,
+    lineAlpha: 0.3,
     lineWidth: 1,
-    fillClear: "#b2985bfb",
-    fillAlpha: 1,
+    fillClear: options?.fillClear ?? "#b2985bfb",
+    fillAlpha: options?.fillAlpha ?? 0.3,
     clampToGround: false,
     elevation: 0,
     features: [],
@@ -419,7 +475,7 @@ const drawGraphicGrid = (graphicGridJson: Record<string, any>) => {
     feature.properties['center'] = center
     feature.properties['height'] = geo.height
     feature.properties['extruded'] = geo.extrudedHeight || 15
-    feature.properties['id'] = geo.deviceId
+    feature.properties['id'] = geo.deviceId || "device"
     return feature
   })
 
@@ -427,6 +483,8 @@ const drawGraphicGrid = (graphicGridJson: Record<string, any>) => {
 
   let graphicGrid = new gs3d.grid.rectangleGrid(viewer)
   graphicGrid.draw(gridOptions)
+  console.log('gridOptions', gridOptions);
+
   graphicGridArray.push(graphicGrid)
 }
 const clearGraphicGrid = () => {
@@ -454,16 +512,10 @@ const drawGraphic = (type: string) => {
   })
   gs3d.common.position.locationEntity(viewer, entity)
 }
-const clearGraphic = () => {
-  gs3d.common.draw.clearAllGraphic(viewer)
-  // gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_wind')
-  // gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_boom')
-  // gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_water')
-  // gs3d.common.draw.clearGraphicByGraphicName(viewer, 'graphic_wifi')
-}
+
 
 const changeLayer = (_e: any, { checkedKeys }: { checkedKeys: number[] }) => {
-  clearGraphic()
+  gs3d.common.draw.clearAllGraphic(viewer)
   clearGraphicGrid()
   checkedKeys.forEach((item: number) => {
     showLayer(item)
@@ -489,7 +541,7 @@ const showLayer = (item: number) => {
     drawGraphic('wifi')
   }
   if (item === 10) {
-    drawGraphicGrid(deviceJson.camera)
+    drawGraphicGrid(deviceJson.camera, { fillClear: '#39ff09', fillAlpha: 0.8 })
   }
 }
 

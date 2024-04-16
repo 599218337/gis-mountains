@@ -3,8 +3,8 @@
  * @version:
  * @Author: hejin.gao
  * @Date: 2021-12-21 09:03:11
- * @LastEditors GS3D
- * @LastEditTime 2023-11-25 15:02:21
+ * @LastEditors: yangyzZWYL yangyz@zhiwyl.com
+ * @LastEditTime: 2024-04-15 18:32:01
  * 
  feature : {
     bbox:  [0, 0, 10, 10]
@@ -79,7 +79,7 @@ export default class RectangleGrid {
       let _extruded = extruded ? Number(extruded) + _height : _height
 
       // 立体网格盒子
-      const instance = new Cesium.GeometryInstance({
+      let param={
         id: id || common.getUuid(11),
         geometry: new Cesium.RectangleGeometry({
           ellipsoid: ellipsoid,
@@ -88,10 +88,12 @@ export default class RectangleGrid {
           extrudedHeight: _extruded
         }),
         attributes: {
-          color: Cesium.ColorGeometryInstanceAttribute.fromColor(color ? Cesium.Color.fromCssColorString(color) : fillColor)
+          color: Cesium.ColorGeometryInstanceAttribute.fromColor(color ? Cesium.Color.fromCssColorString(color) : fillColor),
           // color: Cesium.ColorGeometryInstanceAttribute.fromColor(Cesium.Color.fromRandom({alpha: .25})),
-        }
-      })
+        },
+      }
+      const instance:any = new Cesium.GeometryInstance(param)
+      instance.feature = geo
       instances.push(instance)
 
       // 非贴地线
@@ -134,6 +136,7 @@ export default class RectangleGrid {
     }
 
     const boxProperties = {
+      releaseGeometryInstances: false,
       geometryInstances: instances,
       appearance: new Cesium.PerInstanceColorAppearance({
         translucent: true, // 为每个instance着色

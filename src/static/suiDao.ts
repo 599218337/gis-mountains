@@ -7,11 +7,12 @@ export default {
         31.366805555555555,
         111.17930555555556
       ],
-      "geoNum": 414271453127507968,
+      "geoNum": 414271453127508000,
       "geoNum4": "G0011233330212301011010",
       "bdCode": null,
       "range": null,
-      height: 927
+      "height": 927,
+      "deviceId": "device_suidao_0"
     },
     {
       "geoNumScope": [
@@ -20,11 +21,12 @@ export default {
         31.366944444444446,
         111.17916666666666
       ],
-      "geoNum": 414271453126459392,
+      "geoNum": 414271453126459400,
       "geoNum4": "G0011233330212301011003",
       "bdCode": null,
       "range": null,
-      height: 926
+      "height": 926,
+      "deviceId": "device_suidao_1"
     },
     {
       "geoNumScope": [
@@ -33,11 +35,12 @@ export default {
         31.366944444444446,
         111.17930555555556
       ],
-      "geoNum": 414271453129605120,
+      "geoNum": 414271453129605100,
       "geoNum4": "G0011233330212301011012",
       "bdCode": null,
       "range": null,
-      height: 926
+      "height": 926,
+      "deviceId": "device_suidao_2"
     },
     {
       "geoNumScope": [
@@ -46,11 +49,12 @@ export default {
         31.367083333333333,
         111.17902777777778
       ],
-      "geoNum": 414271453131702272,
+      "geoNum": 414271453131702300,
       "geoNum4": "G0011233330212301011020",
       "bdCode": null,
       "range": null,
-      height: 922
+      "height": 922,
+      "deviceId": "device_suidao_3"
     },
     {
       "geoNumScope": [
@@ -59,11 +63,12 @@ export default {
         31.367083333333333,
         111.17916666666666
       ],
-      "geoNum": 414271453132750848,
+      "geoNum": 414271453132750850,
       "geoNum4": "G0011233330212301011021",
       "bdCode": null,
       "range": null,
-      height: 922
+      "height": 922,
+      "deviceId": "device_suidao_4"
     },
     {
       "geoNumScope": [
@@ -72,11 +77,12 @@ export default {
         31.36722222222222,
         111.17902777777778
       ],
-      "geoNum": 414271453133799424,
+      "geoNum": 414271453133799400,
       "geoNum4": "G0011233330212301011022",
       "bdCode": null,
       "range": null,
-      height: 918
+      "height": 918,
+      "deviceId": "device_suidao_5"
     },
     {
       "geoNumScope": [
@@ -85,11 +91,12 @@ export default {
         31.36722222222222,
         111.17888888888889
       ],
-      "geoNum": 414271453088710656,
+      "geoNum": 414271453088710660,
       "geoNum4": "G0011233330212301010133",
       "bdCode": null,
       "range": null,
-      height: 918
+      "height": 918,
+      "deviceId": "device_suidao_6"
     },
     {
       "geoNumScope": [
@@ -98,11 +105,12 @@ export default {
         31.36722222222222,
         111.17902777777778
       ],
-      "geoNum": 414271453133799424,
+      "geoNum": 414271453133799400,
       "geoNum4": "G0011233330212301011022",
       "bdCode": null,
       "range": null,
-      height: 915
+      "height": 915,
+      "deviceId": "device_suidao_7"
     },
     {
       "geoNumScope": [
@@ -111,11 +119,12 @@ export default {
         31.367361111111112,
         111.17875
       ],
-      "geoNum": 414271453110730752,
+      "geoNum": 414271453110730750,
       "geoNum4": "G0011233330212301010310",
       "bdCode": null,
       "range": null,
-      height: 915
+      "height": 915,
+      "deviceId": "device_suidao_8"
     },
     {
       "geoNumScope": [
@@ -124,11 +133,12 @@ export default {
         31.367361111111112,
         111.17888888888889
       ],
-      "geoNum": 414271453111779328,
+      "geoNum": 414271453111779300,
       "geoNum4": "G0011233330212301010311",
       "bdCode": null,
       "range": null,
-      height: 915
+      "height": 915,
+      "deviceId": "device_suidao_9"
     },
     {
       "geoNumScope": [
@@ -137,11 +147,12 @@ export default {
         31.3675,
         111.17861111111111
       ],
-      "geoNum": 414271453109682176,
+      "geoNum": 414271453109682200,
       "geoNum4": "G0011233330212301010303",
       "bdCode": null,
       "range": null,
-      height: 910
+      "height": 910,
+      "deviceId": "device_suidao_10"
     },
     {
       "geoNumScope": [
@@ -150,11 +161,12 @@ export default {
         31.3675,
         111.17875
       ],
-      "geoNum": 414271453112827904,
+      "geoNum": 414271453112827900,
       "geoNum4": "G0011233330212301010312",
       "bdCode": null,
       "range": null,
-      height: 910
+      "height": 910,
+      "deviceId": "device_suidao_11"
     },
     {
       "geoNumScope": [
@@ -163,11 +175,12 @@ export default {
         31.3675,
         111.17861111111111
       ],
-      "geoNum": 414271453109682176,
+      "geoNum": 414271453109682200,
       "geoNum4": "G0011233330212301010303",
       "bdCode": null,
       "range": null,
-      height: 910
+      "height": 910,
+      "deviceId": "device_suidao_12"
     },
     {
       "geoNumScope": [
@@ -176,11 +189,12 @@ export default {
         31.367638888888887,
         111.17847222222223
       ],
-      "geoNum": 414271453114925056,
+      "geoNum": 414271453114925060,
       "geoNum4": "G0011233330212301010320",
       "bdCode": null,
       "range": null,
-      height: 912
+      "height": 912,
+      "deviceId": "device_suidao_13"
     },
     {
       "geoNumScope": [
@@ -189,11 +203,12 @@ export default {
         31.367638888888887,
         111.17861111111111
       ],
-      "geoNum": 414271453115973632,
+      "geoNum": 414271453115973600,
       "geoNum4": "G0011233330212301010321",
       "bdCode": null,
       "range": null,
-      height: 915
+      "height": 915,
+      "deviceId": "device_suidao_14"
     },
     {
       "geoNumScope": [
@@ -202,11 +217,12 @@ export default {
         31.36777777777778,
         111.17847222222223
       ],
-      "geoNum": 414271453117022208,
+      "geoNum": 414271453117022200,
       "geoNum4": "G0011233330212301010322",
       "bdCode": null,
       "range": null,
-      height: 917
+      "height": 919,
+      "deviceId": "device_suidao_15"
     },
     {
       "geoNumScope": [
@@ -215,24 +231,12 @@ export default {
         31.367916666666666,
         111.17847222222223
       ],
-      "geoNum": 414271453207199744,
+      "geoNum": 414271453207199740,
       "geoNum4": "G0011233330212301012100",
       "bdCode": null,
       "range": null,
-      height: 920
-    },
-    {
-      "geoNumScope": [
-        31.367916666666666,
-        111.17833333333333,
-        31.368055555555557,
-        111.17847222222223
-      ],
-      "geoNum": 414271453209296896,
-      "geoNum4": "G0011233330212301012102",
-      "bdCode": null,
-      "range": null,
-      height: 920
+      "height": 924,
+      "deviceId": "device_suidao_16"
     },
     {
       "geoNumScope": [
@@ -245,7 +249,8 @@ export default {
       "geoNum4": "G0011233330212301012013",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 929,
+      "deviceId": "device_suidao_18"
     },
     {
       "geoNumScope": [
@@ -254,11 +259,12 @@ export default {
         31.368055555555557,
         111.17847222222223
       ],
-      "geoNum": 414271453209296896,
+      "geoNum": 414271453209296900,
       "geoNum4": "G0011233330212301012102",
       "bdCode": null,
       "range": null,
-      height: 922
+      "height": 927,
+      "deviceId": "device_suidao_19"
     },
     {
       "geoNumScope": [
@@ -267,11 +273,12 @@ export default {
         31.368194444444445,
         111.17833333333333
       ],
-      "geoNum": 414271453204054016,
+      "geoNum": 414271453204054000,
       "geoNum4": "G0011233330212301012031",
       "bdCode": null,
       "range": null,
-      height: 922
+      "height": 933,
+      "deviceId": "device_suidao_20"
     },
     {
       "geoNumScope": [
@@ -280,11 +287,12 @@ export default {
         31.368333333333332,
         111.17819444444444
       ],
-      "geoNum": 414271453205102592,
+      "geoNum": 414271453205102600,
       "geoNum4": "G0011233330212301012032",
       "bdCode": null,
       "range": null,
-      height: 925
+      "height": 935,
+      "deviceId": "device_suidao_21"
     },
     {
       "geoNumScope": [
@@ -293,11 +301,12 @@ export default {
         31.368333333333332,
         111.17833333333333
       ],
-      "geoNum": 414271453206151168,
+      "geoNum": 414271453206151200,
       "geoNum4": "G0011233330212301012033",
       "bdCode": null,
       "range": null,
-      height: 924
+      "height": 936,
+      "deviceId": "device_suidao_22"
     },
     {
       "geoNumScope": [
@@ -306,11 +315,12 @@ export default {
         31.368472222222223,
         111.17805555555556
       ],
-      "geoNum": 414271453225025536,
+      "geoNum": 414271453225025540,
       "geoNum4": "G0011233330212301012201",
       "bdCode": null,
       "range": null,
-      height: 926
+      "height": 939,
+      "deviceId": "device_suidao_23"
     },
     {
       "geoNumScope": [
@@ -319,11 +329,12 @@ export default {
         31.368472222222223,
         111.17819444444444
       ],
-      "geoNum": 414271453228171264,
+      "geoNum": 414271453228171260,
       "geoNum4": "G0011233330212301012210",
       "bdCode": null,
       "range": null,
-      height: 925
+      "height": 937,
+      "deviceId": "device_suidao_24"
     },
     {
       "geoNumScope": [
@@ -332,24 +343,12 @@ export default {
         31.36861111111111,
         111.17805555555556
       ],
-      "geoNum": 414271453227122688,
+      "geoNum": 414271453227122700,
       "geoNum4": "G0011233330212301012203",
       "bdCode": null,
       "range": null,
-      height: 927
-    },
-    {
-      "geoNumScope": [
-        31.368472222222223,
-        111.17791666666666,
-        31.36861111111111,
-        111.17805555555556
-      ],
-      "geoNum": 414271453227122688,
-      "geoNum4": "G0011233330212301012203",
-      "bdCode": null,
-      "range": null,
-      height: 926
+      "height": 944,
+      "deviceId": "device_suidao_26"
     },
     {
       "geoNumScope": [
@@ -358,11 +357,12 @@ export default {
         31.36875,
         111.17791666666666
       ],
-      "geoNum": 414271453232365568,
+      "geoNum": 414271453232365600,
       "geoNum4": "G0011233330212301012220",
       "bdCode": null,
       "range": null,
-      height: 928
+      "height": 946,
+      "deviceId": "device_suidao_27"
     },
     {
       "geoNumScope": [
@@ -371,11 +371,12 @@ export default {
         31.36875,
         111.17805555555556
       ],
-      "geoNum": 414271453233414144,
+      "geoNum": 414271453233414140,
       "geoNum4": "G0011233330212301012221",
       "bdCode": null,
       "range": null,
-      height: 927
+      "height": 947,
+      "deviceId": "device_suidao_28"
     },
     {
       "geoNumScope": [
@@ -384,11 +385,12 @@ export default {
         31.36888888888889,
         111.17777777777778
       ],
-      "geoNum": 414271453055156224,
+      "geoNum": 414271453055156200,
       "geoNum4": "G0011233330212301003333",
       "bdCode": null,
       "range": null,
-      height: 929
+      "height": 949,
+      "deviceId": "device_suidao_29"
     },
     {
       "geoNumScope": [
@@ -397,11 +399,12 @@ export default {
         31.36888888888889,
         111.17791666666666
       ],
-      "geoNum": 414271453234462720,
+      "geoNum": 414271453234462700,
       "geoNum4": "G0011233330212301012222",
       "bdCode": null,
       "range": null,
-      height: 928
+      "height": 952,
+      "deviceId": "device_suidao_30"
     },
     {
       "geoNumScope": [
@@ -410,24 +413,12 @@ export default {
         31.369027777777777,
         111.17777777777778
       ],
-      "geoNum": 414271453413769216,
+      "geoNum": 414271453413769200,
       "geoNum4": "G0011233330212301021111",
       "bdCode": null,
       "range": null,
-      height: 919
-    },
-    {
-      "geoNumScope": [
-        31.369027777777777,
-        111.1775,
-        31.36916666666667,
-        111.1776388888889
-      ],
-      "geoNum": 414271453414817792,
-      "geoNum4": "G0011233330212301021112",
-      "bdCode": null,
-      "range": null,
-      height: 919
+      "height": 953,
+      "deviceId": "device_suidao_31"
     },
     {
       "geoNumScope": [
@@ -436,11 +427,12 @@ export default {
         31.36916666666667,
         111.17777777777778
       ],
-      "geoNum": 414271453415866368,
+      "geoNum": 414271453415866400,
       "geoNum4": "G0011233330212301021113",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 956,
+      "deviceId": "device_suidao_33"
     },
     {
       "geoNumScope": [
@@ -449,11 +441,12 @@ export default {
         31.36916666666667,
         111.1775
       ],
-      "geoNum": 414271453411672064,
+      "geoNum": 414271453411672060,
       "geoNum4": "G0011233330212301021103",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 957,
+      "deviceId": "device_suidao_34"
     },
     {
       "geoNumScope": [
@@ -462,24 +455,12 @@ export default {
         31.36916666666667,
         111.1776388888889
       ],
-      "geoNum": 414271453414817792,
+      "geoNum": 414271453414817800,
       "geoNum4": "G0011233330212301021112",
       "bdCode": null,
       "range": null,
-      height: 919
-    },
-    {
-      "geoNumScope": [
-        31.36916666666667,
-        111.17694444444444,
-        31.369305555555556,
-        111.17708333333333
-      ],
-      "geoNum": 414271453404332032,
-      "geoNum4": "G0011233330212301021030",
-      "bdCode": null,
-      "range": null,
-      height: 919
+      "height": 960,
+      "deviceId": "device_suidao_35"
     },
     {
       "geoNumScope": [
@@ -488,11 +469,12 @@ export default {
         31.369305555555556,
         111.17722222222223
       ],
-      "geoNum": 414271453405380608,
+      "geoNum": 414271453405380600,
       "geoNum4": "G0011233330212301021031",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 945,
+      "deviceId": "device_suidao_37"
     },
     {
       "geoNumScope": [
@@ -501,11 +483,12 @@ export default {
         31.369305555555556,
         111.17736111111111
       ],
-      "geoNum": 414271453416914944,
+      "geoNum": 414271453416914940,
       "geoNum4": "G0011233330212301021120",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 951,
+      "deviceId": "device_suidao_38"
     },
     {
       "geoNumScope": [
@@ -514,11 +497,12 @@ export default {
         31.369305555555556,
         111.1775
       ],
-      "geoNum": 414271453417963520,
+      "geoNum": 414271453417963500,
       "geoNum4": "G0011233330212301021121",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 950,
+      "deviceId": "device_suidao_39"
     },
     {
       "geoNumScope": [
@@ -531,7 +515,8 @@ export default {
       "geoNum4": "G0011233330212301020131",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 937,
+      "deviceId": "device_suidao_40"
     },
     {
       "geoNumScope": [
@@ -540,11 +525,12 @@ export default {
         31.369305555555556,
         111.17680555555556
       ],
-      "geoNum": 414271453400137728,
+      "geoNum": 414271453400137700,
       "geoNum4": "G0011233330212301021020",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 938,
+      "deviceId": "device_suidao_41"
     },
     {
       "geoNumScope": [
@@ -553,11 +539,12 @@ export default {
         31.369305555555556,
         111.17694444444444
       ],
-      "geoNum": 414271453401186304,
+      "geoNum": 414271453401186300,
       "geoNum4": "G0011233330212301021021",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 940,
+      "deviceId": "device_suidao_42"
     },
     {
       "geoNumScope": [
@@ -566,24 +553,12 @@ export default {
         31.369305555555556,
         111.17708333333333
       ],
-      "geoNum": 414271453404332032,
+      "geoNum": 414271453404332000,
       "geoNum4": "G0011233330212301021030",
       "bdCode": null,
       "range": null,
-      height: 919
-    },
-    {
-      "geoNumScope": [
-        31.369027777777777,
-        111.17569444444445,
-        31.36916666666667,
-        111.17583333333333
-      ],
-      "geoNum": 414271453327785984,
-      "geoNum4": "G0011233330212301020003",
-      "bdCode": null,
-      "range": null,
-      height: 919
+      "height": 940,
+      "deviceId": "device_suidao_43"
     },
     {
       "geoNumScope": [
@@ -592,11 +567,12 @@ export default {
         31.36916666666667,
         111.17597222222223
       ],
-      "geoNum": 414271453330931712,
+      "geoNum": 414271453330931700,
       "geoNum4": "G0011233330212301020012",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 925,
+      "deviceId": "device_suidao_45"
     },
     {
       "geoNumScope": [
@@ -605,11 +581,12 @@ export default {
         31.369305555555556,
         111.17597222222223
       ],
-      "geoNum": 414271453337223168,
+      "geoNum": 414271453337223200,
       "geoNum4": "G0011233330212301020030",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 925,
+      "deviceId": "device_suidao_46"
     },
     {
       "geoNumScope": [
@@ -618,11 +595,12 @@ export default {
         31.369305555555556,
         111.17611111111111
       ],
-      "geoNum": 414271453338271744,
+      "geoNum": 414271453338271740,
       "geoNum4": "G0011233330212301020031",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 926,
+      "deviceId": "device_suidao_47"
     },
     {
       "geoNumScope": [
@@ -631,11 +609,12 @@ export default {
         31.369305555555556,
         111.17625
       ],
-      "geoNum": 414271453349806080,
+      "geoNum": 414271453349806100,
       "geoNum4": "G0011233330212301020120",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 928,
+      "deviceId": "device_suidao_48"
     },
     {
       "geoNumScope": [
@@ -644,11 +623,12 @@ export default {
         31.369305555555556,
         111.1763888888889
       ],
-      "geoNum": 414271453350854656,
+      "geoNum": 414271453350854660,
       "geoNum4": "G0011233330212301020121",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 926,
+      "deviceId": "device_suidao_49"
     },
     {
       "geoNumScope": [
@@ -657,24 +637,12 @@ export default {
         31.369305555555556,
         111.17652777777778
       ],
-      "geoNum": 414271453354000384,
+      "geoNum": 414271453354000400,
       "geoNum4": "G0011233330212301020130",
       "bdCode": null,
       "range": null,
-      height: 919
-    },
-    {
-      "geoNumScope": [
-        31.36916666666667,
-        111.17652777777778,
-        31.369305555555556,
-        111.17666666666666
-      ],
-      "geoNum": 414271453355048960,
-      "geoNum4": "G0011233330212301020131",
-      "bdCode": null,
-      "range": null,
-      height: 919
+      "height": 927,
+      "deviceId": "device_suidao_50"
     },
     {
       "geoNumScope": [
@@ -683,11 +651,12 @@ export default {
         31.36916666666667,
         111.17583333333333
       ],
-      "geoNum": 414271453327785984,
+      "geoNum": 414271453327786000,
       "geoNum4": "G0011233330212301020003",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 923,
+      "deviceId": "device_suidao_52"
     },
     {
       "geoNumScope": [
@@ -696,11 +665,12 @@ export default {
         31.369305555555556,
         111.17555555555556
       ],
-      "geoNum": 414271450469367808,
+      "geoNum": 414271450469367800,
       "geoNum4": "G0011233330212300131131",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 927,
+      "deviceId": "device_suidao_53"
     },
     {
       "geoNumScope": [
@@ -709,11 +679,12 @@ export default {
         31.369305555555556,
         111.17569444444445
       ],
-      "geoNum": 414271453333028864,
+      "geoNum": 414271453333028860,
       "geoNum4": "G0011233330212301020020",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 933,
+      "deviceId": "device_suidao_54"
     },
     {
       "geoNumScope": [
@@ -726,20 +697,8 @@ export default {
       "geoNum4": "G0011233330212301020021",
       "bdCode": null,
       "range": null,
-      height: 919
-    },
-    {
-      "geoNumScope": [
-        31.369305555555556,
-        111.17527777777778,
-        31.369444444444444,
-        111.17541666666666
-      ],
-      "geoNum": 414271450470416384,
-      "geoNum4": "G0011233330212300131132",
-      "bdCode": null,
-      "range": null,
-      height: 919
+      "height": 921,
+      "deviceId": "device_suidao_55"
     },
     {
       "geoNumScope": [
@@ -752,7 +711,8 @@ export default {
       "geoNum4": "G0011233330212300131133",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 931,
+      "deviceId": "device_suidao_57"
     },
     {
       "geoNumScope": [
@@ -761,11 +721,12 @@ export default {
         31.369444444444444,
         111.17458333333333
       ],
-      "geoNum": 414271450449444864,
+      "geoNum": 414271450449444860,
       "geoNum4": "G0011233330212300131022",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 927,
+      "deviceId": "device_suidao_58"
     },
     {
       "geoNumScope": [
@@ -778,7 +739,8 @@ export default {
       "geoNum4": "G0011233330212300131023",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 928,
+      "deviceId": "device_suidao_59"
     },
     {
       "geoNumScope": [
@@ -787,11 +749,12 @@ export default {
         31.369444444444444,
         111.17486111111111
       ],
-      "geoNum": 414271450453639168,
+      "geoNum": 414271450453639200,
       "geoNum4": "G0011233330212300131032",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 932,
+      "deviceId": "device_suidao_60"
     },
     {
       "geoNumScope": [
@@ -800,11 +763,12 @@ export default {
         31.369444444444444,
         111.175
       ],
-      "geoNum": 414271450454687744,
+      "geoNum": 414271450454687740,
       "geoNum4": "G0011233330212300131033",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 933,
+      "deviceId": "device_suidao_61"
     },
     {
       "geoNumScope": [
@@ -813,11 +777,12 @@ export default {
         31.369444444444444,
         111.1751388888889
       ],
-      "geoNum": 414271450466222080,
+      "geoNum": 414271450466222100,
       "geoNum4": "G0011233330212300131122",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 935,
+      "deviceId": "device_suidao_62"
     },
     {
       "geoNumScope": [
@@ -826,11 +791,12 @@ export default {
         31.369444444444444,
         111.17527777777778
       ],
-      "geoNum": 414271450467270656,
+      "geoNum": 414271450467270660,
       "geoNum4": "G0011233330212300131123",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 936,
+      "deviceId": "device_suidao_63"
     },
     {
       "geoNumScope": [
@@ -839,560 +805,15 @@ export default {
         31.369444444444444,
         111.17541666666666
       ],
-      "geoNum": 414271450470416384,
+      "geoNum": 414271450470416400,
       "geoNum4": "G0011233330212300131132",
       "bdCode": null,
       "range": null,
-      height: 919
+      "height": 938,
+      "deviceId": "device_suidao_64"
     }
   ],
   waterSD: [
-    // {
-    //   "geoNumScope": [
-    //     31.366666666666667,
-    //     111.17916666666666,
-    //     31.366805555555555,
-    //     111.17930555555556
-    //   ],
-    //   "geoNum": 414271453127507968,
-    //   "geoNum4": "G0011233330212301011010",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.366805555555555,
-    //     111.17902777777778,
-    //     31.366944444444446,
-    //     111.17916666666666
-    //   ],
-    //   "geoNum": 414271453126459392,
-    //   "geoNum4": "G0011233330212301011003",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.366805555555555,
-    //     111.17916666666666,
-    //     31.366944444444446,
-    //     111.17930555555556
-    //   ],
-    //   "geoNum": 414271453129605120,
-    //   "geoNum4": "G0011233330212301011012",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.366944444444446,
-    //     111.17888888888889,
-    //     31.367083333333333,
-    //     111.17902777777778
-    //   ],
-    //   "geoNum": 414271453131702272,
-    //   "geoNum4": "G0011233330212301011020",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.366944444444446,
-    //     111.17902777777778,
-    //     31.367083333333333,
-    //     111.17916666666666
-    //   ],
-    //   "geoNum": 414271453132750848,
-    //   "geoNum4": "G0011233330212301011021",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.367083333333333,
-    //     111.17888888888889,
-    //     31.36722222222222,
-    //     111.17902777777778
-    //   ],
-    //   "geoNum": 414271453133799424,
-    //   "geoNum4": "G0011233330212301011022",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.367083333333333,
-    //     111.17875,
-    //     31.36722222222222,
-    //     111.17888888888889
-    //   ],
-    //   "geoNum": 414271453088710656,
-    //   "geoNum4": "G0011233330212301010133",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.367083333333333,
-    //     111.17888888888889,
-    //     31.36722222222222,
-    //     111.17902777777778
-    //   ],
-    //   "geoNum": 414271453133799424,
-    //   "geoNum4": "G0011233330212301011022",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.36722222222222,
-    //     111.17861111111111,
-    //     31.367361111111112,
-    //     111.17875
-    //   ],
-    //   "geoNum": 414271453110730752,
-    //   "geoNum4": "G0011233330212301010310",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.36722222222222,
-    //     111.17875,
-    //     31.367361111111112,
-    //     111.17888888888889
-    //   ],
-    //   "geoNum": 414271453111779328,
-    //   "geoNum4": "G0011233330212301010311",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.367361111111112,
-    //     111.17847222222223,
-    //     31.3675,
-    //     111.17861111111111
-    //   ],
-    //   "geoNum": 414271453109682176,
-    //   "geoNum4": "G0011233330212301010303",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.367361111111112,
-    //     111.17861111111111,
-    //     31.3675,
-    //     111.17875
-    //   ],
-    //   "geoNum": 414271453112827904,
-    //   "geoNum4": "G0011233330212301010312",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.367361111111112,
-    //     111.17847222222223,
-    //     31.3675,
-    //     111.17861111111111
-    //   ],
-    //   "geoNum": 414271453109682176,
-    //   "geoNum4": "G0011233330212301010303",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.3675,
-    //     111.17833333333333,
-    //     31.367638888888887,
-    //     111.17847222222223
-    //   ],
-    //   "geoNum": 414271453114925056,
-    //   "geoNum4": "G0011233330212301010320",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.3675,
-    //     111.17847222222223,
-    //     31.367638888888887,
-    //     111.17861111111111
-    //   ],
-    //   "geoNum": 414271453115973632,
-    //   "geoNum4": "G0011233330212301010321",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.367638888888887,
-    //     111.17833333333333,
-    //     31.36777777777778,
-    //     111.17847222222223
-    //   ],
-    //   "geoNum": 414271453117022208,
-    //   "geoNum4": "G0011233330212301010322",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.36777777777778,
-    //     111.17833333333333,
-    //     31.367916666666666,
-    //     111.17847222222223
-    //   ],
-    //   "geoNum": 414271453207199744,
-    //   "geoNum4": "G0011233330212301012100",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.367916666666666,
-    //     111.17833333333333,
-    //     31.368055555555557,
-    //     111.17847222222223
-    //   ],
-    //   "geoNum": 414271453209296896,
-    //   "geoNum4": "G0011233330212301012102",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.367916666666666,
-    //     111.17819444444444,
-    //     31.368055555555557,
-    //     111.17833333333333
-    //   ],
-    //   "geoNum": 414271453197762560,
-    //   "geoNum4": "G0011233330212301012013",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.367916666666666,
-    //     111.17833333333333,
-    //     31.368055555555557,
-    //     111.17847222222223
-    //   ],
-    //   "geoNum": 414271453209296896,
-    //   "geoNum4": "G0011233330212301012102",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.368055555555557,
-    //     111.17819444444444,
-    //     31.368194444444445,
-    //     111.17833333333333
-    //   ],
-    //   "geoNum": 414271453204054016,
-    //   "geoNum4": "G0011233330212301012031",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.368194444444445,
-    //     111.17805555555556,
-    //     31.368333333333332,
-    //     111.17819444444444
-    //   ],
-    //   "geoNum": 414271453205102592,
-    //   "geoNum4": "G0011233330212301012032",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.368194444444445,
-    //     111.17819444444444,
-    //     31.368333333333332,
-    //     111.17833333333333
-    //   ],
-    //   "geoNum": 414271453206151168,
-    //   "geoNum4": "G0011233330212301012033",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.368333333333332,
-    //     111.17791666666666,
-    //     31.368472222222223,
-    //     111.17805555555556
-    //   ],
-    //   "geoNum": 414271453225025536,
-    //   "geoNum4": "G0011233330212301012201",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.368333333333332,
-    //     111.17805555555556,
-    //     31.368472222222223,
-    //     111.17819444444444
-    //   ],
-    //   "geoNum": 414271453228171264,
-    //   "geoNum4": "G0011233330212301012210",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.368472222222223,
-    //     111.17791666666666,
-    //     31.36861111111111,
-    //     111.17805555555556
-    //   ],
-    //   "geoNum": 414271453227122688,
-    //   "geoNum4": "G0011233330212301012203",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.368472222222223,
-    //     111.17791666666666,
-    //     31.36861111111111,
-    //     111.17805555555556
-    //   ],
-    //   "geoNum": 414271453227122688,
-    //   "geoNum4": "G0011233330212301012203",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.36861111111111,
-    //     111.17777777777778,
-    //     31.36875,
-    //     111.17791666666666
-    //   ],
-    //   "geoNum": 414271453232365568,
-    //   "geoNum4": "G0011233330212301012220",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.36861111111111,
-    //     111.17791666666666,
-    //     31.36875,
-    //     111.17805555555556
-    //   ],
-    //   "geoNum": 414271453233414144,
-    //   "geoNum4": "G0011233330212301012221",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.36875,
-    //     111.1776388888889,
-    //     31.36888888888889,
-    //     111.17777777777778
-    //   ],
-    //   "geoNum": 414271453055156224,
-    //   "geoNum4": "G0011233330212301003333",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.36875,
-    //     111.17777777777778,
-    //     31.36888888888889,
-    //     111.17791666666666
-    //   ],
-    //   "geoNum": 414271453234462720,
-    //   "geoNum4": "G0011233330212301012222",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.36888888888889,
-    //     111.1776388888889,
-    //     31.369027777777777,
-    //     111.17777777777778
-    //   ],
-    //   "geoNum": 414271453413769216,
-    //   "geoNum4": "G0011233330212301021111",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.369027777777777,
-    //     111.1775,
-    //     31.36916666666667,
-    //     111.1776388888889
-    //   ],
-    //   "geoNum": 414271453414817792,
-    //   "geoNum4": "G0011233330212301021112",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.369027777777777,
-    //     111.1776388888889,
-    //     31.36916666666667,
-    //     111.17777777777778
-    //   ],
-    //   "geoNum": 414271453415866368,
-    //   "geoNum4": "G0011233330212301021113",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.369027777777777,
-    //     111.17736111111111,
-    //     31.36916666666667,
-    //     111.1775
-    //   ],
-    //   "geoNum": 414271453411672064,
-    //   "geoNum4": "G0011233330212301021103",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.369027777777777,
-    //     111.1775,
-    //     31.36916666666667,
-    //     111.1776388888889
-    //   ],
-    //   "geoNum": 414271453414817792,
-    //   "geoNum4": "G0011233330212301021112",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.36916666666667,
-    //     111.17694444444444,
-    //     31.369305555555556,
-    //     111.17708333333333
-    //   ],
-    //   "geoNum": 414271453404332032,
-    //   "geoNum4": "G0011233330212301021030",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.36916666666667,
-    //     111.17708333333333,
-    //     31.369305555555556,
-    //     111.17722222222223
-    //   ],
-    //   "geoNum": 414271453405380608,
-    //   "geoNum4": "G0011233330212301021031",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.36916666666667,
-    //     111.17722222222223,
-    //     31.369305555555556,
-    //     111.17736111111111
-    //   ],
-    //   "geoNum": 414271453416914944,
-    //   "geoNum4": "G0011233330212301021120",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.36916666666667,
-    //     111.17736111111111,
-    //     31.369305555555556,
-    //     111.1775
-    //   ],
-    //   "geoNum": 414271453417963520,
-    //   "geoNum4": "G0011233330212301021121",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.36916666666667,
-    //     111.17694444444444,
-    //     31.369305555555556,
-    //     111.17708333333333
-    //   ],
-    //   "geoNum": 414271453404332032,
-    //   "geoNum4": "G0011233330212301021030",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
-    // {
-    //   "geoNumScope": [
-    //     31.369305555555556,
-    //     111.17694444444444,
-    //     31.369444444444444,
-    //     111.17708333333333
-    //   ],
-    //   "geoNum": 414271453406429184,
-    //   "geoNum4": "G0011233330212301021032",
-    //   "bdCode": null,
-    //   "range": null,
-    //   height: 920
-    // },
     {
       "geoNumScope": [
         31.369305555555556,
@@ -1404,7 +825,8 @@ export default {
       "geoNum4": "G0011233330212301021033",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 943,
+      "deviceId": "device_suidao_65"
     },
     {
       "geoNumScope": [
@@ -1413,11 +835,12 @@ export default {
         31.369583333333335,
         111.17722222222223
       ],
-      "geoNum": 414271453430546432,
+      "geoNum": 414271453430546400,
       "geoNum4": "G0011233330212301021211",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 943,
+      "deviceId": "device_suidao_66"
     },
     {
       "geoNumScope": [
@@ -1426,11 +849,12 @@ export default {
         31.369583333333335,
         111.17736111111111
       ],
-      "geoNum": 414271453442080768,
+      "geoNum": 414271453442080800,
       "geoNum4": "G0011233330212301021300",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 943,
+      "deviceId": "device_suidao_67"
     },
     {
       "geoNumScope": [
@@ -1439,11 +863,12 @@ export default {
         31.369722222222222,
         111.17736111111111
       ],
-      "geoNum": 414271453444177920,
+      "geoNum": 414271453444177900,
       "geoNum4": "G0011233330212301021302",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 947,
+      "deviceId": "device_suidao_68"
     },
     {
       "geoNumScope": [
@@ -1452,11 +877,12 @@ export default {
         31.369722222222222,
         111.1775
       ],
-      "geoNum": 414271453445226496,
+      "geoNum": 414271453445226500,
       "geoNum4": "G0011233330212301021303",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 947,
+      "deviceId": "device_suidao_69"
     },
     {
       "geoNumScope": [
@@ -1465,11 +891,12 @@ export default {
         31.36986111111111,
         111.1775
       ],
-      "geoNum": 414271453451517952,
+      "geoNum": 414271453451517950,
       "geoNum4": "G0011233330212301021321",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 949,
+      "deviceId": "device_suidao_70"
     },
     {
       "geoNumScope": [
@@ -1478,11 +905,12 @@ export default {
         31.36986111111111,
         111.1776388888889
       ],
-      "geoNum": 414271453454663680,
+      "geoNum": 414271453454663700,
       "geoNum4": "G0011233330212301021330",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 953,
+      "deviceId": "device_suidao_71"
     },
     {
       "geoNumScope": [
@@ -1491,11 +919,12 @@ export default {
         31.37,
         111.1776388888889
       ],
-      "geoNum": 414271453456760832,
+      "geoNum": 414271453456760800,
       "geoNum4": "G0011233330212301021332",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 953,
+      "deviceId": "device_suidao_72"
     },
     {
       "geoNumScope": [
@@ -1504,11 +933,12 @@ export default {
         31.37,
         111.17777777777778
       ],
-      "geoNum": 414271453457809408,
+      "geoNum": 414271453457809400,
       "geoNum4": "G0011233330212301021333",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 955,
+      "deviceId": "device_suidao_73"
     },
     {
       "geoNumScope": [
@@ -1517,11 +947,12 @@ export default {
         31.37,
         111.17777777777778
       ],
-      "geoNum": 414271453457809408,
+      "geoNum": 414271453457809400,
       "geoNum4": "G0011233330212301021333",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 958,
+      "deviceId": "device_suidao_74"
     },
     {
       "geoNumScope": [
@@ -1530,11 +961,12 @@ export default {
         31.37013888888889,
         111.1776388888889
       ],
-      "geoNum": 414271453546938368,
+      "geoNum": 414271453546938400,
       "geoNum4": "G0011233330212301023110",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 959,
+      "deviceId": "device_suidao_75"
     },
     {
       "geoNumScope": [
@@ -1543,11 +975,12 @@ export default {
         31.37013888888889,
         111.17777777777778
       ],
-      "geoNum": 414271453547986944,
+      "geoNum": 414271453547986940,
       "geoNum4": "G0011233330212301023111",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 960,
+      "deviceId": "device_suidao_76"
     },
     {
       "geoNumScope": [
@@ -1556,11 +989,12 @@ export default {
         31.370277777777776,
         111.1776388888889
       ],
-      "geoNum": 414271453549035520,
+      "geoNum": 414271453549035500,
       "geoNum4": "G0011233330212301023112",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 962,
+      "deviceId": "device_suidao_77"
     },
     {
       "geoNumScope": [
@@ -1569,11 +1003,12 @@ export default {
         31.370416666666667,
         111.1776388888889
       ],
-      "geoNum": 414271453555326976,
+      "geoNum": 414271453555327000,
       "geoNum4": "G0011233330212301023130",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 964,
+      "deviceId": "device_suidao_78"
     },
     {
       "geoNumScope": [
@@ -1582,11 +1017,12 @@ export default {
         31.370555555555555,
         111.1776388888889
       ],
-      "geoNum": 414271453557424128,
+      "geoNum": 414271453557424100,
       "geoNum4": "G0011233330212301023132",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 965,
+      "deviceId": "device_suidao_79"
     },
     {
       "geoNumScope": [
@@ -1595,11 +1031,12 @@ export default {
         31.370555555555555,
         111.1776388888889
       ],
-      "geoNum": 414271453557424128,
+      "geoNum": 414271453557424100,
       "geoNum4": "G0011233330212301023132",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 967,
+      "deviceId": "device_suidao_80"
     },
     {
       "geoNumScope": [
@@ -1612,7 +1049,8 @@ export default {
       "geoNum4": "G0011233330212301023310",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 969,
+      "deviceId": "device_suidao_81"
     },
     {
       "geoNumScope": [
@@ -1621,11 +1059,12 @@ export default {
         31.370833333333334,
         111.1776388888889
       ],
-      "geoNum": 414271453582589952,
+      "geoNum": 414271453582589950,
       "geoNum4": "G0011233330212301023312",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 973,
+      "deviceId": "device_suidao_82"
     },
     {
       "geoNumScope": [
@@ -1634,11 +1073,12 @@ export default {
         31.37097222222222,
         111.1776388888889
       ],
-      "geoNum": 414271453588881408,
+      "geoNum": 414271453588881400,
       "geoNum4": "G0011233330212301023330",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 974,
+      "deviceId": "device_suidao_83"
     },
     {
       "geoNumScope": [
@@ -1651,7 +1091,8 @@ export default {
       "geoNum4": "G0011233330212301023332",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 975,
+      "deviceId": "device_suidao_84"
     },
     {
       "geoNumScope": [
@@ -1664,7 +1105,8 @@ export default {
       "geoNum4": "G0011233330212301023332",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 977,
+      "deviceId": "device_suidao_85"
     },
     {
       "geoNumScope": [
@@ -1673,11 +1115,12 @@ export default {
         31.37125,
         111.1776388888889
       ],
-      "geoNum": 414271455023333376,
+      "geoNum": 414271455023333400,
       "geoNum4": "G0011233330212301201110",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 976,
+      "deviceId": "device_suidao_86"
     },
     {
       "geoNumScope": [
@@ -1686,11 +1129,12 @@ export default {
         31.37125,
         111.17777777777778
       ],
-      "geoNum": 414271455024381952,
+      "geoNum": 414271455024381950,
       "geoNum4": "G0011233330212301201111",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 975,
+      "deviceId": "device_suidao_87"
     },
     {
       "geoNumScope": [
@@ -1699,11 +1143,12 @@ export default {
         31.371388888888887,
         111.17777777777778
       ],
-      "geoNum": 414271455026479104,
+      "geoNum": 414271455026479100,
       "geoNum4": "G0011233330212301201113",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 973,
+      "deviceId": "device_suidao_88"
     },
     {
       "geoNumScope": [
@@ -1716,7 +1161,8 @@ export default {
       "geoNum4": "G0011233330212301201131",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 970,
+      "deviceId": "device_suidao_89"
     },
     {
       "geoNumScope": [
@@ -1725,11 +1171,12 @@ export default {
         31.37152777777778,
         111.17791666666666
       ],
-      "geoNum": 414271455212077056,
+      "geoNum": 414271455212077060,
       "geoNum4": "G0011233330212301210020",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 970,
+      "deviceId": "device_suidao_90"
     },
     {
       "geoNumScope": [
@@ -1738,11 +1185,12 @@ export default {
         31.371666666666666,
         111.17791666666666
       ],
-      "geoNum": 414271455214174208,
+      "geoNum": 414271455214174200,
       "geoNum4": "G0011233330212301210022",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 968,
+      "deviceId": "device_suidao_91"
     },
     {
       "geoNumScope": [
@@ -1751,11 +1199,12 @@ export default {
         31.371805555555557,
         111.17791666666666
       ],
-      "geoNum": 414271455237242880,
+      "geoNum": 414271455237242900,
       "geoNum4": "G0011233330212301210200",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 967,
+      "deviceId": "device_suidao_92"
     },
     {
       "geoNumScope": [
@@ -1764,11 +1213,12 @@ export default {
         31.371805555555557,
         111.17805555555556
       ],
-      "geoNum": 414271455238291456,
+      "geoNum": 414271455238291460,
       "geoNum4": "G0011233330212301210201",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 967,
+      "deviceId": "device_suidao_93"
     },
     {
       "geoNumScope": [
@@ -1777,11 +1227,12 @@ export default {
         31.371944444444445,
         111.17805555555556
       ],
-      "geoNum": 414271455240388608,
+      "geoNum": 414271455240388600,
       "geoNum4": "G0011233330212301210203",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 966,
+      "deviceId": "device_suidao_94"
     },
     {
       "geoNumScope": [
@@ -1790,11 +1241,12 @@ export default {
         31.371944444444445,
         111.17791666666666
       ],
-      "geoNum": 414271455239340032,
+      "geoNum": 414271455239340000,
       "geoNum4": "G0011233330212301210202",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 965,
+      "deviceId": "device_suidao_95"
     },
     {
       "geoNumScope": [
@@ -1803,11 +1255,12 @@ export default {
         31.371944444444445,
         111.17805555555556
       ],
-      "geoNum": 414271455240388608,
+      "geoNum": 414271455240388600,
       "geoNum4": "G0011233330212301210203",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 964,
+      "deviceId": "device_suidao_96"
     },
     {
       "geoNumScope": [
@@ -1816,11 +1269,12 @@ export default {
         31.372083333333332,
         111.17791666666666
       ],
-      "geoNum": 414271455245631488,
+      "geoNum": 414271455245631500,
       "geoNum4": "G0011233330212301210220",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 964,
+      "deviceId": "device_suidao_97"
     },
     {
       "geoNumScope": [
@@ -1833,7 +1287,8 @@ export default {
       "geoNum4": "G0011233330212301210222",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 963,
+      "deviceId": "device_suidao_98"
     },
     {
       "geoNumScope": [
@@ -1842,11 +1297,12 @@ export default {
         31.37236111111111,
         111.17791666666666
       ],
-      "geoNum": 414271455337906176,
+      "geoNum": 414271455337906200,
       "geoNum4": "G0011233330212301212000",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 963,
+      "deviceId": "device_suidao_99"
     },
     {
       "geoNumScope": [
@@ -1855,11 +1311,12 @@ export default {
         31.3725,
         111.17777777777778
       ],
-      "geoNum": 414271455160696832,
+      "geoNum": 414271455160696800,
       "geoNum4": "G0011233330212301203113",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 962,
+      "deviceId": "device_suidao_100"
     },
     {
       "geoNumScope": [
@@ -1868,11 +1325,12 @@ export default {
         31.3725,
         111.17791666666666
       ],
-      "geoNum": 414271455340003328,
+      "geoNum": 414271455340003300,
       "geoNum4": "G0011233330212301212002",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 962,
+      "deviceId": "device_suidao_101"
     },
     {
       "geoNumScope": [
@@ -1881,11 +1339,12 @@ export default {
         31.37263888888889,
         111.17777777777778
       ],
-      "geoNum": 414271455166988288,
+      "geoNum": 414271455166988300,
       "geoNum4": "G0011233330212301203131",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 961,
+      "deviceId": "device_suidao_102"
     },
     {
       "geoNumScope": [
@@ -1898,7 +1357,8 @@ export default {
       "geoNum4": "G0011233330212301203133",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 960,
+      "deviceId": "device_suidao_103"
     },
     {
       "geoNumScope": [
@@ -1907,11 +1367,12 @@ export default {
         31.372916666666665,
         111.17777777777778
       ],
-      "geoNum": 414271455192154112,
+      "geoNum": 414271455192154100,
       "geoNum4": "G0011233330212301203311",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 960,
+      "deviceId": "device_suidao_104"
     }
   ],
   wifiSD: [
@@ -1922,11 +1383,12 @@ export default {
         31.3675,
         111.17375
       ],
-      "geoNum": 414271449874825216,
+      "geoNum": 414271449874825200,
       "geoNum4": "G0011233330212300110212",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 825,
+      "deviceId": "device_suidao_142"
     },
     {
       "geoNumScope": [
@@ -1935,11 +1397,12 @@ export default {
         31.3675,
         111.17388888888888
       ],
-      "geoNum": 414271449875873792,
+      "geoNum": 414271449875873800,
       "geoNum4": "G0011233330212300110213",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 830,
+      "deviceId": "device_suidao_143"
     },
     {
       "geoNumScope": [
@@ -1948,11 +1411,12 @@ export default {
         31.367638888888887,
         111.17388888888888
       ],
-      "geoNum": 414271449882165248,
+      "geoNum": 414271449882165250,
       "geoNum4": "G0011233330212300110231",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 835,
+      "deviceId": "device_suidao_144"
     },
     {
       "geoNumScope": [
@@ -1965,7 +1429,8 @@ export default {
       "geoNum4": "G0011233330212300110233",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 840,
+      "deviceId": "device_suidao_145"
     },
     {
       "geoNumScope": [
@@ -1974,11 +1439,12 @@ export default {
         31.36777777777778,
         111.17402777777778
       ],
-      "geoNum": 414271449895796736,
+      "geoNum": 414271449895796740,
       "geoNum4": "G0011233330212300110322",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 845,
+      "deviceId": "device_suidao_146"
     },
     {
       "geoNumScope": [
@@ -1987,11 +1453,12 @@ export default {
         31.367916666666666,
         111.17402777777778
       ],
-      "geoNum": 414271449985974272,
+      "geoNum": 414271449985974300,
       "geoNum4": "G0011233330212300112100",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 845,
+      "deviceId": "device_suidao_147"
     },
     {
       "geoNumScope": [
@@ -2000,11 +1467,12 @@ export default {
         31.368055555555557,
         111.17402777777778
       ],
-      "geoNum": 414271449988071424,
+      "geoNum": 414271449988071400,
       "geoNum4": "G0011233330212300112102",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 850,
+      "deviceId": "device_suidao_148"
     },
     {
       "geoNumScope": [
@@ -2017,7 +1485,8 @@ export default {
       "geoNum4": "G0011233330212300112103",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 850,
+      "deviceId": "device_suidao_149"
     },
     {
       "geoNumScope": [
@@ -2026,11 +1495,12 @@ export default {
         31.368194444444445,
         111.17416666666666
       ],
-      "geoNum": 414271449995411456,
+      "geoNum": 414271449995411460,
       "geoNum4": "G0011233330212300112121",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 857,
+      "deviceId": "device_suidao_150"
     },
     {
       "geoNumScope": [
@@ -2039,11 +1509,12 @@ export default {
         31.368333333333332,
         111.17416666666666
       ],
-      "geoNum": 414271449997508608,
+      "geoNum": 414271449997508600,
       "geoNum4": "G0011233330212300112123",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 861,
+      "deviceId": "device_suidao_151"
     },
     {
       "geoNumScope": [
@@ -2052,11 +1523,12 @@ export default {
         31.368472222222223,
         111.17416666666666
       ],
-      "geoNum": 414271450020577280,
+      "geoNum": 414271450020577300,
       "geoNum4": "G0011233330212300112301",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 865,
+      "deviceId": "device_suidao_152"
     },
     {
       "geoNumScope": [
@@ -2065,11 +1537,12 @@ export default {
         31.368472222222223,
         111.17430555555555
       ],
-      "geoNum": 414271450023723008,
+      "geoNum": 414271450023723000,
       "geoNum4": "G0011233330212300112310",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 865,
+      "deviceId": "device_suidao_153"
     },
     {
       "geoNumScope": [
@@ -2082,7 +1555,8 @@ export default {
       "geoNum4": "G0011233330212300112312",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 868,
+      "deviceId": "device_suidao_154"
     },
     {
       "geoNumScope": [
@@ -2095,7 +1569,8 @@ export default {
       "geoNum4": "G0011233330212300112312",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 868,
+      "deviceId": "device_suidao_155"
     },
     {
       "geoNumScope": [
@@ -2104,11 +1579,12 @@ export default {
         31.36861111111111,
         111.17444444444445
       ],
-      "geoNum": 414271450026868736,
+      "geoNum": 414271450026868740,
       "geoNum4": "G0011233330212300112313",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 871,
+      "deviceId": "device_suidao_156"
     },
     {
       "geoNumScope": [
@@ -2117,11 +1593,12 @@ export default {
         31.36875,
         111.17444444444445
       ],
-      "geoNum": 414271450033160192,
+      "geoNum": 414271450033160200,
       "geoNum4": "G0011233330212300112331",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 871,
+      "deviceId": "device_suidao_157"
     },
     {
       "geoNumScope": [
@@ -2134,7 +1611,8 @@ export default {
       "geoNum4": "G0011233330212300113220",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 875,
+      "deviceId": "device_suidao_158"
     },
     {
       "geoNumScope": [
@@ -2143,11 +1621,12 @@ export default {
         31.36888888888889,
         111.17458333333333
       ],
-      "geoNum": 414271450080346112,
+      "geoNum": 414271450080346100,
       "geoNum4": "G0011233330212300113222",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 878,
+      "deviceId": "device_suidao_159"
     },
     {
       "geoNumScope": [
@@ -2156,11 +1635,12 @@ export default {
         31.36888888888889,
         111.17472222222223
       ],
-      "geoNum": 414271450081394688,
+      "geoNum": 414271450081394700,
       "geoNum4": "G0011233330212300113223",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 881,
+      "deviceId": "device_suidao_160"
     },
     {
       "geoNumScope": [
@@ -2169,11 +1649,12 @@ export default {
         31.36888888888889,
         111.17486111111111
       ],
-      "geoNum": 414271450084540416,
+      "geoNum": 414271450084540400,
       "geoNum4": "G0011233330212300113232",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 881,
+      "deviceId": "device_suidao_161"
     },
     {
       "geoNumScope": [
@@ -2182,11 +1663,12 @@ export default {
         31.369027777777777,
         111.17486111111111
       ],
-      "geoNum": 414271450443153408,
+      "geoNum": 414271450443153400,
       "geoNum4": "G0011233330212300131010",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 884,
+      "deviceId": "device_suidao_162"
     },
     {
       "geoNumScope": [
@@ -2195,11 +1677,12 @@ export default {
         31.369027777777777,
         111.175
       ],
-      "geoNum": 414271450444201984,
+      "geoNum": 414271450444202000,
       "geoNum4": "G0011233330212300131011",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 884,
+      "deviceId": "device_suidao_163"
     },
     {
       "geoNumScope": [
@@ -2208,11 +1691,12 @@ export default {
         31.36916666666667,
         111.175
       ],
-      "geoNum": 414271450446299136,
+      "geoNum": 414271450446299140,
       "geoNum4": "G0011233330212300131013",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 887,
+      "deviceId": "device_suidao_164"
     },
     {
       "geoNumScope": [
@@ -2221,11 +1705,12 @@ export default {
         31.36916666666667,
         111.1751388888889
       ],
-      "geoNum": 414271450457833472,
+      "geoNum": 414271450457833500,
       "geoNum4": "G0011233330212300131102",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 887,
+      "deviceId": "device_suidao_165"
     },
     {
       "geoNumScope": [
@@ -2234,11 +1719,12 @@ export default {
         31.369305555555556,
         111.1751388888889
       ],
-      "geoNum": 414271450464124928,
+      "geoNum": 414271450464124900,
       "geoNum4": "G0011233330212300131120",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 891,
+      "deviceId": "device_suidao_166"
     },
     {
       "geoNumScope": [
@@ -2247,50 +1733,12 @@ export default {
         31.369305555555556,
         111.17527777777778
       ],
-      "geoNum": 414271450465173504,
+      "geoNum": 414271450465173500,
       "geoNum4": "G0011233330212300131121",
       "bdCode": null,
       "range": null,
-      height: 920
-    },
-    {
-      "geoNumScope": [
-        31.369305555555556,
-        111.1751388888889,
-        31.369444444444444,
-        111.17527777777778
-      ],
-      "geoNum": 414271450467270656,
-      "geoNum4": "G0011233330212300131123",
-      "bdCode": null,
-      "range": null,
-      height: 920
-    },
-    {
-      "geoNumScope": [
-        31.369305555555556,
-        111.17527777777778,
-        31.369444444444444,
-        111.17541666666666
-      ],
-      "geoNum": 414271450470416384,
-      "geoNum4": "G0011233330212300131132",
-      "bdCode": null,
-      "range": null,
-      height: 920
-    },
-    {
-      "geoNumScope": [
-        31.369305555555556,
-        111.17527777777778,
-        31.369444444444444,
-        111.17541666666666
-      ],
-      "geoNum": 414271450470416384,
-      "geoNum4": "G0011233330212300131132",
-      "bdCode": null,
-      "range": null,
-      height: 920
+      "height": 894,
+      "deviceId": "device_suidao_167"
     },
     {
       "geoNumScope": [
@@ -2299,11 +1747,12 @@ export default {
         31.369583333333335,
         111.17541666666666
       ],
-      "geoNum": 414271450493485056,
+      "geoNum": 414271450493485060,
       "geoNum4": "G0011233330212300131310",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 895,
+      "deviceId": "device_suidao_168"
     },
     {
       "geoNumScope": [
@@ -2312,11 +1761,12 @@ export default {
         31.369583333333335,
         111.17555555555556
       ],
-      "geoNum": 414271450494533632,
+      "geoNum": 414271450494533600,
       "geoNum4": "G0011233330212300131311",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 900,
+      "deviceId": "device_suidao_169"
     },
     {
       "geoNumScope": [
@@ -2325,11 +1775,12 @@ export default {
         31.369722222222222,
         111.17555555555556
       ],
-      "geoNum": 414271450496630784,
+      "geoNum": 414271450496630800,
       "geoNum4": "G0011233330212300131313",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 905,
+      "deviceId": "device_suidao_170"
     },
     {
       "geoNumScope": [
@@ -2342,7 +1793,8 @@ export default {
       "geoNum4": "G0011233330212300131331",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 910,
+      "deviceId": "device_suidao_171"
     },
     {
       "geoNumScope": [
@@ -2351,11 +1803,12 @@ export default {
         31.36986111111111,
         111.17569444444445
       ],
-      "geoNum": 414271453366583296,
+      "geoNum": 414271453366583300,
       "geoNum4": "G0011233330212301020220",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 915,
+      "deviceId": "device_suidao_172"
     },
     {
       "geoNumScope": [
@@ -2364,11 +1817,12 @@ export default {
         31.37,
         111.17569444444445
       ],
-      "geoNum": 414271453368680448,
+      "geoNum": 414271453368680450,
       "geoNum4": "G0011233330212301020222",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 920,
+      "deviceId": "device_suidao_173"
     },
     {
       "geoNumScope": [
@@ -2377,11 +1831,12 @@ export default {
         31.37,
         111.17583333333333
       ],
-      "geoNum": 414271453369729024,
+      "geoNum": 414271453369729000,
       "geoNum4": "G0011233330212301020223",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 920,
+      "deviceId": "device_suidao_174"
     },
     {
       "geoNumScope": [
@@ -2394,7 +1849,8 @@ export default {
       "geoNum4": "G0011233330212301022001",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 924,
+      "deviceId": "device_suidao_175"
     },
     {
       "geoNumScope": [
@@ -2403,11 +1859,12 @@ export default {
         31.37013888888889,
         111.17597222222223
       ],
-      "geoNum": 414271453463052288,
+      "geoNum": 414271453463052300,
       "geoNum4": "G0011233330212301022010",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 924,
+      "deviceId": "device_suidao_176"
     },
     {
       "geoNumScope": [
@@ -2420,7 +1877,8 @@ export default {
       "geoNum4": "G0011233330212301022012",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 927,
+      "deviceId": "device_suidao_177"
     },
     {
       "geoNumScope": [
@@ -2433,7 +1891,8 @@ export default {
       "geoNum4": "G0011233330212301022012",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 931,
+      "deviceId": "device_suidao_178"
     },
     {
       "geoNumScope": [
@@ -2442,11 +1901,12 @@ export default {
         31.370416666666667,
         111.17597222222223
       ],
-      "geoNum": 414271453471440896,
+      "geoNum": 414271453471440900,
       "geoNum4": "G0011233330212301022030",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 933,
+      "deviceId": "device_suidao_179"
     },
     {
       "geoNumScope": [
@@ -2455,11 +1915,12 @@ export default {
         31.370416666666667,
         111.17611111111111
       ],
-      "geoNum": 414271453472489472,
+      "geoNum": 414271453472489500,
       "geoNum4": "G0011233330212301022031",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 933,
+      "deviceId": "device_suidao_180"
     },
     {
       "geoNumScope": [
@@ -2468,11 +1929,12 @@ export default {
         31.370416666666667,
         111.17625
       ],
-      "geoNum": 414271453484023808,
+      "geoNum": 414271453484023800,
       "geoNum4": "G0011233330212301022120",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 937,
+      "deviceId": "device_suidao_181"
     },
     {
       "geoNumScope": [
@@ -2485,7 +1947,8 @@ export default {
       "geoNum4": "G0011233330212301022122",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 937,
+      "deviceId": "device_suidao_182"
     },
     {
       "geoNumScope": [
@@ -2494,11 +1957,12 @@ export default {
         31.370555555555555,
         111.1763888888889
       ],
-      "geoNum": 414271453487169536,
+      "geoNum": 414271453487169540,
       "geoNum4": "G0011233330212301022123",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 940,
+      "deviceId": "device_suidao_183"
     },
     {
       "geoNumScope": [
@@ -2507,11 +1971,12 @@ export default {
         31.370694444444446,
         111.1763888888889
       ],
-      "geoNum": 414271453510238208,
+      "geoNum": 414271453510238200,
       "geoNum4": "G0011233330212301022301",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 943,
+      "deviceId": "device_suidao_184"
     },
     {
       "geoNumScope": [
@@ -2520,11 +1985,12 @@ export default {
         31.370694444444446,
         111.17652777777778
       ],
-      "geoNum": 414271453513383936,
+      "geoNum": 414271453513383940,
       "geoNum4": "G0011233330212301022310",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 943,
+      "deviceId": "device_suidao_185"
     },
     {
       "geoNumScope": [
@@ -2533,11 +1999,12 @@ export default {
         31.370833333333334,
         111.17652777777778
       ],
-      "geoNum": 414271453515481088,
+      "geoNum": 414271453515481100,
       "geoNum4": "G0011233330212301022312",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 946,
+      "deviceId": "device_suidao_186"
     },
     {
       "geoNumScope": [
@@ -2546,11 +2013,12 @@ export default {
         31.370833333333334,
         111.17666666666666
       ],
-      "geoNum": 414271453516529664,
+      "geoNum": 414271453516529660,
       "geoNum4": "G0011233330212301022313",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 946,
+      "deviceId": "device_suidao_187"
     },
     {
       "geoNumScope": [
@@ -2559,11 +2027,12 @@ export default {
         31.37097222222222,
         111.17666666666666
       ],
-      "geoNum": 414271453522821120,
+      "geoNum": 414271453522821100,
       "geoNum4": "G0011233330212301022331",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 950,
+      "deviceId": "device_suidao_188"
     },
     {
       "geoNumScope": [
@@ -2572,11 +2041,12 @@ export default {
         31.37097222222222,
         111.17666666666666
       ],
-      "geoNum": 414271453522821120,
+      "geoNum": 414271453522821100,
       "geoNum4": "G0011233330212301022331",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 950,
+      "deviceId": "device_suidao_189"
     },
     {
       "geoNumScope": [
@@ -2585,11 +2055,12 @@ export default {
         31.37097222222222,
         111.17680555555556
       ],
-      "geoNum": 414271453567909888,
+      "geoNum": 414271453567909900,
       "geoNum4": "G0011233330212301023220",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 953,
+      "deviceId": "device_suidao_190"
     },
     {
       "geoNumScope": [
@@ -2602,7 +2073,8 @@ export default {
       "geoNum4": "G0011233330212301023222",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 955,
+      "deviceId": "device_suidao_191"
     },
     {
       "geoNumScope": [
@@ -2611,11 +2083,12 @@ export default {
         31.371111111111112,
         111.17694444444444
       ],
-      "geoNum": 414271453571055616,
+      "geoNum": 414271453571055600,
       "geoNum4": "G0011233330212301023223",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 955,
+      "deviceId": "device_suidao_192"
     },
     {
       "geoNumScope": [
@@ -2624,11 +2097,12 @@ export default {
         31.371111111111112,
         111.17708333333333
       ],
-      "geoNum": 414271453574201344,
+      "geoNum": 414271453574201340,
       "geoNum4": "G0011233330212301023232",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 955,
+      "deviceId": "device_suidao_193"
     },
     {
       "geoNumScope": [
@@ -2641,7 +2115,8 @@ export default {
       "geoNum4": "G0011233330212301201010",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 955,
+      "deviceId": "device_suidao_194"
     },
     {
       "geoNumScope": [
@@ -2650,11 +2125,12 @@ export default {
         31.37125,
         111.17722222222223
       ],
-      "geoNum": 414271455007604736,
+      "geoNum": 414271455007604740,
       "geoNum4": "G0011233330212301201011",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 955,
+      "deviceId": "device_suidao_195"
     },
     {
       "geoNumScope": [
@@ -2663,11 +2139,12 @@ export default {
         31.371388888888887,
         111.17722222222223
       ],
-      "geoNum": 414271455009701888,
+      "geoNum": 414271455009701900,
       "geoNum4": "G0011233330212301201013",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 953,
+      "deviceId": "device_suidao_196"
     },
     {
       "geoNumScope": [
@@ -2676,11 +2153,12 @@ export default {
         31.371388888888887,
         111.17736111111111
       ],
-      "geoNum": 414271455021236224,
+      "geoNum": 414271455021236200,
       "geoNum4": "G0011233330212301201102",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 953,
+      "deviceId": "device_suidao_197"
     },
     {
       "geoNumScope": [
@@ -2689,11 +2167,12 @@ export default {
         31.37152777777778,
         111.17736111111111
       ],
-      "geoNum": 414271455027527680,
+      "geoNum": 414271455027527700,
       "geoNum4": "G0011233330212301201120",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 950,
+      "deviceId": "device_suidao_198"
     },
     {
       "geoNumScope": [
@@ -2702,11 +2181,12 @@ export default {
         31.37152777777778,
         111.1775
       ],
-      "geoNum": 414271455028576256,
+      "geoNum": 414271455028576260,
       "geoNum4": "G0011233330212301201121",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 950,
+      "deviceId": "device_suidao_199"
     },
     {
       "geoNumScope": [
@@ -2715,11 +2195,12 @@ export default {
         31.37152777777778,
         111.1776388888889
       ],
-      "geoNum": 414271455031721984,
+      "geoNum": 414271455031722000,
       "geoNum4": "G0011233330212301201130",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 947,
+      "deviceId": "device_suidao_200"
     },
     {
       "geoNumScope": [
@@ -2728,11 +2209,12 @@ export default {
         31.371666666666666,
         111.1776388888889
       ],
-      "geoNum": 414271455033819136,
+      "geoNum": 414271455033819140,
       "geoNum4": "G0011233330212301201132",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 947,
+      "deviceId": "device_suidao_201"
     },
     {
       "geoNumScope": [
@@ -2741,11 +2223,12 @@ export default {
         31.371666666666666,
         111.17777777777778
       ],
-      "geoNum": 414271455034867712,
+      "geoNum": 414271455034867700,
       "geoNum4": "G0011233330212301201133",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 944,
+      "deviceId": "device_suidao_202"
     },
     {
       "geoNumScope": [
@@ -2754,11 +2237,12 @@ export default {
         31.371805555555557,
         111.17777777777778
       ],
-      "geoNum": 414271455057936384,
+      "geoNum": 414271455057936400,
       "geoNum4": "G0011233330212301201311",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 944,
+      "deviceId": "device_suidao_203"
     },
     {
       "geoNumScope": [
@@ -2767,11 +2251,12 @@ export default {
         31.371805555555557,
         111.17791666666666
       ],
-      "geoNum": 414271455237242880,
+      "geoNum": 414271455237242900,
       "geoNum4": "G0011233330212301210200",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 940,
+      "deviceId": "device_suidao_204"
     },
     {
       "geoNumScope": [
@@ -2780,11 +2265,12 @@ export default {
         31.371944444444445,
         111.17791666666666
       ],
-      "geoNum": 414271455239340032,
+      "geoNum": 414271455239340000,
       "geoNum4": "G0011233330212301210202",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 940,
+      "deviceId": "device_suidao_205"
     },
     {
       "geoNumScope": [
@@ -2793,11 +2279,12 @@ export default {
         31.371944444444445,
         111.17805555555556
       ],
-      "geoNum": 414271455240388608,
+      "geoNum": 414271455240388600,
       "geoNum4": "G0011233330212301210203",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 937,
+      "deviceId": "device_suidao_206"
     },
     {
       "geoNumScope": [
@@ -2806,11 +2293,12 @@ export default {
         31.371944444444445,
         111.17805555555556
       ],
-      "geoNum": 414271455240388608,
+      "geoNum": 414271455240388600,
       "geoNum4": "G0011233330212301210203",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 937,
+      "deviceId": "device_suidao_207"
     },
     {
       "geoNumScope": [
@@ -2819,11 +2307,12 @@ export default {
         31.371944444444445,
         111.17819444444444
       ],
-      "geoNum": 414271455243534336,
+      "geoNum": 414271455243534340,
       "geoNum4": "G0011233330212301210212",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 934,
+      "deviceId": "device_suidao_208"
     },
     {
       "geoNumScope": [
@@ -2832,11 +2321,12 @@ export default {
         31.372083333333332,
         111.17819444444444
       ],
-      "geoNum": 414271455249825792,
+      "geoNum": 414271455249825800,
       "geoNum4": "G0011233330212301210230",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 934,
+      "deviceId": "device_suidao_209"
     },
     {
       "geoNumScope": [
@@ -2845,11 +2335,12 @@ export default {
         31.372083333333332,
         111.17833333333333
       ],
-      "geoNum": 414271455250874368,
+      "geoNum": 414271455250874400,
       "geoNum4": "G0011233330212301210231",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 930,
+      "deviceId": "device_suidao_210"
     },
     {
       "geoNumScope": [
@@ -2858,11 +2349,12 @@ export default {
         31.372083333333332,
         111.17847222222223
       ],
-      "geoNum": 414271455262408704,
+      "geoNum": 414271455262408700,
       "geoNum4": "G0011233330212301210320",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 930,
+      "deviceId": "device_suidao_211"
     },
     {
       "geoNumScope": [
@@ -2871,11 +2363,12 @@ export default {
         31.372222222222224,
         111.17847222222223
       ],
-      "geoNum": 414271455264505856,
+      "geoNum": 414271455264505860,
       "geoNum4": "G0011233330212301210322",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 927,
+      "deviceId": "device_suidao_212"
     },
     {
       "geoNumScope": [
@@ -2884,11 +2377,12 @@ export default {
         31.372222222222224,
         111.17861111111111
       ],
-      "geoNum": 414271455265554432,
+      "geoNum": 414271455265554400,
       "geoNum4": "G0011233330212301210323",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 927,
+      "deviceId": "device_suidao_213"
     },
     {
       "geoNumScope": [
@@ -2897,11 +2391,12 @@ export default {
         31.37236111111111,
         111.17861111111111
       ],
-      "geoNum": 414271455355731968,
+      "geoNum": 414271455355732000,
       "geoNum4": "G0011233330212301212101",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 924,
+      "deviceId": "device_suidao_214"
     },
     {
       "geoNumScope": [
@@ -2910,11 +2405,12 @@ export default {
         31.37236111111111,
         111.17875
       ],
-      "geoNum": 414271455358877696,
+      "geoNum": 414271455358877700,
       "geoNum4": "G0011233330212301212110",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 924,
+      "deviceId": "device_suidao_215"
     },
     {
       "geoNumScope": [
@@ -2923,11 +2419,12 @@ export default {
         31.37236111111111,
         111.17888888888889
       ],
-      "geoNum": 414271455359926272,
+      "geoNum": 414271455359926300,
       "geoNum4": "G0011233330212301212111",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 920,
+      "deviceId": "device_suidao_216"
     },
     {
       "geoNumScope": [
@@ -2936,11 +2433,12 @@ export default {
         31.3725,
         111.17888888888889
       ],
-      "geoNum": 414271455362023424,
+      "geoNum": 414271455362023400,
       "geoNum4": "G0011233330212301212113",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 920,
+      "deviceId": "device_suidao_217"
     },
     {
       "geoNumScope": [
@@ -2949,11 +2447,12 @@ export default {
         31.3725,
         111.17902777777778
       ],
-      "geoNum": 414271455407112192,
+      "geoNum": 414271455407112200,
       "geoNum4": "G0011233330212301213002",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 917,
+      "deviceId": "device_suidao_218"
     },
     {
       "geoNumScope": [
@@ -2962,11 +2461,12 @@ export default {
         31.3725,
         111.17916666666666
       ],
-      "geoNum": 414271455408160768,
+      "geoNum": 414271455408160800,
       "geoNum4": "G0011233330212301213003",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 917,
+      "deviceId": "device_suidao_219"
     },
     {
       "geoNumScope": [
@@ -2975,27 +2475,29 @@ export default {
         31.37263888888889,
         111.17916666666666
       ],
-      "geoNum": 414271455414452224,
+      "geoNum": 414271455414452200,
       "geoNum4": "G0011233330212301213021",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 914,
+      "deviceId": "device_suidao_220"
+    },
+    {
+      "geoNumScope": [
+        31.369305555555556,
+        111.17527777777778,
+        31.369444444444444,
+        111.17541666666666
+      ],
+      "geoNum": 414271450470416400,
+      "geoNum4": "G0011233330212300131132",
+      "bdCode": null,
+      "range": null,
+      "height": 896,
+      "deviceId": "device_suidao_221"
     }
   ],
   boomSD: [
-    {
-      "geoNumScope": [
-        31.368333333333332,
-        111.17805555555556,
-        31.368472222222223,
-        111.17819444444444
-      ],
-      "geoNum": 414271453228171264,
-      "geoNum4": "G0011233330212301012210",
-      "bdCode": null,
-      "range": null,
-      height: 920
-    },
     {
       "geoNumScope": [
         31.368472222222223,
@@ -3003,11 +2505,12 @@ export default {
         31.36861111111111,
         111.17819444444444
       ],
-      "geoNum": 414271453230268416,
+      "geoNum": 414271453230268400,
       "geoNum4": "G0011233330212301012212",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 935,
+      "deviceId": "device_suidao_105"
     },
     {
       "geoNumScope": [
@@ -3016,11 +2519,12 @@ export default {
         31.36875,
         111.17819444444444
       ],
-      "geoNum": 414271453236559872,
+      "geoNum": 414271453236559900,
       "geoNum4": "G0011233330212301012230",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 933,
+      "deviceId": "device_suidao_106"
     },
     {
       "geoNumScope": [
@@ -3029,11 +2533,12 @@ export default {
         31.36875,
         111.17833333333333
       ],
-      "geoNum": 414271453237608448,
+      "geoNum": 414271453237608450,
       "geoNum4": "G0011233330212301012231",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 933,
+      "deviceId": "device_suidao_107"
     },
     {
       "geoNumScope": [
@@ -3046,7 +2551,8 @@ export default {
       "geoNum4": "G0011233330212301012233",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 931,
+      "deviceId": "device_suidao_108"
     },
     {
       "geoNumScope": [
@@ -3055,11 +2561,12 @@ export default {
         31.369027777777777,
         111.17833333333333
       ],
-      "geoNum": 414271453598318592,
+      "geoNum": 414271453598318600,
       "geoNum4": "G0011233330212301030011",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 929,
+      "deviceId": "device_suidao_109"
     },
     {
       "geoNumScope": [
@@ -3068,11 +2575,12 @@ export default {
         31.369027777777777,
         111.17847222222223
       ],
-      "geoNum": 414271453609852928,
+      "geoNum": 414271453609852900,
       "geoNum4": "G0011233330212301030100",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 927,
+      "deviceId": "device_suidao_110"
     },
     {
       "geoNumScope": [
@@ -3081,11 +2589,12 @@ export default {
         31.36916666666667,
         111.17847222222223
       ],
-      "geoNum": 414271453611940080,
+      "geoNum": 414271453611940100,
       "geoNum4": "G0011233330212301030102",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 925,
+      "deviceId": "device_suidao_111"
     },
     {
       "geoNumScope": [
@@ -3094,11 +2603,12 @@ export default {
         31.369305555555556,
         111.17847222222223
       ],
-      "geoNum": 414271453618241536,
+      "geoNum": 414271453618241540,
       "geoNum4": "G0011233330212301030120",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 923,
+      "deviceId": "device_suidao_112"
     },
     {
       "geoNumScope": [
@@ -3107,11 +2617,12 @@ export default {
         31.369444444444444,
         111.17847222222223
       ],
-      "geoNum": 414271453620338688,
+      "geoNum": 414271453620338700,
       "geoNum4": "G0011233330212301030122",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 920,
+      "deviceId": "device_suidao_113"
     },
     {
       "geoNumScope": [
@@ -3120,11 +2631,12 @@ export default {
         31.369444444444444,
         111.17861111111111
       ],
-      "geoNum": 414271453621387264,
+      "geoNum": 414271453621387260,
       "geoNum4": "G0011233330212301030123",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 920,
+      "deviceId": "device_suidao_114"
     },
     {
       "geoNumScope": [
@@ -3133,11 +2645,12 @@ export default {
         31.369583333333335,
         111.17861111111111
       ],
-      "geoNum": 414271453644455936,
+      "geoNum": 414271453644455940,
       "geoNum4": "G0011233330212301030301",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 917,
+      "deviceId": "device_suidao_115"
     },
     {
       "geoNumScope": [
@@ -3146,11 +2659,12 @@ export default {
         31.369583333333335,
         111.17861111111111
       ],
-      "geoNum": 414271453644455936,
+      "geoNum": 414271453644455940,
       "geoNum4": "G0011233330212301030301",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 914,
+      "deviceId": "device_suidao_116"
     },
     {
       "geoNumScope": [
@@ -3159,11 +2673,12 @@ export default {
         31.369722222222222,
         111.17861111111111
       ],
-      "geoNum": 414271453646553088,
+      "geoNum": 414271453646553100,
       "geoNum4": "G0011233330212301030303",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 914,
+      "deviceId": "device_suidao_117"
     },
     {
       "geoNumScope": [
@@ -3172,11 +2687,12 @@ export default {
         31.369722222222222,
         111.17875
       ],
-      "geoNum": 414271453649698816,
+      "geoNum": 414271453649698800,
       "geoNum4": "G0011233330212301030312",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 911,
+      "deviceId": "device_suidao_118"
     },
     {
       "geoNumScope": [
@@ -3185,11 +2701,12 @@ export default {
         31.36986111111111,
         111.17875
       ],
-      "geoNum": 414271453655990272,
+      "geoNum": 414271453655990300,
       "geoNum4": "G0011233330212301030330",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 909,
+      "deviceId": "device_suidao_119"
     },
     {
       "geoNumScope": [
@@ -3198,11 +2715,12 @@ export default {
         31.37,
         111.17875
       ],
-      "geoNum": 414271453658087424,
+      "geoNum": 414271453658087400,
       "geoNum4": "G0011233330212301030332",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 907,
+      "deviceId": "device_suidao_120"
     },
     {
       "geoNumScope": [
@@ -3215,7 +2733,8 @@ export default {
       "geoNum4": "G0011233330212301032110",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 904,
+      "deviceId": "device_suidao_121"
     },
     {
       "geoNumScope": [
@@ -3224,11 +2743,12 @@ export default {
         31.37013888888889,
         111.17888888888889
       ],
-      "geoNum": 414271453749313536,
+      "geoNum": 414271453749313540,
       "geoNum4": "G0011233330212301032111",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 901,
+      "deviceId": "device_suidao_122"
     },
     {
       "geoNumScope": [
@@ -3237,11 +2757,12 @@ export default {
         31.370277777777776,
         111.17888888888889
       ],
-      "geoNum": 414271453751410688,
+      "geoNum": 414271453751410700,
       "geoNum4": "G0011233330212301032113",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 899,
+      "deviceId": "device_suidao_123"
     },
     {
       "geoNumScope": [
@@ -3250,11 +2771,12 @@ export default {
         31.370416666666667,
         111.17888888888889
       ],
-      "geoNum": 414271453757702144,
+      "geoNum": 414271453757702140,
       "geoNum4": "G0011233330212301032131",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 896,
+      "deviceId": "device_suidao_124"
     },
     {
       "geoNumScope": [
@@ -3263,11 +2785,12 @@ export default {
         31.370555555555555,
         111.17888888888889
       ],
-      "geoNum": 414271453759799296,
+      "geoNum": 414271453759799300,
       "geoNum4": "G0011233330212301032133",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 893,
+      "deviceId": "device_suidao_125"
     },
     {
       "geoNumScope": [
@@ -3276,11 +2799,12 @@ export default {
         31.370555555555555,
         111.17902777777778
       ],
-      "geoNum": 414271453804888064,
+      "geoNum": 414271453804888060,
       "geoNum4": "G0011233330212301033022",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 893,
+      "deviceId": "device_suidao_126"
     },
     {
       "geoNumScope": [
@@ -3289,11 +2813,12 @@ export default {
         31.370555555555555,
         111.17902777777778
       ],
-      "geoNum": 414271453804888064,
+      "geoNum": 414271453804888060,
       "geoNum4": "G0011233330212301033022",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 890,
+      "deviceId": "device_suidao_127"
     },
     {
       "geoNumScope": [
@@ -3302,11 +2827,12 @@ export default {
         31.370694444444446,
         111.17902777777778
       ],
-      "geoNum": 414271453827956736,
+      "geoNum": 414271453827956740,
       "geoNum4": "G0011233330212301033200",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 891,
+      "deviceId": "device_suidao_128"
     },
     {
       "geoNumScope": [
@@ -3315,11 +2841,12 @@ export default {
         31.370833333333334,
         111.17902777777778
       ],
-      "geoNum": 414271453830053888,
+      "geoNum": 414271453830053900,
       "geoNum4": "G0011233330212301033202",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 893,
+      "deviceId": "device_suidao_129"
     },
     {
       "geoNumScope": [
@@ -3328,11 +2855,12 @@ export default {
         31.37097222222222,
         111.17902777777778
       ],
-      "geoNum": 414271453836345344,
+      "geoNum": 414271453836345340,
       "geoNum4": "G0011233330212301033220",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 898,
+      "deviceId": "device_suidao_130"
     },
     {
       "geoNumScope": [
@@ -3341,11 +2869,12 @@ export default {
         31.371111111111112,
         111.17902777777778
       ],
-      "geoNum": 414271453838442496,
+      "geoNum": 414271453838442500,
       "geoNum4": "G0011233330212301033222",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 900,
+      "deviceId": "device_suidao_131"
     },
     {
       "geoNumScope": [
@@ -3354,11 +2883,12 @@ export default {
         31.371111111111112,
         111.17916666666666
       ],
-      "geoNum": 414271453839491072,
+      "geoNum": 414271453839491100,
       "geoNum4": "G0011233330212301033223",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 902,
+      "deviceId": "device_suidao_132"
     },
     {
       "geoNumScope": [
@@ -3367,11 +2897,12 @@ export default {
         31.37125,
         111.17916666666666
       ],
-      "geoNum": 414271455271845888,
+      "geoNum": 414271455271845900,
       "geoNum4": "G0011233330212301211001",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 904,
+      "deviceId": "device_suidao_133"
     },
     {
       "geoNumScope": [
@@ -3384,7 +2915,8 @@ export default {
       "geoNum4": "G0011233330212301211003",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 907,
+      "deviceId": "device_suidao_134"
     },
     {
       "geoNumScope": [
@@ -3397,7 +2929,8 @@ export default {
       "geoNum4": "G0011233330212301211003",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 910,
+      "deviceId": "device_suidao_135"
     },
     {
       "geoNumScope": [
@@ -3406,11 +2939,12 @@ export default {
         31.37152777777778,
         111.17916666666666
       ],
-      "geoNum": 414271455280234496,
+      "geoNum": 414271455280234500,
       "geoNum4": "G0011233330212301211021",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 914,
+      "deviceId": "device_suidao_136"
     },
     {
       "geoNumScope": [
@@ -3419,11 +2953,12 @@ export default {
         31.371666666666666,
         111.17916666666666
       ],
-      "geoNum": 414271455282331648,
+      "geoNum": 414271455282331650,
       "geoNum4": "G0011233330212301211023",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 915,
+      "deviceId": "device_suidao_137"
     },
     {
       "geoNumScope": [
@@ -3432,11 +2967,12 @@ export default {
         31.371805555555557,
         111.17916666666666
       ],
-      "geoNum": 414271455305400320,
+      "geoNum": 414271455305400300,
       "geoNum4": "G0011233330212301211201",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 917,
+      "deviceId": "device_suidao_138"
     },
     {
       "geoNumScope": [
@@ -3445,11 +2981,12 @@ export default {
         31.371805555555557,
         111.17930555555556
       ],
-      "geoNum": 414271455308546048,
+      "geoNum": 414271455308546050,
       "geoNum4": "G0011233330212301211210",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 920,
+      "deviceId": "device_suidao_139"
     },
     {
       "geoNumScope": [
@@ -3462,7 +2999,8 @@ export default {
       "geoNum4": "G0011233330212301211212",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 920,
+      "deviceId": "device_suidao_140"
     },
     {
       "geoNumScope": [
@@ -3471,11 +3009,12 @@ export default {
         31.372083333333332,
         111.17930555555556
       ],
-      "geoNum": 414271455316934656,
+      "geoNum": 414271455316934660,
       "geoNum4": "G0011233330212301211230",
       "bdCode": null,
       "range": null,
-      height: 920
+      "height": 920,
+      "deviceId": "device_suidao_141"
     }
   ]
 }
