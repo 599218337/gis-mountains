@@ -90,11 +90,54 @@ const addModel = () => {
   entity.orientation = orientation
 }
 const openPick = () => {
+  let gridOptions = {
+    lineColor: "#FFFF00",
+    lineAlpha: 0.75,
+    lineWidth: 1,
+    fillClear: "#FF0000",
+    fillAlpha: 1,
+    clampToGround: false,
+    elevation: 0,
+    features: [] as Array<any>,
+    height: 1,
+    name: ''
+  }
+  let pickGrid = new gs3d.grid.rectangleGrid(viewer)
   let handle = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas)
   handle.setInputAction(async (e: any) => {
     let position = e.position
     let pick = viewer.scene.drillPick(position)
-    console.log('click', pick)
+    let targetPrimitiveArray = pick.filter((item: any) => { return typeof (item.id) == 'string' && item.id.includes('device') });
+
+    let deviceId = null
+    let idArray: Array<any> = []
+    targetPrimitiveArray.forEach((item: any) => {
+      idArray.push(item.id)
+    })
+    idArray = Array.from(new Set(idArray))
+    console.log('idArray', idArray);
+
+    let idArray2 = idArray.filter((item: any) => {
+      return !item.includes("suidao")
+    })
+    if (idArray2.length > 0) {
+      deviceId = idArray2[0]
+    } else {
+      deviceId = idArray.find((item: any) => {
+        return item.includes("suidao")
+      })
+    }
+    console.log('deviceId', deviceId)
+
+    if (deviceId) {
+      let targetPrimitive = targetPrimitiveArray.find((item: any) => {
+        return item.id == deviceId
+      })
+      let targetInstance = targetPrimitive.primitive.geometryInstances.find((item: any) => { return item.id == targetPrimitive.id });
+      // console.log('targetInstance', targetInstance);
+      gridOptions.features = [targetInstance.feature]
+      pickGrid.draw(gridOptions)
+    }
   }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
 }
 
@@ -452,7 +495,7 @@ const drawGraphicGrid = (type: string) => {
     feature.properties['center'] = center
     feature.properties['height'] = geo.height
     feature.properties['extruded'] = geo.extrudedHeight || 30
-    feature.properties['id'] = geo.deviceId
+    feature.properties['id'] = geo.deviceId || "device"
     return feature
   })
 
@@ -460,6 +503,8 @@ const drawGraphicGrid = (type: string) => {
 
   let graphicGrid = new gs3d.grid.rectangleGrid(viewer)
   graphicGrid.draw(gridOptions)
+  console.log('gridOptions', gridOptions);
+
   graphicGridArray.push(graphicGrid)
 }
 const clearGraphicGrid = () => {
