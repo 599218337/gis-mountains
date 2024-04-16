@@ -418,7 +418,7 @@ const drawGraphicGrid = (graphicGridJson: Record<string, any>) => {
     let center = turf.getCoord(centroid)
     feature.properties['center'] = center
     feature.properties['height'] = geo.height
-    feature.properties['extruded'] = geo.extrudedHeight || 30
+    feature.properties['extruded'] = geo.extrudedHeight || 15
     feature.properties['id'] = geo.deviceId
     return feature
   })
@@ -512,7 +512,6 @@ let processFrom = reactive({
   clear: '2'
 })
 
-let video_show = ref(false)
 let showNormalBox = ref(false)
 let showUnusualBox = ref(false)
 let unusual_step = ref(1)
@@ -525,9 +524,6 @@ let camera_video_show = ref(false)
       <h1>时空网格矿山编码融合系统</h1>
     </div>
   </div>
-  <video controls class="mp4_video" v-show="video_show">
-    <source src="./assets/1154333232-1-1921.mp4" type="video/mp4" />
-  </video>
 
   <video controls class="camera_video" v-show="camera_video_show">
     <source src="./assets/camera.mp4" type="video/mp4" />
@@ -542,7 +538,7 @@ let camera_video_show = ref(false)
     </div>
   </div>
 
-  <div class="operate-btn">
+  <div class="operate-btn" v-show="show_layer_control_box">
     <el-upload class="upload-demo" action="#" :show-file-list="false" style="display: inline-block; margin-left: 10px"
       @change="showInformation">
       <el-button>信息导入</el-button>
