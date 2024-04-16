@@ -39,7 +39,7 @@ onMounted(async () => {
     }
   })
   addTerrain()
-  // addUnderGroundControler()
+  addUnderGroundControler()
 })
 
 let hasTerrainGrid = ref(false)
@@ -246,7 +246,12 @@ const addWall = async (geometry: any, option: any) => {
           ? Cesium.Cartesian3.fromDegreesArrayHeights(coordinates)
           : Cesium.Cartesian3.fromDegreesArray(coordinates),
       width: option.width || 5,
-      material: rgba,
+      // material: rgba,
+      material: new Cesium.PolylineGlowMaterialProperty({
+        glowPower: 0.1,
+        taperPower: 0.1,
+        color: rgba,
+      }),
       clampToGround: clampToGround ?? true,
       zIndex: 10,
     },
