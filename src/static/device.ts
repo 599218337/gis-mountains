@@ -2,7 +2,7 @@
  * @Author: lzz 599218337@qq.com
  * @Date: 2024-04-15 15:24:06
  * @LastEditors: lzz 599218337@qq.com
- * @LastEditTime: 2024-04-16 16:01:02
+ * @LastEditTime: 2024-04-16 16:33:54
  * @FilePath: /gis-test/src/static/device.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -67,6 +67,319 @@ export default {
       "deviceId": "device_camera_3",
       "height": 937,
       extrudedHeight: 3
+    }
+  ],
+  juShan: [
+    {
+      "geoNumScope": [
+        31.369913194444443,
+        111.17767361111112,
+        31.369930555555555,
+        111.17769097222222
+      ],
+      "geoNum": 414271453458038784,
+      "geoNum4": "G0011233330212301021333032",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_juShan_0",
+      "height": 955,
+    },
+    {
+      "geoNumScope": [
+        31.369913194444443,
+        111.17769097222222,
+        31.369930555555555,
+        111.17770833333333
+      ],
+      "geoNum": 414271453458055168,
+      "geoNum4": "G0011233330212301021333033",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_juShan_0",
+      "height": 955,
+    },
+    {
+      "geoNumScope": [
+        31.369913194444443,
+        111.17770833333333,
+        31.369930555555555,
+        111.17772569444445
+      ],
+      "geoNum": 414271453458235392,
+      "geoNum4": "G0011233330212301021333122",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_juShan_0",
+      "height": 955,
+    },
+    {
+      "geoNumScope": [
+        31.370538194444446,
+        111.1775,
+        31.370555555555555,
+        111.17751736111111
+      ],
+      "geoNum": 414271453558112256,
+      "geoNum4": "G0011233330212301023132222",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_juShan_1",
+      "height": 960,
+    },
+    {
+      "geoNumScope": [
+        31.370538194444446,
+        111.17751736111111,
+        31.370555555555555,
+        111.17753472222222
+      ],
+      "geoNum": 414271453558128640,
+      "geoNum4": "G0011233330212301023132223",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_juShan_1",
+      "height": 960,
+    },
+    {
+      "geoNumScope": [
+        31.370538194444446,
+        111.17753472222222,
+        31.370555555555555,
+        111.17755208333334
+      ],
+      "geoNum": 414271453558177792,
+      "geoNum4": "G0011233330212301023132232",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_juShan_1",
+      "height": 960,
+    }
+  ],
+  dong: [
+    {
+      "geoNumScope": [
+        31.3725,
+        111.1790798611111,
+        31.37251736111111,
+        111.17909722222223
+      ],
+      "geoNum": 414271455414534144,
+      "geoNum4": "G0011233330212301213021011",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_dong_0",
+      "height": 915,
+      extrudedHeight: 1
+    },
+    {
+      "geoNumScope": [
+        31.3725,
+        111.17909722222223,
+        31.37251736111111,
+        111.17911458333333
+      ],
+      "geoNum": 414271455414714368,
+      "geoNum4": "G0011233330212301213021100",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_dong_0",
+      "height": 915,
+      extrudedHeight: 1
+    },
+    {
+      "geoNumScope": [
+        31.3725,
+        111.17911458333333,
+        31.37251736111111,
+        111.17913194444445
+      ],
+      "geoNum": 414271455414730752,
+      "geoNum4": "G0011233330212301213021101",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_dong_0",
+      "height": 915,
+      extrudedHeight: 1
+    },
+    {
+      "geoNumScope": [
+        31.3725,
+        111.1790798611111,
+        31.37251736111111,
+        111.17909722222223
+      ],
+      "geoNum": 414271455414534144,
+      "geoNum4": "G0011233330212301213021011",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_dong_0",
+      "height": 916,
+      extrudedHeight: 1
+    },
+    {
+      "geoNumScope": [
+        31.3725,
+        111.17909722222223,
+        31.37251736111111,
+        111.17911458333333
+      ],
+      "geoNum": 414271455414714368,
+      "geoNum4": "G0011233330212301213021100",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_dong_0",
+      "height": 916,
+      extrudedHeight: 1
+    },
+    {
+      "geoNumScope": [
+        31.3725,
+        111.17911458333333,
+        31.37251736111111,
+        111.17913194444445
+      ],
+      "geoNum": 414271455414730752,
+      "geoNum4": "G0011233330212301213021101",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_dong_0",
+      "height": 916,
+      extrudedHeight: 1
+    },
+    {
+      "geoNumScope": [
+        31.3725,
+        111.1790798611111,
+        31.37251736111111,
+        111.17909722222223
+      ],
+      "geoNum": 414271455414534144,
+      "geoNum4": "G0011233330212301213021011",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_dong_0",
+      "height": 917,
+      extrudedHeight: 1
+    },
+    {
+      "geoNumScope": [
+        31.3725,
+        111.17909722222223,
+        31.37251736111111,
+        111.17911458333333
+      ],
+      "geoNum": 414271455414714368,
+      "geoNum4": "G0011233330212301213021100",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_dong_0",
+      "height": 917,
+      extrudedHeight: 1
+    },
+    {
+      "geoNumScope": [
+        31.3725,
+        111.17911458333333,
+        31.37251736111111,
+        111.17913194444445
+      ],
+      "geoNum": 414271455414730752,
+      "geoNum4": "G0011233330212301213021101",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_dong_0",
+      "height": 917,
+      extrudedHeight: 1
+    },
+    {
+      "geoNumScope": [
+        31.3725,
+        111.1790798611111,
+        31.37251736111111,
+        111.17909722222223
+      ],
+      "geoNum": 414271455414534144,
+      "geoNum4": "G0011233330212301213021011",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_dong_0",
+      "height": 918,
+      extrudedHeight: 1
+    },
+    {
+      "geoNumScope": [
+        31.3725,
+        111.17909722222223,
+        31.37251736111111,
+        111.17911458333333
+      ],
+      "geoNum": 414271455414714368,
+      "geoNum4": "G0011233330212301213021100",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_dong_0",
+      "height": 918,
+      extrudedHeight: 1
+    },
+    {
+      "geoNumScope": [
+        31.3725,
+        111.17911458333333,
+        31.37251736111111,
+        111.17913194444445
+      ],
+      "geoNum": 414271455414730752,
+      "geoNum4": "G0011233330212301213021101",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_dong_0",
+      "height": 918,
+      extrudedHeight: 1
+    },
+    {
+      "geoNumScope": [
+        31.3725,
+        111.1790798611111,
+        31.37251736111111,
+        111.17909722222223
+      ],
+      "geoNum": 414271455414534144,
+      "geoNum4": "G0011233330212301213021011",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_dong_0",
+      "height": 919,
+      extrudedHeight: 1
+    },
+    {
+      "geoNumScope": [
+        31.3725,
+        111.17909722222223,
+        31.37251736111111,
+        111.17911458333333
+      ],
+      "geoNum": 414271455414714368,
+      "geoNum4": "G0011233330212301213021100",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_dong_0",
+      "height": 919,
+      extrudedHeight: 1
+    },
+    {
+      "geoNumScope": [
+        31.3725,
+        111.17911458333333,
+        31.37251736111111,
+        111.17913194444445
+      ],
+      "geoNum": 414271455414730752,
+      "geoNum4": "G0011233330212301213021101",
+      "bdCode": null,
+      "range": null,
+      "deviceId": "device_dong_0",
+      "height": 919,
+      extrudedHeight: 1
     }
   ]
 }
