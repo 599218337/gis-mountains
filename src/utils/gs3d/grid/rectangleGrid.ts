@@ -4,7 +4,7 @@
  * @Author: hejin.gao
  * @Date: 2021-12-21 09:03:11
  * @LastEditors: yangyzZWYL yangyz@zhiwyl.com
- * @LastEditTime: 2024-04-16 14:06:07
+ * @LastEditTime: 2024-04-17 16:24:55
  * 
  feature : {
     bbox:  [0, 0, 10, 10]
@@ -79,7 +79,7 @@ export default class RectangleGrid {
       let _extruded = extruded ? Number(extruded) + _height : _height
 
       // 立体网格盒子
-      let param={
+      const instance:any = new Cesium.GeometryInstance({
         id: id || common.getUuid(11),
         geometry: new Cesium.RectangleGeometry({
           ellipsoid: ellipsoid,
@@ -91,8 +91,7 @@ export default class RectangleGrid {
           color: Cesium.ColorGeometryInstanceAttribute.fromColor(color ? Cesium.Color.fromCssColorString(color) : fillColor),
           // color: Cesium.ColorGeometryInstanceAttribute.fromColor(Cesium.Color.fromRandom({alpha: .25})),
         },
-      }
-      const instance:any = new Cesium.GeometryInstance(param)
+      })
       instance.feature = geo
       instances.push(instance)
 
