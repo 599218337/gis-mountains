@@ -3,8 +3,8 @@
  * @version: 1.0.0
  * @Author: GS3D
  * @Date: 2023-08-22 18:18:25
- * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
- * @LastEditTime: 2024-04-11 22:39:40
+ * @LastEditors: yangyzZWYL yangyz@zhiwyl.com
+ * @LastEditTime: 2024-04-30 16:33:56
  * @FilePath \\geogrid3d\\packages\\sdk\\gs3d\\global\\index.ts
  * Copyright 2023
  * listeners

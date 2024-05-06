@@ -676,7 +676,7 @@ export namespace layerManager {
       console.log(`当前地球上已存在【${layer.id},${layer.label}】图层,请勿重复添加！！！`, gs3dAllLayer)
       return
     }
-    let terrain = gs3dAllLayer.find((lyr: any) => lyr.type.includes('terrain'))
+    let terrain = gs3dAllLayer.find((lyr: any) => lyr.type.includes('terrain') && options.type.includes('terrain'))
     if (terrain) {
       console.log(`当前地球上已存在【${terrain.id},${terrain.label}】地形,请勿重复添加！！！`, gs3dAllLayer)
       return
@@ -795,7 +795,7 @@ export namespace layerManager {
 
   // 辅助 卸载图层
   const _unloadLayer = (option?: any) => {
-    const { viewer } = variable
+    const { viewer } = option || variable
     const lyr = option.layer
     switch (option.type) {
       case 'arcgis_terrain':
@@ -843,7 +843,7 @@ export namespace layerManager {
    * ```
    */
   export const moveLayer = (options: any): null | undefined | ErrorConstructor => {
-    const { viewer } = variable
+    const { viewer } = options || variable
     let defaultOptons: { [key: string]: any } = {
       index: 1,
       type: 'lower'
