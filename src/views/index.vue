@@ -6,10 +6,8 @@ import layerControlOptions from '@/static/layerControlOptions'
 import { tubeJson } from '@/static/line'
 import suiDaoJson from '@/static/suiDao'
 import deviceJson from '@/static/device'
-
 let viewer: any
-const { Cesium } = window
-const { turf } = gs3d
+const { global, Cesium, turf } = gs3d
 
 const polygon = {
   type: 'Feature',
@@ -24,12 +22,28 @@ const polygon = {
 }
 const show_layer_control_box = ref(false)
 onMounted(async () => {
-  const defopt = {
+  // const defopt = {
+  //   msaaSamples: 4,
+  //   // terrain: Cesium.Terrain.fromWorldTerrain(),
+  // }
+  // viewer = gs3d.global.initViewer('mapContainer', defopt)
+  viewer = new Cesium.Viewer("mapContainer", {
+    selectionIndicator: false,
+    sceneMode: Cesium.SceneMode.SCENE3D,
+    animation: false,
+    fullscreenButton: false,
+    vrButton: false,
+    geocoder: false,
+    homeButton: false,
+    infoBox: false,
+    sceneModePicker: false,
+    timeline: false,
+    navigationHelpButton: false,
+    navigationInstructionsInitiallyVisible: false,
+    baseLayerPicker: false,
     msaaSamples: 4,
-    // terrain: Cesium.Terrain.fromWorldTerrain(),
-  }
-  viewer = gs3d.global.initViewer('mapContainer', defopt)
-  // viewer.scene.globe.depthTestAgainstTerrain = true
+  });
+  viewer.scene.globe.depthTestAgainstTerrain = true
   viewer.camera.setView({
     destination: Cesium.Cartesian3.fromDegrees(111.21811387327989, 31.318217744200087, 4010),
     orientation: {
@@ -38,6 +52,7 @@ onMounted(async () => {
       roll: 0.0
     }
   })
+  global.variable.viewer = viewer
   addTerrain()
   addUnderGroundControler()
 })
@@ -66,6 +81,38 @@ const addUnderGroundControler = () => {
 watch(isUnderGround, (newVal) => {
   newVal ? enterUnderGround() : cancelUnderGround()
 })
+
+const addPts = async () => {
+  let options = {
+    id: 'kd',
+    label: '矿道',
+    url: 'pts/tileset.json',
+    setPosition: {
+      lng: 111.177878155,
+      lat: 31.3703329613,
+      height: 950
+    },
+    color: 'rgba(255,255,0,0.1)',
+  }
+
+  const tileSet = await Cesium.Cesium3DTileset.fromUrl(options.url)
+  const { lng, lat, height = 0 } = options.setPosition || {}
+  const originCartographic = Cesium.Cartographic.fromCartesian(tileSet.boundingSphere.center)
+  const originSurface = Cesium.Cartesian3.fromRadians(originCartographic.longitude, originCartographic.latitude, 0.0)
+  if (options.setPosition && Object.keys(options.setPosition).length) {
+    setModelMatrix()
+    function setModelMatrix() {
+      const offset = Cesium.Cartesian3.fromRadians(Cesium.Math.toRadians(lng) || originCartographic.longitude, Cesium.Math.toRadians(lat) || originCartographic.latitude, height)
+      const translation = Cesium.Cartesian3.subtract(offset, originSurface, new Cesium.Cartesian3())
+      tileSet.modelMatrix = Cesium.Matrix4.fromTranslation(translation)
+    }
+  }
+  tileSet.style = new Cesium.Cesium3DTileStyle({
+    color: `color('${options.color}')`,
+  })
+
+  viewer.scene.primitives.add(tileSet)
+}
 
 const openPick = () => {
   let gridOptions = {
@@ -144,6 +191,7 @@ const addTerrain = () => {
   // }
   // gs3d.manager.layerManager.addLayer([options])
   let options = {
+    viewer,
     id: 'modelLayer',
     label: 'TerrainGrid',
     type: 'cesium_terrain',
@@ -156,7 +204,7 @@ const addTerrain = () => {
   gs3d.manager.layerManager.addLayer([options])
 }
 const removeTerrain = () => {
-  gs3d.manager.layerManager.removeLayer({ id: 'cesium_terrain' })
+  gs3d.manager.layerManager.removeLayer({ viewer, id: 'cesium_terrain' })
 }
 
 let entityWall: any = null
@@ -592,24 +640,26 @@ setInterval(() => form_V.value = form_V.value + Math.floor(Math.random() * (3 - 
   </div>
 
   <video controls class="camera_video" v-show="camera_video_show">
-    <source src="@/assets/camera.mp4" type="video/mp4" />
+    <!-- <source src="@/assets/camera.mp4" type="video/mp4" /> -->
   </video>
   <div id="mapContainer"></div>
 
-  <div class="location" @click="addPolygon()"> <span>福禄岭</span> </div>
+  <div class="location" @click="addPolygon()"> <span>杉树垭</span> </div>
+  <el-button @click="addPts" style="position: absolute;top: 20px;right: 20px;z-index: 100;">矿道</el-button>
+
   <div id="layer-control-box" v-show="show_layer_control_box">
     <span class="title">要素分类</span>
     <div class="content">
       <el-tree :data="layerControlOptions" highlight-current show-checkbox @check="changeLayer" node-key="id" />
     </div>
   </div>
-
   <div class="operate-btn" v-show="show_layer_control_box">
     <el-upload class="upload-demo" action="#" :show-file-list="false" style="display: inline-block; margin-left: 10px"
       @change="showInformation">
       <el-button>信息导入</el-button>
     </el-upload>
     <el-button @click="showProcess">爆破流程</el-button>
+
   </div>
   <router-link to="/BI" target="_blank"><img src="@/assets/filter.webp"
       style="width: 44px; cursor: pointer;position: absolute; right: 60px; bottom: 60px; z-index: 9;"
