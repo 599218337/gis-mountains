@@ -2,7 +2,7 @@
   <div class="dashboard-container">
     <div class="header">
       <div class="title">
-        <h1>北斗网格智慧矿山可视运维平台</h1>
+        <h1>北斗网格码智慧矿山系统</h1>
       </div>
     </div>
 

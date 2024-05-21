@@ -50,7 +50,7 @@ const addUnderGroundControler = () => {
     let cameraHeight = viewer.camera.positionCartographic.height
     // console.log('cameraHeight：', cameraHeight)
 
-    if (cameraHeight < 4000) {
+    if (cameraHeight < 4000 && showFlag.value) {
       if (!hasTerrainGrid.value) {
         drawTerrainGrid()
         show_layer_control_box.value = true
@@ -125,7 +125,7 @@ const openPick = () => {
           showUnusualBox.value = true
       }
       if (deviceId.includes("suidao")) {
-        processFrom.range = '[111.17741663779185,31.368985607572885]'
+        processFrom.range = 'G001123333'
       }
       // console.log('targetInstance', targetInstance);
       gridOptions.features = [targetInstance.feature]
@@ -177,6 +177,8 @@ const addPolygon = async () => {
       clampToGround: true
     },
   })
+
+  showFlag.value = true
 }
 const removePolygon = () => {
   removeWall()
@@ -414,55 +416,7 @@ const cancelUnderGround = () => {
   addTerrain()
 }
 
-let gridPickSearch: any
-const initGridPickSearch = () => {
-  // 实例网格拾取
-  gridPickSearch = new gs3d.tools.areaFeaturePick({
-    viewer,
-    callback: (pm: any, type: any) => {
-      console.log('拾取回调', pm, type)//pm为拾取的geojson，type分为三种：1.'draw'：本次为绘制的回调 2.'clear'：本次为清除事件的回调 3.'checkGrid'：本次为开启网格拾取的回调 
-    },
-  })
-}
-const activate = (type: string) => {
-  if (!gridPickSearch) {
-    initGridPickSearch()
-  }
-  console.log('绘制')
-  // 调用绘制方法
-  gridPickSearch.activate({
-    type: type,
-    option: {
-      graphicName: type == "point" ? "pointGra" : "otherGra",
-      geoLevel: null,//网格层级，可选，若不传或值为null会自动取当前地图的网格层级
-      maxGridNumber: 100000, //最大网格数，可选，默认为100000
-      color: "#ff0000",//颜色(适用于：点、线、面、矩形)
-      opacity: type == "polygon" ? 0.4 : 1,//不透明度(适用于：点、线、面、矩形)
-      width: 2,//尺寸(适用于：点、线)
-      fill: true,//是否填充内部(适用于：面、矩形),
-      outline: true,//外边线(适用于：面、矩形)
-      outlineColor: "#ff0000",//外边线颜色(适用于：点、面、矩形)
-      outlineWidth: 1,////外边线宽度(适用于：点、矩形)
-      height: 0,//底部高度(适用于：面)
-      extrudedHeight: 0,//实体高度(适用于：面)
-      isContinuous: true,//是否连续绘制，默认true，即默认连续点击(适用于：点)
-      // isPerCallBack: true,//暂无法使用,连续绘制时是否每绘一个点就返回该个点，结束时不再返回，默认false。若项目中需要此需求，可参考mouseManager.html【鼠标管理】中动态连续绘制的实现方式
-      showLabel: true,//是否显示label，默认true(适用于：点)
-      clampToGround: false,//是否贴地，默认false(适用于：线、面)
-      showImage: true,//是否显示为图片，默认true(适用于：点)
-      imageOption: {
-        distance: { near: 0, far: 30000000 }, //图标显示距离范围,默认near:0,far:30000000
-        url: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAA3NJREFUWEetlk1oE0EUx/9vY5U2m9ZaQQU/2k3VfuxGoRUFPejFouDBD/Sg56og9iZ6Um96E0X8wJseBBWhglREvCjiR7FkoxVsdosUaaVWbTbWpuk+2dSKNjs7Sdq5znv//2/ezJsZQpFjtNZoIIWaQ8zLsuBKAEMhwqBLyutIMv6lSDlQIQnfVxrVoXncoRC1MWOTKIcInZMuPai04zcK0fVipABpLXaUwR0A1hYqCuCJy3Sx0o53ynICAZy62G0QH5CJCCsCPhO2EmeD8oUAjmY8BLCjVPPpPIX4eEUycUkM6TOT0vQzBDo9W/PpfGbsj9jmHT+9vAqko0Y7M67Nlfm0DhFaw0mze6ZuHoCjGW8AtEgABgh4wUSf4HILKBcfCcphxvWIbR4OBHA04yCAW8UK/dLWrcmyew2ErUG5WYXrF/Ylkv/G/FcBRzM8cw/CfzBvV+3EY9G0oxnnAZwI6IqjYStxNQjgK4BFAoFzqmWekp0NJ6p3ganNL46B+xHL3OMLMNrQUKNkyoYDVr9OtRNxGUBa048w6IogzlQtM+YL4GiGAUBkMKRa5lKZuTfv1DathxJ66xvL+Kra5mJfgJ/R5s0uK88EJt2qZbYWAsD19ZVpt/yHoOcnwpY53xcgtUpvpBC9F5mElbEq6usblUE4tc1tUJQuQVxeJf92gVOnLwHRoLABQPsiVvyeDCDwFiX0qkmzybcCb1payhq+ZTLiQ5i/fzNjnTp9O4geBSziecSKbxG3oeT1I9DzCuXnTr+tGK9vbppwlXdBFSKw5B6QrGBKnIbB7rlJVp5V9cdfpqPGDpd5o+zxIsCpcEMrqL/nu7ACuTbSjFcANsj2uth5Ai6HLfPYzLy8xyhVq28lhby/QHmxJqJ4Al6GLdP3K+f7IfkD8XSOAEZUy6wJgPOfmhMIQlZNmmXBBzNgdpYQ6Q/V86tbu7snSgbwEkuBYGBEzajLaeDFmGwbpd9yT8BrNWZ4B1M+CJ/HaayxpoBrO9fUcsWpiJQW20vgu5J4O5xxW2ng3UihugUD5O6IOv0QiG76ihN64fI21U4MFWpeVAWmRVNRo53yfs3UM65gV01ffKAY85IAcpXQYh0AX5gy456QO293eX9Pf7HmJQNMQRgnvQ/sJLJ7qqzej6WYzwrASx5frTcu+JjoLdXcy/sNddw9MPLcyvEAAAAASUVORK5CYII=',
-        width: 40, //图片宽，默认40，
-        height: 40 //图片高，默认40
-      },
-      scaleByDistance: null, //根据距离缩放点的属性值，数组中依次[近距，近距缩放比例，远距，远距缩放比例]，比如点的原始属性width：10，outlineWidth：10，那么根据[1000,1,10000,0.5]表示为，当点视角在1000米高度时，点的属性值缩放比例为1，即width：10，outlineWidth：10；当视角在10000米高度时，点的属性值缩放比例为0.5，即width：5，outlineWidth：5，默认null。(适用于：点)
-      translucencyByDistance: null, //根据与相机的距离设置半透明性。数组中依次[近距，近距缩放比例，远距，远距缩放比例]，比如[1000,0.5,10000,1]，那么在1000米高度时，所看到的图形透明度为0.5，高于10000时，透明度为1，默认null。(适用于：点)
-      distanceDisplayCondition: [0, null], //在距离相机多远的地方显示此点，数组中依次[最小高度，最大高度]，比如[1000,10000]，即在1000-10000米范围内才能看到图形数据。默认[0, null]。(适用于：点,线,面,矩形)
-      disableDepthTestDistance: null //指定要禁用深度测试的相机与相机之间的距离。比如disableDepthTestDistance：50000，即对象在高度50000下不再受深度的影响而显示离。默认永远不受深度影响。(适用于：点)
-    }
-  })
-}
+
 
 let graphicGridArray: Array<any> = []
 const drawGraphicGrid = (graphicGridJson: Record<string, any>, options?: any) => {
@@ -547,9 +501,19 @@ const changeLayer = (_e: any, { checkedKeys }: { checkedKeys: number[] }) => {
 
 const showLayer = (item: number) => {
   if (item === 3) {
-    Object.values(suiDaoJson).forEach((json) => {
-      drawGraphicGrid(json)
-    })
+    drawGraphicGrid(suiDaoJson.windSD)
+    drawGraphicGrid(suiDaoJson.waterSD)
+    drawGraphicGrid(suiDaoJson.boomSD)
+    if (hasWifi.value) {
+      drawGraphicGrid(suiDaoJson.wifiSD)
+      drawGraphicGrid(suiDaoJson.wifiSD.slice(-25, -20), { fillClear: '#FF0000', fillAlpha: 0.8 })
+      drawGraphicGrid(suiDaoJson.waterSD.slice(-20, -15), { fillClear: '#FF0000', fillAlpha: 0.8 })
+    }
+    // Object.values(suiDaoJson).forEach((json) => {
+    //   drawGraphicGrid(json)
+    // })
+    // drawGraphicGrid(suiDaoJson.wifiSD.slice(-25, -20), { fillClear: '#FF0000', fillAlpha: 0.8 })
+    // drawGraphicGrid(suiDaoJson.waterSD.slice(-20, -15), { fillClear: '#FF0000', fillAlpha: 0.8 })
   }
   if (item === 4) {
     drawGraphic('wind')
@@ -574,11 +538,20 @@ const showLayer = (item: number) => {
   }
 }
 
+let hasWifi = ref(false)
 let showBox = ref(false)
-const showInformation = () => {
-  showBox.value = true
-  showProcessBox.value = false
-  drawGraphicGrid(suiDaoJson.wifiSD.slice(0, 5), { fillClear: '#FF0000', fillAlpha: 0.8 })
+const showInformation = (file) => {
+  if (file.name === '下挖作业.rtf') {
+    drawGraphicGrid(suiDaoJson.wifiSD)
+    drawGraphicGrid(suiDaoJson.wifiSD.slice(-25, -20), { fillClear: '#FF0000', fillAlpha: 0.8 })
+    drawGraphicGrid(suiDaoJson.waterSD.slice(-20, -15), { fillClear: '#FF0000', fillAlpha: 0.8 })
+    hasWifi.value = true
+  } else {
+    showBox.value = true
+    showProcessBox.value = false
+    drawGraphicGrid(suiDaoJson.wifiSD.slice(0, 5), { fillClear: '#FF0000', fillAlpha: 0.8 })
+  }
+
 }
 
 let showProcessBox = ref(false)
@@ -598,12 +571,23 @@ let showNormalBox = ref(false)
 let showUnusualBox = ref(false)
 let unusual_step = ref(1)
 let camera_video_show = ref(false)
+
+let showFlag = ref(false)
+
+let form_Power = ref(74.5);
+setInterval(() => form_Power.value = form_Power.value + Math.floor(Math.random() * (3 - (-3) + 1)) + (-3), 3000);
+
+let form_A = ref(303.0);
+setInterval(() => form_A.value = form_A.value + Math.floor(Math.random() * (3 - (-3) + 1)) + (-3), 3000);
+
+let form_V = ref(194.0);
+setInterval(() => form_V.value = form_V.value + Math.floor(Math.random() * (3 - (-3) + 1)) + (-3), 3000);
 </script>
 
 <template>
   <div class="header">
     <div class="title">
-      <h1>时空网格矿山编码融合系统</h1>
+      <h1>北斗网格码智慧矿山系统</h1>
     </div>
   </div>
 
@@ -612,7 +596,7 @@ let camera_video_show = ref(false)
   </video>
   <div id="mapContainer"></div>
 
-  <div class="location" @click="addPolygon()"> <span>杉树垭</span> </div>
+  <div class="location" @click="addPolygon()"> <span>福禄岭</span> </div>
   <div id="layer-control-box" v-show="show_layer_control_box">
     <span class="title">要素分类</span>
     <div class="content">
@@ -681,9 +665,9 @@ let camera_video_show = ref(false)
     <div class="details">
       <ul>
         <li>设备名称：二号风机</li>
-        <li>实时功率：74.5 KW</li>
-        <li>输出电压：303.0 V</li>
-        <li>输出电流：194.0 A</li>
+        <li>实时功率：{{ form_Power }} KW</li>
+        <li>输出电压：{{ form_A }} V</li>
+        <li>输出电流：{{ form_V }} A</li>
         <li>轴承温度：28.6 °C</li>
         <li>线圈温度：26.8 °C</li>
         <li>实时振动：0.0 mm/S</li>
@@ -710,10 +694,10 @@ let camera_video_show = ref(false)
       </el-form-item>
 
       <el-form-item label="处理措施">
-        <el-input v-model="processFrom.range" />
+        <el-input v-model="processFrom.operator" />
       </el-form-item>
       <el-form-item label="处理人">
-        <el-input v-model="processFrom.range" />
+        <el-input v-model="processFrom.operator" />
       </el-form-item>
       <el-form-item label="处理时间" class="time-input">
         <el-date-picker type="datetime" placeholder="选择日期时间" v-model="processFrom.time"></el-date-picker>
