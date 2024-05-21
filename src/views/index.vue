@@ -26,8 +26,8 @@ onMounted(async () => {
   //   msaaSamples: 4,
   //   // terrain: Cesium.Terrain.fromWorldTerrain(),
   // }
-  // viewer = gs3d.global.initViewer('mapContainer', defopt)
-  viewer = new Cesium.Viewer("mapContainer", {
+  // viewer = gs3d.global.initViewer('mapContainer',)
+  viewer = gs3d.global.initViewer("mapContainer", {
     selectionIndicator: false,
     sceneMode: Cesium.SceneMode.SCENE3D,
     animation: false,
