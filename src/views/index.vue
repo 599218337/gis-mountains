@@ -645,7 +645,6 @@ setInterval(() => form_V.value = form_V.value + Math.floor(Math.random() * (3 - 
   <div id="mapContainer"></div>
 
   <div class="location" @click="addPolygon()"> <span>杉树垭</span> </div>
-  <el-button @click="addPts" style="position: absolute;top: 20px;right: 20px;z-index: 100;">矿道</el-button>
 
   <div id="layer-control-box" v-show="show_layer_control_box">
     <span class="title">要素分类</span>
@@ -659,6 +658,7 @@ setInterval(() => form_V.value = form_V.value + Math.floor(Math.random() * (3 - 
       <el-button>信息导入</el-button>
     </el-upload>
     <el-button @click="showProcess">爆破流程</el-button>
+    <el-button @click="addPts">点云矿道</el-button>
 
   </div>
   <router-link to="/BI" target="_blank"><img src="@/assets/filter.webp"
